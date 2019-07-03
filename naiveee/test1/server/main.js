@@ -7,8 +7,8 @@ function insertLink(title, url) {
   Links.insert({ title, url, createdAt: new Date() });
 }
 
-function insertInstance(text,label){
-  Instances.insert({text,label,heuristics,createdAt: new Date() });
+function insertInstance(text,label, heuristics){
+  Instances.insert({text, label, heuristics, createdAt: new Date() });
 }
 
 

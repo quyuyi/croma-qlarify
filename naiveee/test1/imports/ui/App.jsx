@@ -18,13 +18,24 @@ class App extends Component {
   // random sample a instance
   // show the text of the instance
   // get the id of the instance (for updating the collection later)
-  renderInstance(){
-    const allInstances=this.props.instances.map(instance=>instance._id);
-    const id=allInstances[Math.floor(Math.random()*allInstances.length)];
-    const text=Instances.find({_id:id}).fetch().map(t=>t.text);
-    return (
-      <Instance id={id} instance={text} handleNext={this.handleNext}/>
+  renderInstance(){   
+    
+    const allInstances=this.props.instances.filter(instance =>       
+      isNotIntersected(instance.text, this.props.existingHeuristics)
     );
+        
+    const selected=allInstances[Math.floor(Math.random()*allInstances.length)];
+
+    if (selected != undefined) {
+      return (
+        <Instance id={selected.id} instance={selected.text} handleNext={this.handleNext}/>
+      );
+    } else {
+      // const text=Instances.find({_id:id}).fetch().map(t=>t.text);
+      return (
+        <div />
+      );
+    }
   }
 
   render () {
@@ -44,7 +55,8 @@ export default InstContainer = withTracker(() => {
   const existingHeuristics=Heuristics.find().fetch().map(item=>item.heuristic);
   console.log(existingHeuristics);
   return {
-      instances: Instances.find({ text: {$nin: existingHeuristics}  }).fetch(),
+      instances: Instances.find({ }).fetch(),
+      existingHeuristics: existingHeuristics,
   };
 })(App);
 
@@ -60,3 +72,8 @@ export default InstContainer = withTracker(() => {
   };
 })(App);
 */
+
+function isNotIntersected(str, arr) {
+  const intersection = arr.filter(e => str.includes(e));
+  return intersection.length == 0
+}
