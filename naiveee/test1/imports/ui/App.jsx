@@ -93,6 +93,10 @@ export default InstContainer = withTracker(() => {
 function isNotIntersected(str, arr) {
   const intersection = arr.filter(e => str.includes(e));
   return intersection.length == 0
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> 74baa5f9a323ec5f53b98c6264f7fa5c50c73b76
