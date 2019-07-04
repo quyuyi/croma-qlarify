@@ -7,9 +7,12 @@ function insertLink(title, url) {
   Links.insert({ title, url, createdAt: new Date() });
 }
 
-function insertInstance(text,label){
+
+/*
+function insertInstance(text,label,heuristics){
   Instances.insert({text,label,heuristics,createdAt: new Date() });
 }
+*/
 
 
 Meteor.startup(() => {
@@ -35,7 +38,7 @@ Meteor.startup(() => {
       'https://forums.meteor.com'
     );
   }
-
+/*
   if (Instances.find().count() === 0) {
     insertInstance(
       "Bromwell High is a cartoon comedy. It ran at the same time as some other programs about school life, such as 'Teachers'. My 35 years in the teaching profession lead me to believe that Bromwell High's satire is much closer to reality than is 'Teachers'. The scramble to survive financially, the insightful students who can see right through their pathetic teachers' pomp, the pettiness of the whole situation, all remind me of the schools I knew and their students. When I saw the episode in which a student repeatedly tried to burn down the school, I immediately recalled ......... at .......... High. A classic line: INSPECTOR: I'm here to sack one of your teachers. STUDENT: Welcome to Bromwell High. I expect that many adults of my age think that Bromwell High is far fetched. What a pity that it isn't!",
@@ -97,6 +100,33 @@ Meteor.startup(() => {
       "",
     );
   }
+*/
 });
 
+/*
+    if (Meteor.isServer){
+      Meteor.methods({
+        myPythonCall: function(){
+          var exec = Npm.require('child_process').exec;
+          var errorCallBack=function(e){console.log('errorCallBaxk');};
+          var runCmd=Meteor.wrapAsync(exec,
+            Meteor.bindenvironment(
+              function(error,stdour,sterr){
+                if (error)
+                console.log('Error binding to environment');
+              },
+              errorCallBack
+            ));
+      
+            var command='python ./feedback.py';
+            var result=runCmd(command);
+            console.log(result);
+        }
+      });
+    }
+
+    if (Meteor.isClient){
+      Meteor.call("myPythonCall");
+    }
+*/
 

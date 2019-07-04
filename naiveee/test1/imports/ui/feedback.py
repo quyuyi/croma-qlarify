@@ -69,44 +69,6 @@ def predictToMongodb(keywords,labels):
 
 
 
-
-# read from a text file
-def readFromTextFile(file):
-    try:
-        f=open(file,'r',errors='ignore')
-        text=f.read()
-        return text
-    
-    except IOError:
-        print ('Could not read file:', file)
-
-
-
-# read all the text files in a folder
-#  and insert into the collection in mongodb
-def readDatasetIntoMongodb():
-    client = MongoClient('mongodb://127.0.0.1:3001/meteor')
-    db = client.meteor  # use a database called "meteor"
-    collection = db.instances   # and inside that DB, a collection called "heuristics"
-
-    path='D:\\aclImdb\\train\\test_1000\\pos\\*.txt'
-    files=glob.glob(path)
-    for f in files:
-        text=readFromTextFile(f)
-        instance={
-            'text': text,
-            'trueLabel':'pos',
-            'label': '',
-            'heuristics':'',
-            'prediction':'',
-            'createdAt':datetime.datetime.utcnow()
-        }
-        # print(instance['text'])
-        collection.insert_one(instance)
-
-
-
-
 def accuracy():
     client = MongoClient('mongodb://127.0.0.1:3001/meteor')
     db = client.meteor  # use a database called "meteor"
@@ -133,33 +95,10 @@ def accuracy():
 
 
 def main():
-    # create collection on server
-    # read text files into mongodb (acllmdb/instances)
-    # readDatasetIntoMongodb()
-
     keywords,labels=readFromMongodb()
     predictToMongodb(keywords,labels)
     accu=accuracy()
-    print (accu)
-
-    # for test
-    # testText='''I'm a male, not given to women's movies, but this is really a well done special story. I have no personal love for Jane Fonda as a person but she does one Hell of a fine job, while DeNiro is his usual superb self. Everything is so well done: acting, directing, visuals, settings, photography, casting. If you can enjoy a story of real people and real love - this is a winner.'''
-    # keywordAsWeakClassifier(testText,"enjoy","pos")
-
-
+    return accu
 
 if __name__ == "__main__":
     main() 
-
-
-
-
-'''
-f = open('test_file_name.txt')  # open a file
-text = f.read()    # read the entire contents, should be UTF-8 text
-
-# build a document to be inserted
-text_file_doc = {"file_name": "test_file_name.txt", "contents" : text }
-# insert the contents into the "file" collection
-collection.insert(text_file_doc)
-'''

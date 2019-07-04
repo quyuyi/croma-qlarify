@@ -1,3 +1,3 @@
 import { Mongo } from 'meteor/mongo';
 
-export default Heuristics = new Mongo.Collection('heuristics');
+export default Acllmdb = new Mongo.Collection('acllmdb');

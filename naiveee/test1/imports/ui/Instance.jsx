@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Instances from '../api/instances.js';
 import Heuristics from '../api/heuristics.js';
 import Form from './Form.jsx';
 

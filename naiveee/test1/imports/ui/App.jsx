@@ -1,9 +1,11 @@
+import { Meteor } from 'meteor/meteor';
 import React,{Component} from 'react';
 import {withTracker} from 'meteor/react-meteor-data';
 import Instance from './Instance.jsx';
 import Form from './Form.jsx';
 import Instances from '../api/instances';
 import Heuristics from '../api/heuristics';
+import {HTTP} from 'meteor/http';
 
 // sample a instance to work with
 class App extends Component {
@@ -13,18 +15,44 @@ class App extends Component {
     Instances.update(id,{
       $set: {heuristics: keywords, label: label}
     });
+  
+    // call python to calculate accuracy of the current model
+    const url = "http://127.0.0.1:5000/";
+    HTTP.call('GET',url,function(error,result){
+      if(error){
+        console.log(error);
+      }
+      if (result){
+        console.log(result);
+      }
+    });
+
+    this.forceUpdate(); 
   }
 
   // random sample a instance
   // show the text of the instance
   // get the id of the instance (for updating the collection later)
-  renderInstance(){
-    const allInstances=this.props.instances.map(instance=>instance._id);
-    const id=allInstances[Math.floor(Math.random()*allInstances.length)];
-    const text=Instances.find({_id:id}).fetch().map(t=>t.text);
-    return (
-      <Instance id={id} instance={text} handleNext={this.handleNext}/>
+  renderInstance(){   
+    
+    const allInstances=this.props.instances.filter(instance =>       
+      isNotIntersected(instance.text, this.props.existingHeuristics)
     );
+      
+    console.log(allInstances.length);
+
+    const selected=allInstances[Math.floor(Math.random()*allInstances.length)];
+
+    if (selected != undefined) {
+      return (
+        <Instance id={selected.id} instance={selected.text} handleNext={this.handleNext}/>
+      );
+    } else {
+      // const text=Instances.find({_id:id}).fetch().map(t=>t.text);
+      return (
+        <div />
+      );
+    }
   }
 
   render () {
@@ -44,7 +72,8 @@ export default InstContainer = withTracker(() => {
   const existingHeuristics=Heuristics.find().fetch().map(item=>item.heuristic);
   console.log(existingHeuristics);
   return {
-      instances: Instances.find({ text: {$nin: existingHeuristics}  }).fetch(),
+      instances: Instances.find({ }).fetch(),
+      existingHeuristics: existingHeuristics,
   };
 })(App);
 
@@ -60,3 +89,10 @@ export default InstContainer = withTracker(() => {
   };
 })(App);
 */
+
+function isNotIntersected(str, arr) {
+  const intersection = arr.filter(e => str.includes(e));
+  return intersection.length == 0
+}
+
+
