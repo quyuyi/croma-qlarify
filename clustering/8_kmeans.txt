@@ -1,0 +1,115 @@
+Top terms per cluster:
+Cluster 0: new microsoft software internet company computer service search technology google
+Cluster 1: president ap bush said united reuters government nuclear election states
+Cluster 2: iraq killed people said baghdad iraqi gaza police israeli city
+Cluster 3: 39 world yesterday year said new time england team largest
+Cluster 4: season game win team night league ap victory sunday cup
+Cluster 5: said million company percent quarter year billion corp sales research
+Cluster 6: lt gt oil reuters prices fullquote stocks new york http
+Cluster 7: quot 39 said new says microsoft president writes time today
+
+
+Samples from Cluster 0:
+Cornice blasts Seagate's suit over patents for tiny hard drives used in portable gadgets.
+->SciTech
+Wall Street, which forced Google, the Internet search engine, to sharply lower the price of its shares in its initial public offering in August, has decided that the company is worth a lot more today than it was then.
+->Business
+TechWeb - Customers are decoupling storage from server purchases, which explains why EMC and NetApp earnings were up and why Sun and HP were flat or down, Warmenhoven says.
+->SciTech
+Around 40 of the UK will still be without internet access at home by 2025, warns a study by telecoms giant BT.
+->SciTech
+Lice genes have been a head-scratcher for experts in human origins who now suspect that we humans picked up some parasites from our more primitive ancestors.
+->SciTech
+
+
+Samples from Cluster 1:
+AFP - A little known radical Islamic group has threatened to kill Indian cricketers when they tour Bangladesh from Tuesday, the Indian High Commission told AFP.
+->World
+Tony Blair last night put worldwide political and human rights at the centre of his hopes to revitalise the United Nations and bring the United States and Europe closer together again in pursuit of global democracy.
+->World
+A terror suspect escaped from court in Bahrain Monday after a judge renewed the detention order and three fellow detainees for 30 days.
+->World
+TALLAHASSEE, Fla. - Two devastating hurricanes have given President Bush something his political advisers couldn't dream up: the chance to play comforter in chief in a battleground state he is determined to win again...
+->World
+GULF SHORES, Ala. - Hurricane Ivan slammed ashore early Thursday with winds of 130 mph, packing deadly tornadoes and a powerful punch of waves and rain that threatened to swamp communities from Louisiana to the Florida Panhandle...
+->World
+
+
+Samples from Cluster 2:
+ROSTOV-ON-DON, RUSSIA - Three Russian police officers have been charged with criminal negligence in connection with the Beslan school hostage-taking that left 360 people dead, almost half of them children.
+->World
+WASHINGTON - The Abu Ghraib prisoner abuse scandal could effectively end the careers of four Army generals who are linked indirectly to the misconduct but face no criminal charges.    The four are singled out for varying degrees of criticism - mixed with instances of praise - in two comprehensive investigative reports released last week...
+->World
+AP - Saboteurs blew up a pipeline in southern Iraq on Sunday in the latest attack targeting the country's crucial oil industry, a senior oil official said.
+->World
+Israel's opposition leader warns that the prime minister risks being assassinated over his Gaza disengagement plan.
+->World
+AP - Investigators picked through the wreckage of an Indonesian passenger plane that crashed in stormy weather, killing at least 32 people in the county's worst air accident in six years.
+->World
+
+
+Samples from Cluster 3:
+SYDNEY, Sep 25: Australia #39;s stand-in captain and wicketkeeper Adam Gilchrist has said that his twin responsibilities will not come in the way of seeking a winning start for his team against India in next month #39;s Test series.
+->Sports
+Summary - (Nov 10, 2004) The countdown has begun for the launch of the Planetary Society #39;s Cosmos 1 spacecraft; the first ever to be powered by a solar sail.
+->SciTech
+OGDEN, Utah -- Weber State football coach Jerry Graybeal resigned Tuesday after a 1-10 season, the worst in the program #39;s 43-year history.
+->Sports
+Malaysia #39;s former deputy prime minister Anwar Ibrahim has come home to a rock star #39;s welcome Sunday. He returned from undergoing back surgery in Germany following his release from prison last month.
+->World
+ATLANTA - Tommy Tuberville isn #39;t much into computers and formulas to determine who should play for college football #39;s national championship.
+->Sports
+
+
+Samples from Cluster 4:
+Captain Inzamam-ul-Haq praised his spinners after Pakistan knocked Kenya out of the Champions Trophy with a seven-wicket win at Edgbaston.
+->Sports
+Chicago White Sox owner Jerry Reinsdorf led a team of negotiators from Major League Baseball in a three-hour meeting Wednesday with the leaders of the Virginia Baseball Stadium Authority.
+->Sports
+INDIANAPOLIS, Nov. 10 (Ticker) -- The Indiana Pacers were looking for a first. The Los Angeles Clippers accomplished one. Elton Brand had 19 points and a season-high 16 rebounds as the Clippers pounded the Pacers, 102-68.
+->Sports
+NEW YORK (Reuters) - David Wright and Todd Zeile both  homered to lead the New York Mets to an 8-1 win over Montreal  at Shea Stadium on Sunday, handing the Expos a heavy defeat in  their final game before moving to Washington next season.
+->Sports
+AP - For all the fuss over reported admissions of steroid use by Barry Bonds, Jason Giambi and Gary Sheffield, major league baseball probably won't discipline them.
+->Sports
+
+
+Samples from Cluster 5:
+Citigroup Inc. said Monday it will close its trust banking unit in Japan within a year, after Japanese authorities ordered the US financial services giant to suspend its private banking business there.
+->Business
+WASHINGTON (Reuters) - A pornography bill-processing  company has agreed to forego \$17 million that it billed  computer users in order to settle deceptive-business charges,  the U.S. Federal Trade Commission said on Monday.
+->SciTech
+Montana jury orders oil firm to pay up over gas pipeline leak from 1955; company plans to appeal. NEW YORK (Reuters) - A Montana jury ordered ChevronTexaco Corp., the number two US oil company, to pay \$40.3 million for environmental damage from a gasoline ...
+->Business
+AFP - China has brought its mobile phone network to the last of its ethnic minority regions previously cut off from communication with the outside world, state media reported.
+->SciTech
+Documents show that the nation's most influential rail-safety group is tightly bound to the railroad industry.
+->World
+
+
+Samples from Cluster 6:
+Japanese stocks rose 1.9 percent by midsession on Monday as a strong performance by US semiconductor-related stocks gave a push to Japanese peers such as Advantest Corp.
+->Business
+VIENNA (Reuters) - OPEC's core Gulf producers will  recommend the cartel raise supply quotas by one million barrels  a day, four percent, Kuwaiti Oil Minister Sheikh Ahmad al-Fahd  al-Sabah said on Wednesday.
+->Business
+European shares turned negative and government bonds were struggling for direction on Thursday after US data showed subdued inflation numbers, flat spending and a rise in unemployment.
+->Business
+TOKYO (Reuters) - Tokyo stocks rose by mid-morning on  Monday with a broad range of issues getting a lift from a key  survey that boosted optimism on Japan's economic outlook, with  expectations rising that growth figures will be revised up.
+->Business
+US stocks looked to open flat on Thursday under pressure from the surge in oil prices and lackluster September sales reports from US retailers.
+->Business
+
+
+Samples from Cluster 7:
+U2 and Apple Computer are expected to announce next week that they have inked a deal to sell custom iPods. According to a source, the band #39;s upcoming Interscope album  quot;How to Dismantle an Atomic Bomb, quot; due Nov.
+->SciTech
+Apple will be getting some stiff competition in the coming year. A slew of manufacturers will soon offer players utilizing small 1 quot; hard drives that help propel the iPod and allow them to compete more favorably in the market.
+->SciTech
+Denmark #39;s leading telecoms operator TDC says it will launch a low-budget mobile telephone operator dubbed  quot;easyMobile quot; with mobile network operator T-Mobile in Britain in March 2005.
+->Business
+German Finance Minister Eichel called for the euro #39;s  quot;brutal quot; rise versus the dollar to be put on the agenda of the summit of G20 countries in Berlin this weekend amid concerns the greenback #39;s slide could hit EU growth.
+->Business
+As we reported previously, Kodak filed a lawsuit against Sun Microsystems claiming that the company had infringed on its patents by implementing  quot;ask for help quot; functionality in its Java programming language, which gave a huge boost to the company #39;s yearly
+->SciTech
+
+
