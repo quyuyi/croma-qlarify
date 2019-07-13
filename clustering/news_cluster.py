@@ -7,6 +7,10 @@ import json
 from functools import partial
 import random
 from gensim.models.keyedvectors import KeyedVectors
+import os.path
+from os import path
+
+from glove_model import *
 
 # read all from json file and return a list called data[]
 # data[i] corresponds to the ith row in the json file
@@ -37,7 +41,7 @@ def extract_text(data):
 
 
 # feature_space {'tfidf','glove'}
-# similarity_measure {'euclidean'.'cosine'}
+# similarity_measure {'euclidean','cosine'}
 def clustering(document,k,similarity_measure,feature_space):
     # Vectorizer results are normalized, 
     # which makes k-means bahave as spherical k-means
@@ -45,14 +49,20 @@ def clustering(document,k,similarity_measure,feature_space):
         vectorizer=TfidfVectorizer(stop_words='english',max_features=20000)
         X=vectorizer.fit_transform(document)
     else:# (feature_space=='glove'):
-        # NOT FINISHED...
-        glove_model=KeyedVectors.load_word2vec_format('glove.6B.50d.txt.word2vec',binary=False)
+        # use pretrained glove model
+        # download from https://nlp.stanford.edu/projects/glove/
+        # glove.6B.zip
+        glovefile='glove.6B.100d.txt'
+        if (not path.exists(glovefile+'.word2vec')):
+            load_glove_to_word2vec(glovefile)
+        glove_model=KeyedVectors.load_word2vec_format(glovefile+'.word2vec',binary=False)
+        X=glove_vectorizer(document,glove_model)
     if (similarity_measure=='cosine'):
         skm=SphericalKMeans(n_clusters=k)
         skm.fit(X)
     else:# (similarity_measure=='euclidean'):
         skm = KMeans(n_clusters=k, random_state=0).fit(X)
-    return skm,vectorizer
+    return skm
 
 
 # print the top 10 words with largest tfidf in each cluster
@@ -96,19 +106,25 @@ def sample_from_one_cluster(texts,labels,clusters,cluster_label,num_samples):
 
 def main():
     # number of clusters
-    k=8
+    k=12
     # number of samples to present in each cluster
     num_samples=5
+    # vectorizer {'tfidf','glove'}
+    my_vectorizer='glove'
+    # similarity {'euclidean','cosine'}
+    my_similarity='cosine'
     # output filename
     filename=str(k)+'_kmeans.txt'
     outfile=open(filename,'a')
 
+
     data=read_from_json('News Classification Dataset.json')
     texts,labels=extract_text(data)
     
-    skm,vectorizer=clustering(texts,k,'cosine','tfidf')
-    centroids_to_words(skm,vectorizer,k)
-    # cluster: (#cluster, [indices of instances in that cluster] )
+    skm=clustering(texts,k,my_similarity,my_vectorizer)
+
+    # centroids_to_words(skm,vectorizer,k)
+    # clusters: (#cluster, [indices of instances in that cluster] )
     clusters=partial(index_of_one_cluster,skm.labels_)
     
     for i in range(0,k):
