@@ -4,13 +4,13 @@ body {
   background-attachment: fixed;
  
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 10;
+  bottom: 10;
+  left: 20;
+  right: 20;
  
-  padding: 0;
-  margin: 0;
+  padding: 20;
+  margin: 5;
  
   font-size: 14px;
 }
@@ -110,7 +110,7 @@ header .hide-completed {
 
 textarea {
   width: 100%;
-  height: 150px;
+  height: 80px;
   padding: 12px 20px;
   box-sizing: border-box;
   border: 2px solid #ccc;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Examples from "../api/examples";
 
 class Example extends Component {
   constructor(props){
@@ -12,19 +13,17 @@ class Example extends Component {
     this.handleRule=this.handleRule.bind(this);
   }
 
-  handleNextExample(){
-    console.log('call handleNextExample in Example');
-    this.props.handleNext(this.props.id,this.state.label,this.state.rule);
-
-    //clear form
-    document.getElementById('rule').value='';
-    //uncheck label
-    document.getElementById("radioBtn1").checked = false;
-    document.getElementById("radioBtn2").checked = false;
-    document.getElementById("radioBtn3").checked = false;
-    document.getElementById("radioBtn4").checked = false;
-    this.setState(this.initialState);
-
+  handleSubmit(){
+    console.log('call handleSumbit in Example');
+    Examples.update(
+      {_id:this.props.id},
+      {$push:{rules: {
+        label:this.state.label,
+        rule:this.state.rule
+        //worker:
+        //createdAt:
+      }}},
+    );
   }
 
 
@@ -48,8 +47,8 @@ class Example extends Component {
     console.log('call render in Example');
     return (
       <div>
-        <p>{this.props.example}</p>  
-        <form>      
+        <p>{this.props.example}</p>     
+        <form id={this.props.id} onSubmit={()=>this.handleSubmit.bind(this)}>
           <input type='radio' name='label' id='radioBtn1' value='World' onClick={this.handleLabel}/>World<br></br>
           <input type='radio' name='label' id='radioBtn2'value='Business' onClick={this.handleLabel}/>Business<br></br>
           <input type='radio' name='label' id='radioBtn3' value='Sports' onClick={this.handleLabel}/>Sports<br></br>
@@ -61,9 +60,9 @@ class Example extends Component {
             placeholder={this.state.rule}
             onChange={this.handleRule}
           />
-                                     
-          <input type='button' value='Next' onClick={()=>this.handleNextExample()} />
-        </form>  
+        </form>
+          <br></br>
+          <br></br>
       </div>
 
       
