@@ -1,29 +1,38 @@
 import React, { Component } from 'react';
-import Examples from "../api/examples";
 
 class Example extends Component {
   constructor(props){
     super(props);
     this.initialState={
-      label:'choose a label',
-      rule:'type your rule here',
+      label:'',
+      rule:'',
     };
     this.state=this.initialState;
     this.handleLabel=this.handleLabel.bind(this);
     this.handleRule=this.handleRule.bind(this);
   }
 
-  handleSubmit(){
-    console.log('call handleSumbit in Example');
-    Examples.update(
-      {_id:this.props.id},
-      {$push:{rules: {
-        label:this.state.label,
-        rule:this.state.rule
-        //worker:
-        //createdAt:
-      }}},
-    );
+  handleNextExample(){
+    console.log('call handleNextExample in Example');
+    //verify input presence
+    if (this.state.label==''){
+      alert("Please choose a label.");
+    }
+    else if (this.state.rule==''){
+      alert("Please write a rule.");
+    }
+
+    else {
+      this.props.handleNext(this.props.id,this.state.label,this.state.rule);
+      //clear form
+      document.getElementById('rule').value='';
+      //uncheck label
+      document.getElementById("radioBtn1").checked = false;
+      document.getElementById("radioBtn2").checked = false;
+      document.getElementById("radioBtn3").checked = false;
+      document.getElementById("radioBtn4").checked = false;
+      this.setState(this.initialState);
+    }
   }
 
 
@@ -46,9 +55,10 @@ class Example extends Component {
   render(){
     console.log('call render in Example');
     return (
-      <div>
-        <p>{this.props.example}</p>     
-        <form id={this.props.id} onSubmit={()=>this.handleSubmit.bind(this)}>
+      <div className='div1'>
+        <p>{this.props.count}/10</p>
+        <p>{this.props.example}</p>  
+        <form>      
           <input type='radio' name='label' id='radioBtn1' value='World' onClick={this.handleLabel}/>World<br></br>
           <input type='radio' name='label' id='radioBtn2'value='Business' onClick={this.handleLabel}/>Business<br></br>
           <input type='radio' name='label' id='radioBtn3' value='Sports' onClick={this.handleLabel}/>Sports<br></br>
@@ -57,12 +67,12 @@ class Example extends Component {
           <textarea
             type='text'
             id='rule'
-            placeholder={this.state.rule}
+            placeholder='type your rule here'
             onChange={this.handleRule}
           />
-        </form>
-          <br></br>
-          <br></br>
+          <br></br>                
+          <input className='button' type='button' value='Next' onClick={()=>this.handleNextExample()} />
+        </form>  
       </div>
 
       

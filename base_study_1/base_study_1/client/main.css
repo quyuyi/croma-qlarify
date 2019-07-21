@@ -4,13 +4,13 @@ body {
   background-attachment: fixed;
  
   position: absolute;
-  top: 10;
-  bottom: 10;
-  left: 20;
-  right: 20;
+  top: 30;
+  bottom: 30;
+  left: 30;
+  right: 30;
  
-  padding: 20;
-  margin: 5;
+  padding: 30px;
+  margin: 30;
  
   font-size: 14px;
 }
@@ -46,6 +46,14 @@ form {
   margin-bottom: -10px;
   position: relative;
 }
+
+.button {
+  width:100%;
+  font-size:40x;
+  border-radius: 12px;
+  background-color: #e7e7e7;
+  color: black;
+}
  
 .new-task input {
   box-sizing: border-box;
@@ -56,6 +64,7 @@ form {
   padding-right: 80px;
   font-size: 1em;
 }
+
  
 .new-task input:focus{
   outline: 0;
@@ -119,6 +128,17 @@ textarea {
   font-size: 16px;
   resize: none;
 }
+
+
+
+div .div1 {
+  border: 1px solid #e7e7e7;
+  padding-top: 10px;
+  padding-right: 80px;
+  padding-bottom: 30px;
+  padding-left: 80px;
+}
+
  
 @media (max-width: 600px) {
   li {
