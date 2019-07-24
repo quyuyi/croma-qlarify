@@ -14,11 +14,11 @@ class App extends React.Component {
         };
         this.url = '/api/';
         this.fetchData = this.fetchData.bind(this);
-      }
+    }
 
     componentWillMount() {
         this.fetchData();
-      }
+    }
     
     fetchData() {
         fetch(this.url, { credentials: 'same-origin' })
@@ -33,6 +33,25 @@ class App extends React.Component {
             })
             .catch(error => console.log(error)); // eslint-disable-line no-console
     }
+
+    // Allows people to select subset of keywords as a rule 
+    selectKeywords() {
+        // Make a call to backend 
+        // Retrieve documents based on keywords 
+        // Rerender documents 
+    }
+
+    // Renders documents
+    renderDocuments() {
+
+    }
+
+    // Generates keywords among the documents matched 
+    generateKeywords() {
+        // Make a call to backend 
+        // Retrieve keywords based on documents
+    }
+
 
     render() {
         return (
