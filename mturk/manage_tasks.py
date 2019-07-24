@@ -2,9 +2,11 @@ import argparse
 
 import boto3
 
+from datetime import datetime as dt
+
 # Replace URL here 
 URLS = {
-    'recognizer': 'https://foobar44.herokuapp.com/',
+    'recognizer': 'https://baselinestudy1.herokuapp.com/',
 }
 
 def read_key_file(argf):
@@ -30,6 +32,9 @@ def main(args):
 
     if args.action == 'retrieve':
         print(mturk.list_assignments_for_hit(HITId=args.hit_id))
+    elif args.action == 'cancel':
+        mturk.update_expiration_for_hit(HITId=args.hit_id,ExpireAt=dt(2015,1,1))
+        mturk.delete_hit(HITId=args.hit_id)
     else:
         print("Balance: " + mturk.get_account_balance()['AvailableBalance'])
 
@@ -60,7 +65,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Manage HITs')
-    parser.add_argument('action', type=str, default='post', help='post | retrieve')
+    parser.add_argument('action', type=str, default='post', help='post | retrieve | cancel')
     parser.add_argument('--url', type=str, default='', help='manually set url for posting')
     parser.add_argument('--preset_url', type=str, default='recognizer', help='preset urls for posting. Ex. recognizer, verifier_cage')
     parser.add_argument('--production', action='store_true', help='Use production. Use with care.')
@@ -68,7 +73,7 @@ if __name__ == '__main__':
     parser.add_argument('--hit_id', type=str, help='hit id (for retrieve)')
 
     args = parser.parse_args()
-    if args.action not in ['post', 'retrieve']:
+    if args.action not in ['post', 'retrieve','cancel']:
         raise Exception('Action not found!')
 
     if args.action == 'post':

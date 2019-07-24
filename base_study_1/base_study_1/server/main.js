@@ -10,9 +10,13 @@ function insertExample(text,trueLabel,id){
   Examples.insert({text,trueLabel,id,createdAt:new Date()});
 }
 
+/*
+console.log(process.env);
+process.env.MONGO_URL='mongodb://user1:user111@ds351987.mlab.com:51987/heroku_vbl2phnb';
+*/
 
 Meteor.startup(() => {
-  // If the Links collection is empty, add some data.
+ // If the Links collection is empty, add some data.
   if (Links.find().count() === 0) {
     insertLink(
       'Do the Tutorial',
