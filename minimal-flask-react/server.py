@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
@@ -10,21 +10,23 @@ from helper import *
 app = Flask(__name__)
 # model=glove_model() #slow and unchanged should load only once
 
+
 @app.route("/")
 def index():
     return render_template('index.html')
 
 
 
-@app.route('/api/', methods=["GET"])
+@app.route('/rules/', methods=["GET", "POST"])
 def suggest_rules():
     data = []
-
-    # Retrieve data from database
-    fetch_num=10
-    corpus=retrieve_data(fetch_num)
-
-    # Convert data to word embedding 
+    corpus = ''
+    if request.method == "GET":
+        # Retrieve data from database
+        fetch_num=10
+        corpus=retrieve_data(fetch_num)
+    else: 
+        corpus=request.json['corpus']
 
     # Select top keywords (1. frequency 2. LDA)
     method='topic modeling'
@@ -39,8 +41,28 @@ def suggest_rules():
         }
         data.append(item)
 
-    print(data)
-    # return jsonify(**data)
+    # print(data)
+    dat = {
+        'rules': data
+    }
+    return jsonify(**dat)
+
+@app.route('/docs/', methods=["POST"])
+def send_documents():
+
+    corpus = request.json['corpus']
+    processed_corpus=preprocess(corpus)
+    dictionary=create_dictionary(processed_corpus)
+    corpus_tfidf=create_tfidf_model(dictionary,processed_corpus)
+    docs = keywords_to_docs(request.json['words'],corpus,dictionary,corpus_tfidf,'topic modeling')
+
+    print(request.json['words'])
+    print(docs)
+    
+    dat = {
+        'docs' : docs
+    }
+    return jsonify(**dat)
 
 
 
@@ -65,13 +87,13 @@ def retrieve_data(fetch_num='default'): # fetch a small part of the dataset for 
 # Convert text to word embedding 
 # input: data in text
 # output: data in vectors
-def keyword_to_embedding(keyword,model):
-    try:
-        word_embedding=model[word]
-    except KeyError:
-        print('%s not in vocabulary' % word)
-        word_embedding=0
-    return word_embedding
+# def keyword_to_embedding(keyword,model):
+#     try:
+#         word_embedding=model[word]
+#     except KeyError:
+#         print('%s not in vocabulary' % word)
+#         word_embedding=0
+#     return word_embedding
 
 
 
@@ -99,14 +121,13 @@ def select_top_keywords(corpus,method):
         keywords=keywords_by_lda(corpus_tfidf,dictionary)
         docs=[]
         for terms in keywords:
+
             doc=keywords_to_docs_by_lda(terms,corpus,dictionary,corpus_tfidf,threshold=0)
             docs+=[doc]
         return keywords,docs
 
     else:
         print("Choose method from {'semantic modeling','topic modeling'}")
-
-        
 
 
 
@@ -116,7 +137,7 @@ def select_top_keywords(corpus,method):
 # set a threshold, e.g. 0
 # input: keywords(a set of similar keywords), X is feature matrix
 # output: documents
-def keywords_to_docs(terms,corpus,vectorizer_or_dict,matrix,threshold=0):
+def keywords_to_docs(terms,corpus,vectorizer_or_dict,matrix,method,threshold=0):
     if (method=='semantic modeling'):
         return keywords_to_docs_by_frequency(terms,corpus,vectorizer_or_dict,matrix,threshold)
     elif (method=='topic modeling'):
