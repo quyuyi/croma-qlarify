@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import os
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
@@ -10,29 +10,24 @@ from helper import *
 app = Flask(__name__)
 # model=glove_model() #slow and unchanged should load only once
 
+
 @app.route("/")
 def index():
     return render_template('index.html')
 
 
 
-@app.route('/api/', methods=["GET"])
+@app.route('/rules/', methods=["GET", "POST"])
 def suggest_rules():
     data = []
-
-    
-    # Retrieve data from database
-    corpus=retrieve_data(
-        # fetch_num=100
-    )
-
-    # process data
-    processed_corpus=preprocess_using_spacy(corpus)
-    
-    dictionary=create_dictionary(processed_corpus)
-    corpus_tfidf=create_tfidf_model(dictionary,processed_corpus)
-
-    # Convert data to word embedding 
+    corpus = ''
+    if request.method == "GET":
+        # Retrieve data from database
+        corpus=retrieve_data(
+            # fetch_num=10
+        )
+    else: 
+        corpus=request.json['corpus']
 
     # Select top keywords (1. frequency 2. LDA)
     methods = ['semantic modeling','topic modeling']
@@ -54,18 +49,36 @@ def suggest_rules():
         }
         data.append(item)        
 
-    write_to_txt(data,filename='result.txt')
+    # print(data)
+    dat = {
+        'rules': data
+    }
+    return jsonify(**dat)
 
-    return data
-    # return jsonify(**data)
+@app.route('/docs/', methods=["POST"])
+def send_documents():
+
+    corpus = request.json['corpus']
+    processed_corpus=preprocess(corpus)
+    dictionary=create_dictionary(processed_corpus)
+    corpus_tfidf=create_tfidf_model(dictionary,processed_corpus)
+    doc_list=keywords_to_doc_list(request.json['words'],dictionary,corpus_tfidf,sub_indices='default',threshold=0)
+    docs=keywords_to_docs(corpus,doc_list)[:5]
+
+    print(request.json['words'])
+    print(docs)
+    
+    dat = {
+        'docs' : docs
+    }
+    return jsonify(**dat)
 
 
-# TODO
-# is it necessary to store processed corpus into database
-# what makes this slow? loading from database or preprocessing?
 # Retrieve data from database
 # TODO
-# input: a list of document ids to retrieve
+# retrieve from database upon every request or 
+# retrieve the whole dataset once at the beginning?
+# change input to a list of document ids to retrieve?
 def retrieve_data(fetch_num='default'): # fetch a small part of the dataset for test
     client = MongoClient('mongodb://user1:user111@ds351987.mlab.com:51987/heroku_vbl2phnb')
     db = client.heroku_vbl2phnb  # use a database called heroku_vbl2phnb
@@ -87,13 +100,13 @@ def retrieve_data(fetch_num='default'): # fetch a small part of the dataset for 
 # Convert text to word embedding 
 # input: data in text
 # output: data in vectors
-def keyword_to_embedding(keyword,model):
-    try:
-        word_embedding=model[word]
-    except KeyError:
-        print('%s not in vocabulary' % word)
-        word_embedding=0
-    return word_embedding
+# def keyword_to_embedding(keyword,model):
+#     try:
+#         word_embedding=model[word]
+#     except KeyError:
+#         print('%s not in vocabulary' % word)
+#         word_embedding=0
+#     return word_embedding
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Rule from './rule.jsx';
 
 class App extends React.Component {
 
@@ -9,10 +9,8 @@ class App extends React.Component {
         super();
         this.state = {
           // Post data from server
-          keywords: '',
-          url: '',
+          rules: [],
         };
-        this.url = '/api/';
         this.fetchData = this.fetchData.bind(this);
     }
 
@@ -21,43 +19,42 @@ class App extends React.Component {
     }
     
     fetchData() {
-        fetch(this.url, { credentials: 'same-origin' })
+        fetch('/rules/', { credentials: 'same-origin' })
             .then((response) => {
             if (!response.ok) throw Error(response.statusText);
             return response.json();
             })
             .then((data) => {
-            this.setState({
-                keywords: data.keywords,
-            });
+                console.log(data)
+                this.setState({
+                    rules: data.rules,
+                });
             })
             .catch(error => console.log(error)); // eslint-disable-line no-console
     }
 
-    // Allows people to select subset of keywords as a rule 
-    selectKeywords() {
-        // Make a call to backend 
-        // Retrieve documents based on keywords 
-        // Rerender documents 
-    }
+    renderRules() {
 
-    // Renders documents
-    renderDocuments() {
-
-    }
-
-    // Generates keywords among the documents matched 
-    generateKeywords() {
-        // Make a call to backend 
-        // Retrieve keywords based on documents
+        return(
+            <div>
+                {this.state.rules.map((rule, idx) => {
+                    return <Rule key={idx} words={rule.words} docs={rule.documents} />
+                })}
+            </div>
+        )
     }
 
 
     render() {
+        console.log(this.state.rules)
+
+        let rules_section = null
+        if (this.state.rules) 
+            rules_section = this.renderRules()
+
         return (
             <div>
-                <div>Hello World</div>
-                <div>{this.state.keywords}</div>
+                {rules_section}
             </div>
         );
     }
