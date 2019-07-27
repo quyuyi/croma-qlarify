@@ -1,0 +1,362 @@
+Round 1
+Decompose on the whole dataset
+Keywords:
+say new year us first company software reuters ap tuesday second minister york game three thursday win president plan sunday 
+Matched documents:
+NEW YORK (Reuters) - Security software maker Symantec Corp.  has agreed to buy Veritas Software Corp. for \$13.5 billion,  expanding into the backup and recovery software market, the  companies said on Thursday.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+NEW YORK (Reuters) - Randy Johnson struck out 14 batters in  8 1/3 innings to help the Arizona Diamondbacks end a nine-game  losing streak with a 2-0 win over the host New York Mets in the  National League Sunday.
+NEW YORK (Reuters) - Erubiel Durazo's three-run homer in  the second inning helped the Oakland Athletics remain top of  the American League (AL) West with a 9-4 win over the reeling  Baltimore Orioles Thursday.
+NEW YORK (Reuters) - Staples Inc. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=SPLS.O target=/stocks/quickinfo/fullquote"&gt;SPLS.O&lt;/A&gt;, the top U.S.  office products retailer, on Tuesday reported a 39 percent jump  in quarterly profit, raised its full-year forecast and said it  plans to enter the fast-growing Chinese market, sending its  shares higher.
+
+
+Keywords:
+say reuters new us last year president tuesday ap two week wednesday company make world million first monday thursday game 
+Matched documents:
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+Reuters - President Bush is now in a\statistical dead heat with Democratic challenger Sen. John\Kerry for the Nov. 2 election, in a tightening of the race\after the first debate last week, a poll on Monday showed.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+
+
+Keywords:
+say new reuters two company year world price first wednesday week win us game one friday president three expect oil 
+Matched documents:
+NEW YORK (Reuters) - U.S. stocks jumped on Wednesday as oil  prices, which have held investor enthusiasm for stocks in check  for months, fell sharply after a higher-than-expected crude  build last week.
+BAGHDAD (Reuters) - Iraq continued to export oil at one  million barrels per day on Friday after an attack on the South  Oil Company headquarters took sabotage operations to a new  level, an official at the state-owned entity said.
+Tiger Woods has not won a major in two years and lost his world number one ranking but US Ryder Cup captain Hal Sutton says reports of his demise will prove badly exaggerated this week.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+US stocks rallied Wednesday, boosted by shares of health and defence companies that are seen benefiting from the re-election of President George W. Bush, but higher oil prices checked advances.
+
+
+Keywords:
+say new year oil company reuters us two price million monday one wednesday ap team world report iraq thursday service 
+Matched documents:
+BAGHDAD (Reuters) - Iraq continued to export oil at one  million barrels per day on Friday after an attack on the South  Oil Company headquarters took sabotage operations to a new  level, an official at the state-owned entity said.
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+NEW YORK (Reuters) - Oil prices slid 3 percent on Monday on  expectations that more mild U.S. weather at the start of the  New Year will limit heating oil demand.
+AP - Motorola Israel Ltd. said Monday it will provide the U.S. Postal Service with new hand-held scanning devices under a three-year deal worth about  #36;300 million.
+OSCOW, Sept. 2- World oil prices rose on Thursday after Russia #39;s largest oil producer, Yukos, said a court ruling  quot;paralyzes #39; #39; the company #39;s operations.
+
+
+Keywords:
+say reuters new year company percent first two monday thursday one ap report large friday wednesday week us quarter business 
+Matched documents:
+AP - Business software giant Oracle Corp. said Tuesday that first-quarter earnings rose 16 percent driven by new database license sales that rose 19 percent.
+NEW YORK/SAN FRANCISCO (Reuters) - Shares of Google Inc.  rose as much as 20 percent on Friday, to trade at more than  twice the level of its cut-price IPO, after the Web search  leader posted strong quarterly results in its first reported  quarter as a public company.
+NEW YORK Time Warner, the largest US media company and owner of America Online, said Wednesday that its third-quarter profit fell 7.8 percent as it set aside money to pay for potential penalties stemming from a government inquiry into its accounting
+SEATTLE (Reuters) - Microsoft Corp. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=MSFT.O target=/stocks/quickinfo/fullquote"&gt;MSFT.O&lt;/A&gt;, the world's  largest software maker, on Thursday said its first quarter  profit climbed as personal computer sales and business demand  fueled higher sales.
+NEW YORK (Reuters) - BlackRock Inc. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=BLK.N target=/stocks/quickinfo/fullquote"&gt;BLK.N&lt;/A&gt;, one of the  largest U.S. fixed income managers, on Thursday said it will  buy its far smaller competitor State Street Research    Management Co., marking the biggest takeover in the asset  management business this year.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Round 2
+Decompose on topic 0
+Keywords:
+say year new reuters first two company ap last us week monday wednesday one tuesday computer plan win million president 
+Matched documents:
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+The chairman of Amvescap said Wednesday that the company planned to wrap its US mutual fund businesses into one following a \$450 million settlement with regulators over improper trading.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+AP - A government panel Wednesday approved plans to send a weather satellite into Earth's orbit by February 2005, in the first scheduled launch for Japan's troubled space program since late last year, an official said.
+
+
+Keywords:
+say new company year us wednesday first reuters search world tuesday two group quarter third service thursday microsoft report one 
+Matched documents:
+REDMOND, Washington, Oct 21 (AFP) - The world #39;s biggest software company, Microsoft Corp, said Thursday that its first quarter profits swelled to 2.9 billion dollars as consumers and businesses pumped up demand for new computers.
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+SEATTLE (Reuters) - Microsoft Corp. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=MSFT.O target=/stocks/quickinfo/fullquote"&gt;MSFT.O&lt;/A&gt;, the world's  largest software maker, on Thursday said its first quarter  profit climbed as personal computer sales and business demand  fueled higher sales.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+Reuters - BP Plc, the world's second largest oil\company, reported bumper third-quarter earnings on Tuesday on\the back of high oil prices.
+
+
+Keywords:
+say new reuters year company monday york ap high friday first plan tuesday thursday us week wednesday yesterday government president 
+Matched documents:
+LONDON (Reuters) - Britain's Cable   Wireless posted its  first net profit in over 3 years and announced plans to cut 600  jobs and return cash to investors, sending the telecom  company's shares racing to 5-month highs on Wednesday.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+AP - A government panel Wednesday approved plans to send a weather satellite into Earth's orbit by February 2005, in the first scheduled launch for Japan's troubled space program since late last year, an official said.
+NEW YORK (Reuters) - The bonanza many believe President  Bush has handed the mutual fund industry with his plans to  reform Social Security may be a mirage, industry leaders said  on Friday.
+Reuters - Verizon Wireless, the largest U.S.\wireless company, will expand its high-speed data service to 16\markets by the end of the year, the chairman of Verizon\Communications Inc. said on Monday.
+
+
+Keywords:
+say ap new reuters us make baghdad sunday year iraq monday game two first friday win wednesday tuesday base price 
+Matched documents:
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+A US security official, assigned to the US Embassy in Baghdad, was killed on Sunday by a mortar attack on a US Army base near Baghdad International Airport, US Secretary of State Colin Powell said.
+Fly from New York to Colombia on Monday, be with your wife as she has surgery, make sure things are OK there, fly to Boston overnight on Tuesday and hit a game-winning home run in the 12th inning on Wednesday.
+Baghdad, Sept. 8 (NNN): Bloody clashes on Tuesday between US forces and Shia militiamen left more than 46 persons, including six US soldiers, dead across Iraq during the past 24 hours, officials said here on Wednesday.
+BAGHDAD, Iraq An advance party of British soldiers has arrived at its new base near Baghdad. The small group from the Scottish Black Watch regiment set up base camp south of the capital, according to a pool report made to British media.
+
+
+Keywords:
+say new reuters year two first us friday oil kill one thursday take company ap gaza world monday three tuesday 
+Matched documents:
+JABALYA, Gaza (Reuters) - Twenty-three Palestinians and  three Israelis were killed Thursday, Gaza's bloodiest day for  more than two years, as Israel's army struck back after a  rocket attack killed two Israeli children in a border town.
+BAGHDAD (Reuters) - Iraq continued to export oil at one  million barrels per day on Friday after an attack on the South  Oil Company headquarters took sabotage operations to a new  level, an official at the state-owned entity said.
+AP - Israeli troops killed two Palestinians in two separate incidents Friday, and Israeli helicopters fired three missiles at a Gaza warehouse the army said was used for making weapons.
+GAZA (Reuters) - The Israeli army killed two militants  Saturday in an air strike in the northern Gaza Strip, bringing  the number of Palestinians Israel has killed in one of its  deadliest Gaza raids to 39.
+HONG KONG (Dow Jones)--China Petroleum  amp; Chemical Corp. (SNP), the country #39;s second-largest oil and gas producer, Monday reported a 51 jump in first-half earnings and said it plans to boost its refining capacity by about one-fifth over three years.
+
+
+Decompose on topic 1
+Keywords:
+say new company first win reuters tuesday yesterday monday year us wireless friday announce second stock price team lead share 
+Matched documents:
+LONDON (Reuters) - Britain's Cable   Wireless posted its  first net profit in over 3 years and announced plans to cut 600  jobs and return cash to investors, sending the telecom  company's shares racing to 5-month highs on Wednesday.
+DECEMBER 01, 2004 (REUTERS) - Cingular Wireless LLC, the largest US wireless telephone company, said yesterday that it would upgrade its network next year to handle high-speed data transmissions.
+Tokyo share prices fell steeply Friday, led by technology stocks after a disappointing report from US chip giant Intel. The US dollar was up against the Japanese yen.
+NEW YORK (Reuters) - U.S. stocks rose on Monday as a higher  price target for shares of Apple Computer Inc. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=AAPL.O target=/stocks/quickinfo/fullquote"&gt;AAPL.O&lt;/A&gt;  prompted enthusiasm for technology stocks and a rally in crude  oil stalled.
+NEW YORK (Reuters) - Oil prices touched 2-month lows near  \$45 a barrel on Monday before taking back most of their losses,  but the downward trend knocked energy company stocks lower and  U.S. stock indexes ended little changed. A rise in Microsoft  shares helped boost the technology sector.
+
+
+Keywords:
+say one new year first team take season win night two company yesterday york thursday reuters us ap monday report 
+Matched documents:
+AP - Two of the three ranked teams playing on the opening night of the college basketball season cruised to easy wins. Then there was Mississippi State.
+NEW YORK (Reuters) - New York Times Co. on Monday forecast  third-quarter and full-year earnings below Wall Street's  average targets on weak revenue so far in September, sending  its shares to two-year lows.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+AP - Kenneth Darby rushed for 197 yards and scored two touchdowns, one on a run and one on a pass, as Alabama beat No. 24 Southern Mississippi 27-3 Saturday for its first win against a ranked opponent in nearly two years.
+
+
+Keywords:
+new say year billion one two iraq group would reuters company ap day president million report us security wednesday computer 
+Matched documents:
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+NEW YORK/WASHINGTON (Reuters) - Sprint Corp. said Wednesday  it would buy mobile telephone company Nextel Communications  Inc. for about \$36 billion, creating a U.S. wireless carrier  with nearly 40 million subscribers.
+BAGHDAD (Reuters) - Iraq continued to export oil at one  million barrels per day on Friday after an attack on the South  Oil Company headquarters took sabotage operations to a new  level, an official at the state-owned entity said.
+Reuters - Russia is working on new nuclear missile\systems that other powers do not have in order to protect\itself against future security challenges, President Vladimir\Putin said Wednesday.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+
+
+Keywords:
+say year new minister reuters friday us software tuesday company high one price report world percent quarter country two government 
+Matched documents:
+Reuters - BP Plc, the world's second largest oil\company, reported bumper third-quarter earnings on Tuesday on\the back of high oil prices.
+SAN FRANCISCO (Reuters) - Oracle Corp. on Tuesday reported  a higher quarterly profit as the world's second largest  software company benefited from steady demand for its flagship  database software.
+NEW YORK/SAN FRANCISCO (Reuters) - Shares of Google Inc.  rose as much as 20 percent on Friday, to trade at more than  twice the level of its cut-price IPO, after the Web search  leader posted strong quarterly results in its first reported  quarter as a public company.
+AP - The productivity of America's workers grew at a 1.8 percent annual rate in the third quarter, the slowest pace in nearly two years, the government reported Tuesday.
+US consumer prices inched up just 0.1 percent last month as gasoline and car prices tumbled, the government said on Thursday in a report suggesting an inflation spike earlier this year was an aberration.
+
+
+Keywords:
+say new two ap reuters company world year yesterday friday sunday price people official take first us help three oil 
+Matched documents:
+BAGHDAD (Reuters) - Iraq continued to export oil at one  million barrels per day on Friday after an attack on the South  Oil Company headquarters took sabotage operations to a new  level, an official at the state-owned entity said.
+A decline in the price of oil helped lift US stocks to their highest level in two-months on Tuesday. The dollar declined against its major rivals as investors took profits
+Reuters - South Korea will pick its first two\astronauts next year for a space trip by 2007, the science\ministry said Sunday, after Russia agreed to help the country's\space program.
+China will spend about \$3.4 billion over two to three years laying thousands of miles of oil pipelines to help secure its energy supply in the face of soaring prices and demand.
+Reuters - U.S. average retail gasoline prices\fell over the last two weeks and are poised to slip even\further as crude oil prices continue to tumble, an industry\analyst said on Sunday.
+
+
+Decompose on topic 2
+Keywords:
+new say year reuters company first one two high take ap tuesday york us make team give monday go time 
+Matched documents:
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+Vehicle tool maker sees profit below forecasts amid high steel prices, soft demand in Europe. NEW YORK (Reuters) - Snap-on Inc., which makes vehicle-repair tools, said Tuesday its third-quarter and full-year
+NEW YORK (Reuters) - New York Times Co. on Monday forecast  third-quarter and full-year earnings below Wall Street's  average targets on weak revenue so far in September, sending  its shares to two-year lows.
+NEW YORK (Reuters) - Americans paid their credit card bills  on time at a record high level in June, sending credit card  delinquencies to their lowest level in four years, Moody's  Investors Service said on Monday.
+
+
+Keywords:
+say company reuters two new thursday us monday year iraq wednesday government first three official billion month kill world hold 
+Matched documents:
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+BAGHDAD, Iraq -- A US military official in Iraq said seven American marines have been killed Monday in a car-bomb explosion. Several other Marines have been wounded in the attack.
+_ At least three bombs exploded near a US convoy in western Baghdad on Thursday, killing 37 people and wounding more than 50, officials said.
+SAMARRA, Iraq (Reuters) - Three Iraqis were killed on  Wednesday when a suicide car bomber attacked a U.S. convoy in  the northern city of Samarra, a local police official said.
+REDMOND, Washington, Oct 21 (AFP) - The world #39;s biggest software company, Microsoft Corp, said Thursday that its first quarter profits swelled to 2.9 billion dollars as consumers and businesses pumped up demand for new computers.
+
+
+Keywords:
+say new year first quarter reuters president world plan one company us two ap tuesday quot security iraq microsoft today 
+Matched documents:
+REDMOND, Washington, Oct 21 (AFP) - The world #39;s biggest software company, Microsoft Corp, said Thursday that its first quarter profits swelled to 2.9 billion dollars as consumers and businesses pumped up demand for new computers.
+SEATTLE (Reuters) - Microsoft Corp. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=MSFT.O target=/stocks/quickinfo/fullquote"&gt;MSFT.O&lt;/A&gt;, the world's  largest software maker, on Thursday said its first quarter  profit climbed as personal computer sales and business demand  fueled higher sales.
+AP - Business software giant Oracle Corp. said Tuesday that first-quarter earnings rose 16 percent driven by new database license sales that rose 19 percent.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+Cisco Systems and Microsoft are headed for a collision over network security, with customers caught in the middle. The two companies have each proposed competing  quot;end to end quot; security architectures, marking
+
+
+Keywords:
+say new reuters us company year two first oil monday one united price tuesday world week game thursday report wednesday 
+Matched documents:
+LONDON (Reuters) - Oil prices surged to a new high of \$47 a  barrel on Wednesday after a new threat by rebel militia against  Iraqi oil facilities and as the United States said inflation  had stayed in check despite rising energy costs.
+NEW YORK (Reuters) - Oil prices slid 3 percent on Monday on  expectations that more mild U.S. weather at the start of the  New Year will limit heating oil demand.
+SAN FRANCISCO (CBS.MW) -- Fueled by new supply worries in the United States and Nigeria, crude-oil futures made history Monday when the price topped \$50 per barrel late Monday and one analyst said additional disruptions could push prices to \$60 per barrel
+OSCOW, Sept. 2- World oil prices rose on Thursday after Russia #39;s largest oil producer, Yukos, said a court ruling  quot;paralyzes #39; #39; the company #39;s operations.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+
+
+Keywords:
+say new year quote reuters friday us monday ap run european win profile thursday research company time wednesday union first 
+Matched documents:
+Brazilian aircraft manufacturer Embraer (EMBR4.SA: Quote, Profile, Research) (ERJ.N: Quote, Profile, Research) on Wednesday said it had suspended aircraft deliveries to US Airways (UAIR.
+Toronto Dominion Bank (TD.TO: Quote, Profile, Research) said on Wednesday that it is in talks with US-based Banknorth Group (BNK.N: Quote, Profile, Research) about a possible deal, in line with the Canadian bank #39;s push for
+Google Inc. (GOOG.O: Quote, Profile, Research) on Thursday rolled out a preliminary version of its new desktop search tool, making the first move against
+PayPal, eBay Inc. #39;s (EBAY.O: Quote, Profile, Research) online payment service, will expand its US buyer protection program to cover up to \$1,000 for qualified transactions, the company said on Thursday.
+European leaders have been making false claims in a commercial-aircraft trade dispute pitting Boeing Co. (BA.N: Quote, Profile, Research) against its Europe-based rival Airbus, a US senator close to Boeing said on Thursday.
+
+
+Decompose on topic 3
+Keywords:
+say new company one year ap two run first reuters next thursday microsoft plan may win wednesday security world time 
+Matched documents:
+BANGALORE, INDIA -- Microsoft Corp. will introduce the Windows XP Starter Edition in India early next year, the company said Wednesday, two days after announcing similar plans for Russia.
+AP - Kenneth Darby rushed for 197 yards and scored two touchdowns, one on a run and one on a pass, as Alabama beat No. 24 Southern Mississippi 27-3 Saturday for its first win against a ranked opponent in nearly two years.
+REDMOND, Washington, Oct 21 (AFP) - The world #39;s biggest software company, Microsoft Corp, said Thursday that its first quarter profits swelled to 2.9 billion dollars as consumers and businesses pumped up demand for new computers.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+AP - Six-time All-Star catcher Sandy Alomar Jr. agreed Wednesday to a  #36;550,000, one-year contract with the Texas Rangers to be a part-time player next season.
+
+
+Keywords:
+say new reuters year two world tuesday league ap monday us would kill friday one help million game first three 
+Matched documents:
+AP - Motorola Israel Ltd. said Monday it will provide the U.S. Postal Service with new hand-held scanning devices under a three-year deal worth about  #36;300 million.
+The NHL fined one of the owners of the Thrashers \$250,000 on Tuesday for saying the league would use replacement players next year if a new collective bargaining agreement isn't reached.
+KABUL (Reuters) - A Taliban splinter group holding three  U.N. workers hostage demanded a response to its demands from  the Afghan government and United Nations by Tuesday afternoon,  saying it would kill one captive if they were not met.
+AP - Israeli troops killed two Palestinians in two separate incidents Friday, and Israeli helicopters fired three missiles at a Gaza warehouse the army said was used for making weapons.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+
+
+Keywords:
+say new year reuters two first us world company monday week official last ap wednesday tuesday price minister month report 
+Matched documents:
+Wholesale prices shot up 1.7 last month, biggest gain in nearly 15 years and well above expectations, as energy costs skyrocketed and food prices surged, a government report said Tuesday.
+US consumer prices inched up just 0.1 percent last month as gasoline and car prices tumbled, the government said on Thursday in a report suggesting an inflation spike earlier this year was an aberration.
+NEW YORK (Reuters) - U.S. stocks jumped on Wednesday as oil  prices, which have held investor enthusiasm for stocks in check  for months, fell sharply after a higher-than-expected crude  build last week.
+WASHINGTON (Reuters) - U.S. consumer prices inched up just  0.1 percent last month as gasoline and car prices tumbled, the  government said on Thursday in a report suggesting an inflation  spike earlier this year was an aberration.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+
+
+Keywords:
+new say reuters us oil year york price tuesday high last company week report thursday dollar ap friday monday world 
+Matched documents:
+NEW YORK (Reuters) - U.S. stocks jumped on Wednesday as oil  prices, which have held investor enthusiasm for stocks in check  for months, fell sharply after a higher-than-expected crude  build last week.
+Reuters - Oil prices ended lower on Tuesday on\signs that high energy costs are slowing the economic growth\that has fueled this year's sharp increase in world oil\consumption.
+NEW YORK (Reuters) - Oil prices slid 3 percent on Monday on  expectations that more mild U.S. weather at the start of the  New Year will limit heating oil demand.
+NEW YORK (CBS.MW) -- US stocks ended lower Friday as September #39;s weaker-than-expected employment report closed out a week of disappointing economic data, with a new a record high for oil and a lackluster start to the third quarter earning season prompting
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+
+
+Keywords:
+say new company year two ap reuters us first plan president one monday york billion friday game make world thursday 
+Matched documents:
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+NEW YORK (Reuters) - Shares of Google Inc. will make their  Nasdaq stock market debut on Thursday after the year's most  anticipated initial public offering priced far below initial  estimates, raising \$1.67 billion.
+NEW YORK (Reuters) - New York Times Co. on Monday forecast  third-quarter and full-year earnings below Wall Street's  average targets on weak revenue so far in September, sending  its shares to two-year lows.
+REDMOND, Washington, Oct 21 (AFP) - The world #39;s biggest software company, Microsoft Corp, said Thursday that its first quarter profits swelled to 2.9 billion dollars as consumers and businesses pumped up demand for new computers.
+
+
+Decompose on topic 4
+Keywords:
+new say reuters year two may monday thursday ap kill win one world election government day team first tuesday league 
+Matched documents:
+AP - Of the 22 candidates who each spent more than  #36;1 million of their own money trying to win their first election to Congress, only one made it.
+JABALYA, Gaza (Reuters) - Twenty-three Palestinians and  three Israelis were killed Thursday, Gaza's bloodiest day for  more than two years, as Israel's army struck back after a  rocket attack killed two Israeli children in a border town.
+AP - Kenneth Darby rushed for 197 yards and scored two touchdowns, one on a run and one on a pass, as Alabama beat No. 24 Southern Mississippi 27-3 Saturday for its first win against a ranked opponent in nearly two years.
+Toyota confirmed Thursday that Jarno Trulli will drive for the Formula One team starting next season. The Italian signed a two-year contract two days ago and will partner German driver
+AP - Two American soldiers were killed and two others were wounded in separate bombings that occurred within hours, the U.S. military said Thursday.
+
+
+Keywords:
+say new year price company security first tuesday yesterday reuters stock high make york would president ap game market government 
+Matched documents:
+NEW YORK (Reuters) - Shares of Google Inc. will make their  Nasdaq stock market debut on Thursday after the year's most  anticipated initial public offering priced far below initial  estimates, raising \$1.67 billion.
+NEW YORK (Reuters) - U.S. stocks opened lower on Tuesday  after a government report showing a much larger-than-expected  rise in U.S. producer prices in October raised inflation  concerns.
+Vehicle tool maker sees profit below forecasts amid high steel prices, soft demand in Europe. NEW YORK (Reuters) - Snap-on Inc., which makes vehicle-repair tools, said Tuesday its third-quarter and full-year
+LONDON (Reuters) - British terror suspects charged in a  plot linked to security alerts at financial targets in New  York, New Jersey and Washington made their first court  appearance Wednesday inside a high security prison.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+
+
+Keywords:
+say new year ap official tuesday reuters company two us make month monday first one yesterday time announce quot lead 
+Matched documents:
+AP - For the first time in over three months, the Angels are back in first place.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+Although Motorola Inc. announced it is cutting 1,000 jobs at its facilities worldwide, Chandler economic development officials Tuesday said the city should not see a negative impact at the company #39;s two sites.
+IBM (Quote, Chart) announced its first major database refresh in almost two years with new features from the company #39;s autonomic computing vault.
+WASHINGTON - Major League Baseball will announce Wednesday that Washington will be the new home of the Montreal Expos, bringing the national pastime back to the nation's capital for the first time in 33 years, The Associated Press has learned.    A city official, speaking on condition of anonymity, said Washington has been notified by Major League Baseball of the impending announcement...
+
+
+Keywords:
+say new year us company season win first game take quot state ap two team yesterday may reuters world tuesday 
+Matched documents:
+AP - Two of the three ranked teams playing on the opening night of the college basketball season cruised to easy wins. Then there was Mississippi State.
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+AP - Indiana at Minnesota (8 p.m. EST). Last year's Eastern and Western Conference regular-season champions meet for the first of two times this season.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+
+
+Keywords:
+say new game first year win take sunday people reuters tuesday open two ap one world president network monday three 
+Matched documents:
+NEW YORK (Reuters) - Take-Two Interactive Software Inc.  &lt;A HREF="http://www.reuters.co.uk/financeQuoteLookup.jhtml?ticker=TTWO.O qtype=sym infotype=info qcat=news"&gt;TTWO.O&lt;/A&gt; on Monday said that prices for its sports video games  will likely return to higher levels once new game consoles  arrive in late 2005 or 2006.
+After losing the first two games to the Boston Red Sox, the St. Louis Cardinals try to make the World Series competitive by winning Tuesday night's Game 3 at home. Three-time Cy Young Award winner Pedro Martinez starts for Boston against journeyman Jeff Suppan, who used to play for the Red Sox. Both are 16-9.
+AP - Kenneth Darby rushed for 197 yards and scored two touchdowns, one on a run and one on a pass, as Alabama beat No. 24 Southern Mississippi 27-3 Saturday for its first win against a ranked opponent in nearly two years.
+(Sports Network) - Orlando Hernandez tries to rebound from his first loss of the season this evening when the New York Yankees open a three-game set with the Toronto Blue Jays at SkyDome.
+As the Notting Hill Carnival enters its final day, police say they are pleased with how it has gone so far. About 250,000 people took to the streets on Sunday - more than double the first day last year - to celebrate 40 years of the west London event.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+Round 3
+Decompose on topic 0 on round 2's matched list on round 1's topic 0
+Keywords:
+say year new thursday ap reuters first company would us york plan world win president two season yesterday take one 
+Matched documents:
+NEW YORK (Reuters) - Pharmacy chain CVS Corp. on Thursday  said it would offer the world's first disposable digital camera  with a bright color viewing screen that allows consumers to  instantly preview pictures.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+NEW YORK (Reuters) - Halliburton Co. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=HAL.N target=/stocks/quickinfo/fullquote"&gt;HAL.N&lt;/A&gt; said on  Thursday it would restructure its KBR unit and may shed the  business if the company's stock performance continues to lag  behind peers.
+DECEMBER 01, 2004 (REUTERS) - Cingular Wireless LLC, the largest US wireless telephone company, said yesterday that it would upgrade its network next year to handle high-speed data transmissions.
+
+
+Keywords:
+say new year reuters york ap first win company yesterday oil game team thursday us two tuesday leader second official 
+Matched documents:
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+NEW YORK (Reuters) - U.S. stocks to watch on Wednesday: IBM  CORP. &lt;A HREF="http://www.investor.reuters.com/FullQuote.aspx?ticker=IBM.N target=/stocks/quickinfo/fullquote"&gt;IBM.N&lt;/A&gt;: The computer maker said it sealed deals worth  more than \$1 billion in new work with two European companies  from which the information technology company just acquired two  Danish services providers.
+Montana jury orders oil firm to pay up over gas pipeline leak from 1955; company plans to appeal. NEW YORK (Reuters) - A Montana jury ordered ChevronTexaco Corp., the number two US oil company, to pay \$40.3 million for environmental damage from a gasoline ...
+AP - The infield at Fenway Park was covered with a dirty white tarp on a dreary day. Unless the Boston Red Sox start winning soon, the gloom will last all winter. The Red Sox returned home Thursday after losing the first two games of the AL championship series to the Yankees in New York. As its workout began, Boston announced ace Curt Schilling's ailing ankle will prevent him from pitching Game 5 and perhaps the rest of the postseason.
+BAGHDAD (Reuters) - Iraq continued to export oil at one  million barrels per day on Friday after an attack on the South  Oil Company headquarters took sabotage operations to a new  level, an official at the state-owned entity said.
+
+
+Keywords:
+say new reuters company oil year price us friday high tuesday percent world first thursday wednesday two united nuclear york 
+Matched documents:
+LONDON (Reuters) - Oil prices surged to a new high of \$47 a  barrel on Wednesday after a new threat by rebel militia against  Iraqi oil facilities and as the United States said inflation  had stayed in check despite rising energy costs.
+NEW YORK (Reuters) - Oil prices slid 3 percent on Monday on  expectations that more mild U.S. weather at the start of the  New Year will limit heating oil demand.
+Reuters - Oil prices ended lower on Tuesday on\signs that high energy costs are slowing the economic growth\that has fueled this year's sharp increase in world oil\consumption.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+NEW YORK (Reuters) - U.S. stocks ended higher on Wednesday  as investors snapped up semiconductor shares at bargain prices  and bought some blue chips after crude oil retreated from  record high prices.
+
+
+Keywords:
+say new year reuters make company tuesday first ap us report president thursday monday iraq microsoft price back york two 
+Matched documents:
+NEW YORK (Reuters) - Oil prices touched 2-month lows near  \$45 a barrel on Monday before taking back most of their losses,  but the downward trend knocked energy company stocks lower and  U.S. stock indexes ended little changed. A rise in Microsoft  shares helped boost the technology sector.
+NEW YORK (Reuters) - International Business Machines Corp.  on Wednesday said it has developed the world's fastest  computer, putting it back on top after a Japanese supercomputer  claimed the title some two years ago.
+NEW YORK (CNN/Money) - The CEOs of the top 50 US companies that sent service jobs overseas pulled down far more pay than their counterparts at other large companies last year, a study said Tuesday.
+Vehicle tool maker sees profit below forecasts amid high steel prices, soft demand in Europe. NEW YORK (Reuters) - Snap-on Inc., which makes vehicle-repair tools, said Tuesday its third-quarter and full-year
+NEW YORK (Reuters) - New York Times Co. on Monday forecast  third-quarter and full-year earnings below Wall Street's  average targets on weak revenue so far in September, sending  its shares to two-year lows.
+
+
+Keywords:
+say new year first ap us company reuters time european thursday friday world three group minister tuesday people win take 
+Matched documents:
+Roger Federer says he #39;s ready to erase the image as being too soft to win in New York. The world #39;s No. 1 player from Switzerland has played three US Opens and lost in the fourth round each time.
+LOS ANGELES (Reuters) - A group of technology companies  including Texas Instruments Inc. &lt;TXN.N&gt;, STMicroelectronics  &lt;STM.PA&gt; and Broadcom Corp. &lt;BRCM.O&gt;, on Thursday said they  will propose a new wireless networking standard up to 10 times  the speed of the current generation.
+AP - The Houston Astros try to move a step closer to winning a playoff series for the first time, taking a 1-0 lead into Thursday's Game 2 against the Atlanta Braves at Turner Field.
+AP - For the first time in over three months, the Angels are back in first place.
+Bode Miller won for the fourth time this season Friday and Daron Rahlves was second -- the first 1-2 finish for US men in a World Cup downhill.
+
+
