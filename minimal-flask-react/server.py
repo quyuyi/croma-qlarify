@@ -87,7 +87,7 @@ def retrieve_data(fetch_num='default'): # fetch a small part of the dataset for 
     if (fetch_num=='default'):
         fetch_num=7600 # collection.count()=7600
 
-    cursor=collection.find()
+    cursor=collection.find()[:fetch_num]
     news=[]
     for item in cursor:
         content=item['content']
@@ -267,7 +267,7 @@ def sklearn_iterative_decompose(method="LDA"):
     else:
         model=None
 
-    corpus=retrieve_data()[:300]
+    corpus=retrieve_data(fetch_num=300)
     processed_corpus=preprocess_using_spacy_for_sklearn(corpus)
 
     # round1
