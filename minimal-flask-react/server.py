@@ -176,9 +176,7 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 3000), debug=True)
 '''
 
-
-
-def round(corpus,processed_corpus,document_list,method,model=None):
+def round(corpus,processes_corpus,document_list,method,model):
     data = []
     
     sub_processed_corpus=[processed_corpus[idx] for idx in document_list]
@@ -186,39 +184,39 @@ def round(corpus,processed_corpus,document_list,method,model=None):
     dictionary=create_dictionary(sub_processed_corpus)
     corpus_tfidf=create_tfidf_model(dictionary,sub_processed_corpus)
     
-    keywords=select_top_keywords(dictionary,corpus_tfidf,method,model)
+    keywords=select_top_keywords(dictionary,corpus_tfidf,method,model,num_topics=5)
 
     all_indices=[]
     # Match documents by keywords
     for terms in keywords:
         indices=keywords_to_doc_list(terms,dictionary,corpus_tfidf,document_list,threshold=0)
-        top_doc=keywords_to_docs(corpus,indices)[:5]
+        top_docs=keywords_to_docs(corpus,indices)
 
         item={
             'words':terms,
-            'documents':top_doc,
+            'documents':top_docs[:5],
             'indices':indices
         }
         data.append(item)
         all_indices.append(indices)        
 
-    write_to_txt(data,filename='iterative_frequency.txt')
+    write_to_txt(data,filename='test_300.txt')
 
     return all_indices
 
 
-def iterative_decompose():
-    method='semantic modeling'
+
+def iterative_decompose(method):
     if (method=='semantic modeling'):
         model=glove_model()
     else:
         model=None
 
-    corpus=retrieve_data()
+    corpus=retrieve_data(fetch_num=300)
     processed_corpus=preprocess_using_spacy(corpus)
 
     # round1
-    round1_document_list=[i for i in range(0,7600)]
+    round1_document_list=[i for i in range(0,len(corpus))]
     round1_matched_list=round(corpus,processed_corpus,round1_document_list,method,model=model)
         
     # round2
@@ -230,3 +228,58 @@ def iterative_decompose():
 
     # round3
     round3_matched_list_on_topic0=round(corpus,processed_corpus,round2_matched_list_on_topic0[0],method,model=model)
+
+
+
+
+def sklearn_round(corpus,processed_corpus,document_list,method,model=None):
+    data = []
+    
+    sub_processed_corpus=[processed_corpus[idx] for idx in document_list]
+    
+    keywords=select_top_keywords_using_sklearn(sub_processed_corpus,method)
+
+    all_indices=[]
+    entropy=[]
+    # Match documents by keywords
+    for terms in keywords:
+        indices=keywords_to_doc_list_using_sklearn(terms,sub_processed_corpus,document_list,threshold=0)
+        top_docs=keywords_to_docs_using_sklearn(corpus,indices)
+        entropy+=[get_entropy(top_docs,len(document_list))]
+
+        item={
+            'words':terms,
+            'documents':top_docs[:5],
+            'indices':indices
+        }
+        data.append(item)
+        all_indices.append(indices)        
+
+    write_to_txt(data,filename='test_0801_1705.txt')
+
+    return all_indices,entropy
+
+
+def sklearn_iterative_decompose(method="LDA"):
+    method='LDA'
+    if (method=='semantic modeling'):
+        model=glove_model()
+    else:
+        model=None
+
+    corpus=retrieve_data()[:300]
+    processed_corpus=preprocess_using_spacy_for_sklearn(corpus)
+
+    # round1
+    round1_document_list=[i for i in range(0,len(corpus))]
+    round1_matched_list,entropy1=sklearn_round(corpus,processed_corpus,round1_document_list,method,model=model)
+
+    round2_matched_list,entropy2=sklearn_round(corpus,processed_corpus,round1_matched_list[3],method,model=model)
+
+    round3_matched_list,entropy3=sklearn_round(corpus,processed_corpus,round2_matched_list[6],method,model=model)
+
+    matched_list=round3_matched_list[2]+round3_matched_list[6]
+    round3_matched_list,entropy3=sklearn_round(corpus,processed_corpus,matched_list,method,model=model)
+
+    matched_list2=round3_matched_list[7]+round3_matched_list[9]
+    round5_matched_list,entropy5=sklearn_round(corpus,processed_corpus,matched_list2,method,model=model)
