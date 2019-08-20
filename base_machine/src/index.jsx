@@ -1,13 +1,35 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom';
-
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Dataset from "./dataset.jsx";
+import Rules from "./rules.jsx";
 
 class App extends React.Component {
-    render() {
+
+    render(){
         return (
-            <div>My Flask React App!</div>
-        );
+            <Router>
+              <div>
+                <ul>
+                  <li>
+                    <Link to="/condition1">condition1</Link>
+                  </li>
+                  <li>
+                    <Link to="/condition3">condition3</Link>
+                  </li>
+                </ul>
+        
+                <hr />
+        
+                <Route path="/condition1" component={Dataset} />
+                <Route path="/condition3" component={Rules} />
+
+              </div>
+            </Router>
+          );
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
+
+ReactDOM.render(<App />, document.getElementById('root'));
