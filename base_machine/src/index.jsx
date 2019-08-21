@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Dataset from "./dataset.jsx";
 import Rules from "./rules.jsx";
+import Example from "./example.jsx";
 
 class App extends React.Component {
 
@@ -21,7 +22,7 @@ class App extends React.Component {
         
                 <hr />
         
-                <Route path="/condition1" component={Dataset} />
+                <Route path="/condition1" component={Example} />
                 <Route path="/condition3" component={Rules} />
 
               </div>
