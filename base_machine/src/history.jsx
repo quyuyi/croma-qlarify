@@ -63,18 +63,20 @@ class History extends React.Component {
         return (
             <div className='history'>
                 <header>
-                    <h1>Interaction History</h1>
+                    <p className='head'>Interaction History</p>
 
                     <input 
                     id='question'
+                    className='input'
                     type='text' 
                     ref='textInput'
                     placeholder='Type your question here.'></input>
                     <button 
+                    type='button'
+                    className="btn btn-primary"
                     onClick={()=>this.handleSubmit()}>Submit</button>
                 </header>
 
-                
                 {this.state.histories.map((h,idx) => {
                     return (
                         <ul key={idx}>

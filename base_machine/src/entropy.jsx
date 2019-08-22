@@ -10,6 +10,10 @@ const columns = [
         dataField: 'feature',
         text: 'Feature',
     },
+    {
+        dataField: 'entropy',
+        text: 'Score',
+    }
 ]
 
 const NoDataIndication = () => (
@@ -22,7 +26,7 @@ const NoDataIndication = () => (
     </div>
 );
 
-class Rules extends React.Component {
+class Entropy extends React.Component {
 
     constructor(props) {
         // Initialize mutable state
@@ -30,12 +34,11 @@ class Rules extends React.Component {
         this.state = {
           // Post data from server
           rules: [],
-          selected:'',
+          selected: '',
         };
         this.fetchData = this.fetchData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
-
     }
 
     componentDidMount() {
@@ -51,8 +54,6 @@ class Rules extends React.Component {
             .then((data) => {
                 console.log('printing from fetchData');
                 console.log(data.rules);
-                console.log(data.rules[0]);
-                console.log(data.rules[0].split);
                 this.setState({
                     rules: data.rules,
                 });
@@ -87,6 +88,14 @@ class Rules extends React.Component {
     }
 
     handleSubmit() {
+        // let rules=document.getElementsByName('rules');
+        // let selected_rule;
+        // for (let i=0;i<rules.length;i++){
+        //     if (rules[i].checked){
+        //         selected_rule=rules[i].value;
+        //         break;
+        //     }
+        // }
         setTimeout(()=>{
 
             let selected_rule=this.state.selected
@@ -107,7 +116,7 @@ class Rules extends React.Component {
         },0);
 
         this.setState(()=>({rules:[]}));
-    }  
+    }   
 
 
     render() {
@@ -134,11 +143,26 @@ class Rules extends React.Component {
                 className="btn btn-primary"
                 onClick={()=>this.handleSubmit()}>Submit</button>
             </div>
-        );   
+        );
+
+        // return ( 
+        // <div>
+        //     {this.state.rules.map((rule, idx) => {
+        //         return (
+        //         <div key={idx}>
+        //             <input type='radio' name='rules' value={rule[0]}></input>
+        //             {rule[0]} : {rule[1]}
+        //         </div>);
+
+        //         // TODO: can only choose one
+        //     })}
+        //     <button 
+        //     onClick={()=>this.handleSubmit()}>Submit</button>
+        // </div>);
     }
 
 }
 
-export default Rules;
+export default Entropy;
 
 //ReactDOM.render(<Rule />, document.getElementById('rule'));

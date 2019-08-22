@@ -10,6 +10,21 @@ const columns = [
         dataField: 'feature',
         text: 'Feature',
     },
+    {
+        dataField: 'split',
+        text: 'Split distribution',
+    }
+]
+
+const columns2 = [
+    {
+        dataField: 'value',
+        text: 'value',
+    },
+    {
+        dataField: 'counts',
+        text: 'counts',
+    },
 ]
 
 const NoDataIndication = () => (
@@ -22,7 +37,7 @@ const NoDataIndication = () => (
     </div>
 );
 
-class Rules extends React.Component {
+class Split extends React.Component {
 
     constructor(props) {
         // Initialize mutable state
@@ -30,12 +45,12 @@ class Rules extends React.Component {
         this.state = {
           // Post data from server
           rules: [],
-          selected:'',
+          selected: '',
         };
         this.fetchData = this.fetchData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleOnSelect = this.handleOnSelect.bind(this);
-
+        this.distributionTable = this.distributionTable.bind(this);
     }
 
     componentDidMount() {
@@ -51,11 +66,11 @@ class Rules extends React.Component {
             .then((data) => {
                 console.log('printing from fetchData');
                 console.log(data.rules);
-                console.log(data.rules[0]);
-                console.log(data.rules[0].split);
                 this.setState({
                     rules: data.rules,
                 });
+                let adult=document.getElementById('adult');
+                adult.innerHTML=this.distributionTable('adult');
             })
             .catch(error => console.log(error)); // eslint-disable-line no-console
     }
@@ -87,27 +102,37 @@ class Rules extends React.Component {
     }
 
     handleSubmit() {
-        setTimeout(()=>{
+        let selected_rule=this.state.selected
+        console.log('printing from handleSubmit')
+        console.log(selected_rule);
 
-            let selected_rule=this.state.selected
-            console.log('printing from handleSubmit')
-            console.log(selected_rule);
-    
-            this.postData('/fetch_condition3_rank/', {feature:selected_rule}) //feature_value
-            .then(data => {
-                this.setState({
-                    rules: data.rules,
-                    selected: '',
-                });
-                console.log('selected feature is ' + selected_rule)
-                console.log(data.rules)
-            }) // JSON-string from `response.json()` call
-            .catch(error => console.error(error));
+        this.postData('/fetch_condition3_rank/', {feature:selected_rule}) //feature_value
+        .then(data => {
+            this.setState({
+                rules: data.rules,
+                selected: '',
+            });
+            console.log('selected feature is ' + selected_rule)
+            console.log(data.rules)
+        }) // JSON-string from `response.json()` call
+        .catch(error => console.error(error));
+    }   
 
-        },0);
-
-        this.setState(()=>({rules:[]}));
-    }  
+    distributionTable(feature){
+        return (
+            <div>
+                <BootstrapTable
+                keyField="value"
+                data={ this.state.rules[0].split }
+                columns={ columns2 }
+                noDataIndication={ () => <NoDataIndication /> }
+                striped
+                hover
+                condensed
+                />
+            </div>
+        )
+    }
 
 
     render() {
@@ -117,28 +142,10 @@ class Rules extends React.Component {
             onSelect: this.handleOnSelect,
         };
         return (
-            <div>
-                <BootstrapTable
-                className="table"
-                keyField="id"
-                data={ this.state.rules }
-                columns={ columns }
-                selectRow = { selectRow }
-                noDataIndication={ () => <NoDataIndication /> }
-                striped
-                hover
-                condensed
-                />
-                <button 
-                type='button'
-                className="btn btn-primary"
-                onClick={()=>this.handleSubmit()}>Submit</button>
-            </div>
-        );   
+            <div id='adult'></div>
+        );
     }
 
 }
 
-export default Rules;
-
-//ReactDOM.render(<Rule />, document.getElementById('rule'));
+export default Split;

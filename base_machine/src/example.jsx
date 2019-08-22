@@ -6,8 +6,6 @@ import History from './history.jsx'
 import PropTypes from 'prop-types';
 // import Code from 'components';
 
-const headerSortingStyle = { backgroundColor: 'grey' };
-
 const selectOriginalLanguage = {
     'ab': 'ab', 'af': 'af', 'am': 'am', 'ar': 'ar', 'ay': 'ay', 'bg': 'bg', 'bm': 'bm',
     'bn': 'bn', 'bo': 'bo', 'bs': 'bs', 'ca': 'ca', 'cn': 'cn', 'cs': 'cs', 'cy': 'cy',
@@ -290,6 +288,19 @@ function overviewFormatter(cell,row){
     );
 }
 
+function myHeaderFormatter(column, colIndex, { sortElement, filterElement }) {
+    return (
+      <div style={ { display: 'flex', flexDirection: 'column' } }>
+        { filterElement }
+        {/* <p>{column.text}<i id={column.text} className="fa fa-fw fa-sort"></i></p> */}
+        { column.text }
+        <i className="fa fa-fw fa-sort"></i>
+        { sortElement }
+      </div>
+    );
+}
+
+const headerSortingStyle = { backgroundColor: 'grey' };
 
 const columns=[
     {
@@ -297,11 +308,13 @@ const columns=[
         text: 'id',
         sort: true,
         headerSortingStyle,
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'imdb_id',
         text:'imdb_id',
         sort: true,
+        headerFormatter:myHeaderFormatter,
         headerSortingStyle
     },
     {
@@ -310,6 +323,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: textFilter(),
+        headerFormatter:myHeaderFormatter
     },
     {
         dataField:'adult',
@@ -318,13 +332,16 @@ const columns=[
         headerSortingStyle,
         filter: selectFilter({
             options: selectAdult,
-        })
+        }),
+        headerFormatter:myHeaderFormatter
     },
     {
         dataField:'belongs_to_collection',
         text:'belongs_to_collection',
         sort: true,
-        headerSortingStyle
+        headerSortingStyle,
+        filter: textFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'budget',
@@ -332,6 +349,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: numberFilter(),
+        headerFormatter:myHeaderFormatter,
         // filter: numberFilter({
         //     getFilter: (filter) => {
         //       budgetFilter = filter;
@@ -346,13 +364,15 @@ const columns=[
         filter: multiSelectFilter({
             options: selectGenres,
             comparator: Comparator.LIKE
-        })
+        }),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'homepage',
         text:'homepage',
         sort: true,
-        headerSortingStyle
+        headerSortingStyle,
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'original_language',
@@ -362,7 +382,8 @@ const columns=[
         formatter: cell => selectOriginalLanguage[cell],
         filter: selectFilter({
             options: selectOriginalLanguage
-        })
+        }),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'original_title',
@@ -370,6 +391,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: textFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'overview',
@@ -378,6 +400,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: textFilter(),
+        headerFormatter:myHeaderFormatter,
         // filter: textFilter({
         //     getFilter: (filter) => {
         //       overviewFilter = filter;
@@ -396,12 +419,14 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: numberFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'poster_path',
         text:'poster_path',
         sort: true,
-        headerSortingStyle
+        headerSortingStyle,
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'production_companies',
@@ -409,6 +434,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: textFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'production_countries',
@@ -418,7 +444,8 @@ const columns=[
         filter: multiSelectFilter({
             options: selectProductionCountries,
             comparator: Comparator.LIKE,
-        })
+        }),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'release_date',
@@ -426,6 +453,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: numberFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'revenue',
@@ -433,6 +461,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: numberFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'runtime',
@@ -440,6 +469,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter: numberFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'spoken_languages',
@@ -450,7 +480,8 @@ const columns=[
         filter: multiSelectFilter({
             options: selectSpokenLanguages,
             comparator: Comparator.LIKE,
-        })
+        }),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'status',
@@ -460,14 +491,17 @@ const columns=[
         formatter: cell => selectStatus[cell],
         filter: selectFilter({
             options: selectStatus
-        })
+        }),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'tagline',
         text:'tagline',
         sort: true,
         headerSortingStyle,
+        formatter: overviewFormatter,
         filter: textFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'video',
@@ -476,7 +510,8 @@ const columns=[
         headerSortingStyle,
         filter: selectFilter({
             options: selectVideo,
-        })
+        }),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'vote_average',
@@ -484,6 +519,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter:numberFilter(),
+        headerFormatter:myHeaderFormatter,
     },
     {
         dataField:'vote_count',
@@ -491,6 +527,7 @@ const columns=[
         sort: true,
         headerSortingStyle,
         filter:numberFilter(),
+        headerFormatter:myHeaderFormatter,
     },
 ];
 
@@ -509,6 +546,7 @@ const RemoteAll = ({ data, page, sizePerPage, onTableChange, totalSize}) => (
         striped
         hover
         condensed
+        headerClasses='header-class'
         />
     </div>
 );
@@ -640,7 +678,9 @@ class Example extends React.Component {
             return valid;
           });
       // Handle column sort
+      console.log(sortField);
       if (sortOrder === 'asc') {
+        // document.getElementById(sortField).className = "fas fa-sort-up";
         result = result.sort((a, b) => {
           if (a[sortField] > b[sortField]) {
             return 1;
@@ -650,6 +690,7 @@ class Example extends React.Component {
           return 0;
         });
       } else {
+        // document.getElementById(sortField).className = "fas fa-sort-down";
         result = result.sort((a, b) => {
           if (a[sortField] > b[sortField]) {
             return -1;
@@ -671,6 +712,7 @@ class Example extends React.Component {
       }));
     }, 0);
     this.setState(() => ({ data: [] }));
+    console.log(sortField);
   }
 
   render() {

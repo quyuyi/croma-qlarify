@@ -10,7 +10,14 @@ def read_csv(csvfile):
     df = pd.read_csv(csvfile)
     return df
 
-
+def process_nan(feature_list):
+    result=[]
+    for item in feature_list:
+        if item==item:
+            result+=[item]
+        else:
+            result+=['null']
+    return result
 
 # TODO
 # language name are strange, should we use id?
@@ -32,6 +39,8 @@ def get_feature_list(col_name, processed_dict):
                     list_feature+=[j['iso_639_1']]
                 else:
                     list_feature+=[j['name']]
+        else:
+            list_feature+=['null']
         processed+=[list_feature]
     return processed
 
@@ -42,9 +51,17 @@ def preprocess_dataset():
     df=read_csv(csvfile)
 
     # process data into a dictionary of many lists
+    all_col=[]
     processed_dict={}
     for col in df:
+        all_col+=[col]
         processed_dict[col]=list(df[col])
+
+    multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection']
+    single_col=[col for col in all_col if col not in multi_col]
+
+    for col in single_col:
+        processed_dict[col]=process_nan(processed_dict[col])
 
     # extract only the name filed and throw away ids, etc.
     processed_dict['genres']=get_feature_list('genres', processed_dict)
@@ -61,12 +78,15 @@ def preprocess_dataset():
         dict_i=ast.literal_eval(i)
         if (isinstance(dict_i,dict)):
             processed_collection+=[dict_i['name']]
+        else:
+            processed_collection+=['null']
     processed_dict['belongs_to_collection']=processed_collection
 
     # update df
     for col in df:
         new_column=pd.Series(processed_dict[col],name=col)
         df.update(new_column)
+    
 
     return processed_dict,df
 

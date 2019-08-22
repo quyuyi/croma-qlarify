@@ -1,11 +1,12 @@
 # !/usr/bin/env python
 
 import os
-from flask import Flask, render_template, jsonify, request, session
+from flask import Flask, render_template, jsonify, request
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import pandas as pd
+import json
 import string
 import csv
 
@@ -15,72 +16,100 @@ from preprocess import *
 app = Flask(__name__)
 app.secret_key='some random string'
 
+
 @app.route("/")
 def index():
     return render_template('index.html')
 
-# baseline1
-# return rules(i.e., feature) with descending entropy
-# input is the current dataset
-# input is the whole dataset when first call
-@app.route('/rules/', methods=["GET", "POST"])
-def suggest_rules(dataset_indices='None'):
-    if (dataset_indices=='None'):
-        dataset_indices=[i for i in range(0,len(processed_dict['adult']))]
-    return compute_rules(dataset_indices=dataset_indices)
+
+# condition3 - fetch
+# render features based on the whole dataset 
+# since fetch data is called firstly and once
+@app.route('/render_features/', methods=["GET", "POST"])
+def suggest_rules():
+    global current_indices
+    current_indices=[i for i in range(0,len(processed_dict['adult']))]
+    global selected_features
+    selected_features=[]
+
+    print('original dataset size: ')
+    print(len(current_indices))
+    return compute_rules()
 
 
+# condition3 - filter
 # filter the dataset based on 
 # 1. the feature selected by the crowd worker
 # 2. the feature value answered by the end user
-@app.route('/filter/', methods=["GET", "POST"])
+@app.route('/fetch_condition3_rank/', methods=["GET", "POST"])
 def filter_rules():
     # get feature to be asked from the crowd worker
     selected_feature=request.json['feature']
-    print(selected_feature_value)
+    print(selected_feature)
+
+    # TODO
     # need value of the feature asked from the end user
     # selected_feature_value=request.json['feature_value']
-    feature_list=processed_dict[selected_feature_value]
-    cur_points=session.get('current_indices')
-    print('**********************')
-    print(cur_points)
-    print('**********************')
+    # forged answer for test
+    if (selected_feature=='genres'):
+        selected_feature_value='Action'
+    elif (selected_feature=='production_countries'):
+        selected_feature_value='United States of America'
+    else:
+        selected_feature_value="don't know"
 
-    filtered=filter_dataset(selected_feature_value,feature_list,cur_points)
-    
-    return compute_rules(dataset_indices=filtered)
+    # if end user answered useful information
+    # do filtering
+    if (selected_feature_value != "don't know"):
+        # record all features selected the crowd 
+        # and 
+        # succussfully answered by the end user
+        global selected_features
+        selected_features+=[selected_feature]
+
+        feature_list=processed_dict[selected_feature]
+        global current_indices
+        cur_points=current_indices
+        print('**********current_size*************')
+        print(len(cur_points))
+
+        filtered=filter_dataset(selected_feature_value,feature_list,cur_points)
+        
+        print('------------filtered_size--------------')
+        print(len(filtered))
+        current_indices=filtered
+
+    # if end user "don't know"
+    # no need to filter
+    return compute_rules()
 
 
 
-import json
-# baseline2
-# render the whole dataset to the crowd worker
+
+# condition1 - render the whole dataset to the crowd worker
 @app.route('/render_dataset/', methods=["GET", "POST"])
 def render_dataset():
     # test only several columns
     # df1=df[['adult','budget','overview','genres']]
-
     data_str=df.to_json(orient = "records")
-
     data_list=json.loads(data_str)
-
     dat={
         'dataset': data_list
     }
     return jsonify(**dat)
 
 
+# condition1 - provide simulated end user answer
 @app.route('/fetch_condition1/', methods=["GET", "POST"])
 def fetch_question():
     # get question to be asked from the crowd worker
     question=request.json['question']
-    print(question)
 
-    # need value of the feature asked from the end user
+    # TODO
+    # create a json file of the simulated answers
+    # parse question
+    # search answer
 
-    # filter
-
-    # return 
     return_result={
         'answer': 'I cannot answer for now.',
     }
@@ -88,26 +117,43 @@ def fetch_question():
 
 
 
-def compute_rules(dataset_indices='None'):
-    session['current_indices']=dataset_indices
-    # processed_dict=preprocess_dataset()
+
+
+
+# condition3 - ranked feature list by computing entropy
+# case1&2 - rank with/wihtout entropy
+def compute_rules():
+    dataset_indices=current_indices
+
+    split={}
     entropies={}
     for item in processed_dict:
-        entropies[item] = get_entropy(processed_dict[item],dataset_indices)
+        entropies[item],split[item] = get_entropy(processed_dict[item],dataset_indices)
 
     ranked_indices=sorted(entropies.items(),key=lambda kv:kv[1],reverse=True)
-    ranked_list=[item[0] for item in ranked_indices]
+
+    # not show the previously selected features as options
+    # filtered_ranked=[item[0] for item in ranked_indices if item[0] not in selected_features ]
+    filtered_entropy=[item for item in ranked_indices if item[0] not in selected_features]
+
+    rules=[]
+    for index,ele in enumerate(filtered_entropy):
+        rules+=[{
+            'id': index+1,
+            'feature': ele[0],
+            'entropy': ele[1],
+            # 'split': split[ele[0]]
+        }]
 
     dat = {
-        'rules': ranked_list
+        'rules': rules,
     }
     return jsonify(**dat)
 
 
 from scipy.stats import entropy
-import numpy as np
-# need change?
-# entropy for baseline1
+# TODO need change?
+# condition3 - compute entropy for each feature
 def get_entropy(feature,dataset_indices='None'):
     if dataset_indices=='None':
         dataset_indices=[i for i in range(0,len(feature))]
@@ -121,10 +167,22 @@ def get_entropy(feature,dataset_indices='None'):
             l=[j for j in i]
             labels+=l
         value,counts=np.unique(labels,return_counts=True)
-        return entropy(counts,base=2)
     else:
         value,counts=np.unique(filtered_dataset,return_counts=True)
-        return entropy(counts,base=2)
+
+    split=get_split(value,counts)
+
+    return entropy(counts,base=2),split
+
+
+def get_split(value,counts):
+    split=[]
+    for index,ele in enumerate(value):
+        split+=[{
+            'value': ele,
+            'counts': int(counts[index])
+        }]
+    return split
 
 
 
@@ -156,132 +214,24 @@ def filter_dataset(feature_value,feature_list,cur_points='None'):
 
 
 
-
-import ast
-def baseline1_test():
-    processed_dict=preprocess_dataset()
-
-    # round1
-    # calculate the entropy for each feature
-    entropies={}
-    for item in processed_dict:
-        entropies[item] = get_entropy(processed_dict[item],dataset_indices='None')
-
-    ranked_indices=sorted(entropies.items(),key=lambda kv:kv[1],reverse=True)
-
-    print(ranked_indices)
-
-    # ask the end user about the feature according to the ranking
-
-    # end user may fail to answer many top feature
-
-    # round2
-
-    # finally able to filter on 'genres'
-    filtered_on_genres=filter_dataset('Action',processed_dict['genres'],cur_points='None')
-    print(filtered_on_genres)
-    # output
-    # [5, 7, 8, 9, 14, 19, 22, 41, 43, 50, 53, 65, 69, 70, 85, 93, 96]
-
-    # recalculate the entropy for the split dataset
-    r2_entropies={}
-    for item in processed_dict:
-        r2_entropies[item] = get_entropy(processed_dict[item],dataset_indices=filtered_on_genres)
-
-    r2_ranked_indices=sorted(r2_entropies.items(),key=lambda kv:kv[1],reverse=True)
-    print(r2_ranked_indices)
-    # TODO
-    # may need move away the features that are already asked previously
-
-    # finally able to filter on 'spoken_languages'
-    filtered_on_language=filter_dataset('English',processed_dict['spoken_languages'],cur_points=filtered_on_genres)
-    # print(filtered_on_language)
-    # output
-    # [5, 7, 8, 9, 14, 19, 22, 41, 43, 53, 65, 69, 70, 85, 93, 96]
-    r3_entropies={}
-    for item in processed_dict:
-        r3_entropies[item] = get_entropy(processed_dict[item],dataset_indices=filtered_on_language)
-    r3_ranked_indices=sorted(r3_entropies.items(),key=lambda kv:kv[1],reverse=True)
-    # print(r3_ranked_indices)
-
-    filtered_on_prod_countries=filter_dataset('United States of America',processed_dict['production_countries'],cur_points=filtered_on_language)
-    print(filtered_on_prod_countries)
-    # [5, 7, 8, 9, 14, 19, 22, 41, 43, 53, 65, 69, 70, 85, 93]
-
-
-
-import statistics
-import math
-# approach 2
-def binary_feature_entropy(feature,feature_name,dataset_indices='None'):
-    if dataset_indices=='None':
-        dataset_indices=[i for i in range(0,len(feature))]
-
-    # calculate entropy only based on the filtered dataset
-    filtered_dataset=[feature[i] for i in dataset_indices]
-
-    labels=[]
-    if isinstance(feature[0],list):
-        for i in filtered_dataset:
-            l=[j for j in i]
-            labels+=l
-        value,counts=np.unique(labels,return_counts=True)
-    else:
-        value,counts=np.unique(filtered_dataset,return_counts=True)
-
-    entropies={}
-    # optimize by range
-    num_features=['budget','popularity','revenue','runtime']
-    if (feature_name in num_features):
-        median=statistics.median(filtered_dataset)
-        binary_count=0
-        for item in filtered_dataset:
-            if (item>=median):
-                binary_count+=1
-        binary_counts=[binary_count,sum(counts)-binary_count]
-        entropies[feature_name+'>='+str(median)]=entropy(binary_counts,base=2)
-
-        # split by 1/4
-        first_quarter=np.quantile(filtered_dataset,0.25)
-        third_quarter=np.quantile(filtered_dataset,0.75)
-        first_count=0
-        third_count=0
-        for item in filtered_dataset:
-            if (item>=first_quarter):
-                first_count+=1
-            if (item>=third_quarter):
-                third_count+=1
-        first_counts=[first_count,sum(counts)-first_count]
-        third_counts=[third_count,sum(counts)-third_count]
-        entropies[feature_name+'>='+str(first_quarter)]=entropy(first_counts,base=2)
-        entropies[feature_name+'>='+str(third_quarter)]=entropy(third_counts,base=2)
-
-    else:
-        for index,v in enumerate(value):
-            binary_counts=[counts[index],sum(counts)-counts[index]]
-            entropies[feature_name+'_'+str(v)]=entropy(binary_counts,base=2)
-    return entropies
-
-
-def approach2_test():
-    processed_dict=preprocess_dataset()
-
-    entropies={}
-    all_dict={}
-    for item in processed_dict:
-        entropies[item] = binary_feature_entropy(processed_dict[item],item,dataset_indices='None')
-        all_dict.update(entropies[item])
-    
-    ranked_indices=sorted(all_dict.items(),key=lambda kv:kv[1],reverse=True)
-
-    print(ranked_indices[:10])
-
-
-
-
-
-
+'''
+global variables
+'''
+# preprocess only once
 processed_dict,df=preprocess_dataset()
+
+# current_indices is the indices of the 'alive' data points
+# data points that have not been filtered out
+current_indices=[]
+
+# selected_features is for condition3
+# record the features asked previouly by the crowd and answered successfully by the end user
+# to avoid the features being selected again
+selected_features=[]
+
+
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=os.environ.get('PORT', 3000), debug=True)
     
