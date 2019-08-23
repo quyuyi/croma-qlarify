@@ -1,0 +1,25 @@
+div.overview{
+    overflow-y: scroll;
+    height: 100px;
+}
+
+.header-class {
+    background-color: darkgray;
+    font-size: 25px;
+}
+
+.history {
+    width: 800px;
+    margin:35px;
+    border: double;
+}
+
+.head {
+    font-size: 30px;
+    margin: 20px;
+    font-weight: bold;
+}
+
+.input {
+    margin: 20px;
+}
