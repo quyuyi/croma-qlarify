@@ -87,6 +87,7 @@ def preprocess_dataset():
         new_column=pd.Series(processed_dict[col],name=col)
         df.update(new_column)
     
+    # df.astype({'id': 'int32'})
 
     return processed_dict,df
 
