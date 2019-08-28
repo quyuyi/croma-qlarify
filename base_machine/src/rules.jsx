@@ -129,10 +129,10 @@ class Rules extends React.Component {
                 hover
                 condensed
                 />
-                <button 
+                {/* <button 
                 type='button'
                 className="btn btn-primary"
-                onClick={()=>this.handleSubmit()}>Submit</button>
+                onClick={()=>this.handleSubmit()}>Submit</button> */}
             </div>
         );   
     }

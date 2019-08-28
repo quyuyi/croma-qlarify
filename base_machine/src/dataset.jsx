@@ -421,7 +421,7 @@ class Dataset extends React.Component {
 
 export default Dataset;
 
-//ReactDOM.render(<Dataset />, document.getElementById('dataset'));
+ReactDOM.render(<Dataset />, document.getElementById('dataset'));
 
 
 

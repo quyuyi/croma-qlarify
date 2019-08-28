@@ -4,6 +4,8 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { selectFilter , numberFilter, textFilter, Comparator, multiSelectFilter } from 'react-bootstrap-table2-filter';
 import History from './history.jsx'
 import PropTypes from 'prop-types';
+// import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
 
 
 // import Code from 'components';
@@ -722,14 +724,13 @@ class Example extends React.Component {
 
     return( 
     <div>
-        <History />
         
         <RemoteAll
-        data={ data }
-        page={ page }
-        sizePerPage={ sizePerPage }
-        totalSize={ this.state.totalSize }
-        onTableChange={ this.handleTableChange }
+            data={ data }
+            page={ page }
+            sizePerPage={ sizePerPage }
+            totalSize={ this.state.totalSize }
+            onTableChange={ this.handleTableChange }
         />
     </div> 
     );

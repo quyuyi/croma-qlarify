@@ -21,7 +21,6 @@ app.secret_key='some random string'
 def index():
     return render_template('index.html')
 
-
 # condition3 - fetch
 # render features based on the whole dataset 
 # since fetch data is called firstly and once

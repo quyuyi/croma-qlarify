@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Select from 'react-select';
-import select from 'react-bootstrap-table2-filter/lib/src/components/select';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
 
 
 class History extends React.Component {
@@ -9,17 +9,9 @@ class History extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            histories:[
-                {
-                    'question':'question',
-                    'answer':'answer',
-                },
-            ],
+            histories:[],
             selectedOption: null,
         };
-
-        // this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
     }
 
     componentWillMount() {
@@ -98,9 +90,9 @@ class History extends React.Component {
           ]
 
         return (
-            <div className='history'>
+            <div>
                 <header>
-                    <p className='head'>Interaction History</p>
+                    <p className='head'>Chat History</p>
 
                     {/* <input 
                     id='question'
@@ -113,21 +105,19 @@ class History extends React.Component {
                         onChange={this.handleChange.bind(this)}
                         options={options}
                     />
-                    <button 
-                    type='button'
-                    className="btn btn-primary"
-                    onClick={this.handleSubmit.bind(this)}>Ask</button>
+                    <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Ask</Button>
                 </header>
 
-
-                {this.state.histories.map((h,idx) => {
-                    return (
-                        <ul key={idx}>
-                            {h.question}:{h.answer}
-                        </ul>
-                    )
-                })}
-
+                <div className='history'>
+                    {this.state.histories.map((h,idx) => {
+                        return (
+                            <div key={idx}>
+                                <Badge variant="light">Question</Badge> {h.question} <br/>
+                                <Badge variant="secondary">Answer</Badge> {h.answer}
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         );
     }
