@@ -150,12 +150,27 @@ def compute_rules():
 
     rules=[]
     for index,ele in enumerate(filtered_entropy):
-        rules+=[{
-            'id': index+1,
-            'feature': ele[0],
-            'entropy': ele[1],
-            # 'split': split[ele[0]]
-        }]
+        for item in split[ele[0]]:
+            rules+=[{
+                'id': index+1,
+                'feature': ele[0],
+                'entropy': ele[1],
+                'value': item['value'],
+                'counts': item['counts'],
+            }]
+
+    # for index,ele in enumerate(filtered_entropy):
+    #     s=''
+    #     for item in split[ele[0]]:
+    #         s+=str(item['value'])+': '+str(item['counts'])+', '
+    #     s+='...'
+    #     rules+=[{
+    #         'id': index+1,
+    #         'feature': ele[0],
+    #         'entropy': ele[1],
+    #         'split': s,
+    #     }]
+
 
     dat = {
         'rules': rules,
@@ -188,12 +203,24 @@ def get_entropy(feature,dataset_indices='None'):
 
 
 def get_split(value,counts):
+    # only show the distribution of the top 5 frequent values
+    l=len(value)
+    if (l>10):
+        l=10
+    
+    sort_index=np.argsort(-np.array(counts))[:l]
+
     split=[]
-    for index,ele in enumerate(value):
+    for index in sort_index:
         split+=[{
-            'value': ele,
+            'value': value[index],
             'counts': int(counts[index])
-        }]
+        }]        
+    # for index,ele in enumerate(value):
+    #     split+=[{
+    #         'value': ele,
+    #         'counts': int(counts[index])
+    #     }]
     return split
 
 

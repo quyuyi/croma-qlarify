@@ -4,9 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import History from "./history.jsx";
 import DataTable from './table.jsx';
-import Rules from './rules.jsx';
+import Split from './split.jsx';
 
-class Hybrid extends React.Component {
+class Condition4 extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ class Hybrid extends React.Component {
             <Container>
                 <Row>
                     <Col sm md={3}>
-                        <Rules />
+                        <Split />
                     </Col>
                     <Col sm md={6}>
                         <DataTable />
@@ -39,5 +39,5 @@ class Hybrid extends React.Component {
   }
 }
 
-export default Hybrid;
+export default Condition4;
 
