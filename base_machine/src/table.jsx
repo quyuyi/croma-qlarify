@@ -127,7 +127,11 @@ class DataTable extends React.Component {
                 },
                 Filter: ({ filter, onChange }) => 
                 <select
-                onChange={event => onChange(event.target.value)}
+                onChange={event => {
+                    console.log('filtering....')
+                    console.log(event.target.value)
+                    return onChange(event.target.value)
+                }}
                 style={{ width: "100%" }}
                 value={filter ? filter.value : "all"}
                 >

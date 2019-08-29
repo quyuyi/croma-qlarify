@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Baseline from './baseline.jsx'
+import Baseline from './baseline.jsx';
+import Hybrid from './hybrid.jsx';
 
 class App extends React.Component {
 
@@ -17,16 +17,14 @@ class App extends React.Component {
   handleConditions(condition) {
     if (condition == "human") {
       return (
-        <div>
-          <Baseline/>
-        </div>
+          <Baseline />
       )
     }
 
     if (condition == "hybrid") {
       return (
         <div>
-          okie
+          <Hybrid />
         </div>
       )   
     }
@@ -34,7 +32,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'human'
+    const condition = 'hybrid'
       return (
         <div>
           {this.handleConditions(condition)}

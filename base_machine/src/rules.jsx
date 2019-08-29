@@ -111,11 +111,11 @@ class Rules extends React.Component {
 
 
     render() {
-        const selectRow = {
-            mode: 'radio',
-            clickToSelect: true,
-            onSelect: this.handleOnSelect,
-        };
+        // const selectRow = {
+        //     mode: 'radio',
+        //     clickToSelect: true,
+        //     onSelect: this.handleOnSelect,
+        // };
         return (
             <div>
                 <BootstrapTable
@@ -123,7 +123,7 @@ class Rules extends React.Component {
                 keyField="id"
                 data={ this.state.rules }
                 columns={ columns }
-                selectRow = { selectRow }
+                // selectRow = { selectRow }
                 noDataIndication={ () => <NoDataIndication /> }
                 striped
                 hover
@@ -134,11 +134,8 @@ class Rules extends React.Component {
                 className="btn btn-primary"
                 onClick={()=>this.handleSubmit()}>Submit</button> */}
             </div>
-        );   
+        );
     }
-
 }
 
 export default Rules;
-
-//ReactDOM.render(<Rule />, document.getElementById('rule'));
