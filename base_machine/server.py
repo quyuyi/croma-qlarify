@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 
 import os
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_file
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
@@ -20,6 +20,15 @@ app.secret_key='some random string'
 @app.route("/")
 def index():
     return render_template('index.html')
+
+@app.route('/get_movie')
+def get_movie():
+    # if request.args.get('type') == '1':
+    #    filename = 'ok.gif'
+    # else:
+    #    filename = 'error.gif'
+    filename = 'movie1.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
 # condition3 - fetch
 # render features based on the whole dataset 
