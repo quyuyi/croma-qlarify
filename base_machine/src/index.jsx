@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import Baseline from './baseline.jsx';
 import Hybrid from './hybrid.jsx';
+import Condition3 from "./condition3.jsx";
+import Condition4 from "./condition4.jsx";
 
 class App extends React.Component {
 
@@ -28,11 +30,27 @@ class App extends React.Component {
         </div>
       )   
     }
+
+    if (condition == "condition3") {
+      return (
+        <div>
+          <Condition3 />
+        </div>
+      )   
+    }
+
+    if (condition == "condition4") {
+      return (
+        <div>
+          <Condition4 />
+        </div>
+      )
+    }
   }
 
   render(){
 
-    const condition = 'hybrid'
+    const condition = 'condition4'
       return (
         <div>
           {this.handleConditions(condition)}
