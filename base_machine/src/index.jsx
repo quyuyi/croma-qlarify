@@ -50,7 +50,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'condition4'
+    const condition = 'condition3'
       return (
         <div>
           {this.handleConditions(condition)}

@@ -8,12 +8,48 @@ import Entropy from './entropy.jsx';
 
 class Condition3 extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
+    constructor(props) {
+        super(props);
+        this.state = {
+            rules: [],
+            loading: true,
+        };
+    
+        this.myCallback = this.myCallback.bind(this);
+        this.fetchData = this.fetchData.bind(this);
+    
+    }
+    
+      
+    componentDidMount() {
+        this.fetchData();
+    }
 
-    };
-  }
+    fetchData() {
+        fetch('/render_features/', { credentials: 'same-origin' })
+            .then((response) => {
+            if (!response.ok) throw Error(response.statusText);
+            return response.json();
+            })
+            .then((data) => {
+                // console.log('printing from fetchData in rules.jsx');
+                // console.log(data.rules);
+                this.setState({
+                    rules: data.rules,
+                    loading: false,
+                });
+            })
+            .catch(error => console.log(error)); // eslint-disable-line no-console
+    }
+
+    myCallback(dataFromChild){
+        // console.log("print from myCallback in hybrid.jsx");
+        // console.log(dataFromChild);
+        this.setState({
+            rules: dataFromChild,
+            loading: false,
+        });
+    }
 
   render(){
 
@@ -22,10 +58,10 @@ class Condition3 extends React.Component {
             <Container>
                 <Row>
                     <Col sm md={3}>
-                        <Entropy />
+                        <Entropy rules={this.state.rules} loading={this.state.loading}/>
                     </Col>
                     <Col sm md={6}>
-                        <DataTable />
+                        <DataTable callbackFromParent={this.myCallback}/>
                     </Col>
                     <Col sm md={3}>
                         <History />
