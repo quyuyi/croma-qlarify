@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import Baseline from './baseline.jsx';
 import Hybrid from './hybrid.jsx';
+import Enduser from './enduser.jsx';
 import Condition3 from "./condition3.jsx";
 import Condition4 from "./condition4.jsx";
 
@@ -31,6 +32,13 @@ class App extends React.Component {
       )   
     }
 
+    if (condition == "end-user") {
+      return (
+        <div>
+          <Enduser />
+        </div>
+      )   
+    }
     if (condition == "condition3") {
       return (
         <div>

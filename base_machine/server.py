@@ -1,7 +1,7 @@
 # !/usr/bin/env python
 
 import os
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_file
 from pymongo import MongoClient
 from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
@@ -20,6 +20,31 @@ app.secret_key='some random string'
 @app.route("/")
 def index():
     return render_template('index.html')
+
+@app.route('/get_movie1')
+def get_movie1():
+    filename = 'uploads/movie1.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie2')
+def get_movie2():
+    filename = 'uploads/movie2.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie3')
+def get_movie3():
+    filename = 'uploads/movie3.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie4')
+def get_movie4():
+    filename = 'uploads/movie4.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie5')
+def get_movie5():
+    filename = 'uploads/movie5.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
 # condition3 - fetch
 # render features based on the whole dataset 
@@ -67,15 +92,9 @@ def render_dataset():
 def fetch_question():
     # get question to be asked from the crowd worker
     question=request.json['question']
-    print(question)
-    print(simulated_answers)
     response = simulated_answers[question]
-    if response == '':
-        response = 'The end user does not know' 
-    # TODO
-    # create a json file of the simulated answers
-    # parse question
-    # search answer
+    if response[0] == '':
+        response = ['The end user does not know', 10]
 
     return_result={
         'answer': response,
