@@ -21,13 +21,29 @@ app.secret_key='some random string'
 def index():
     return render_template('index.html')
 
-@app.route('/get_movie')
-def get_movie():
-    # if request.args.get('type') == '1':
-    #    filename = 'ok.gif'
-    # else:
-    #    filename = 'error.gif'
-    filename = 'movie1.mp4'
+@app.route('/get_movie1')
+def get_movie1():
+    filename = 'uploads/movie1.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie2')
+def get_movie2():
+    filename = 'uploads/movie2.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie3')
+def get_movie3():
+    filename = 'uploads/movie3.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie4')
+def get_movie4():
+    filename = 'uploads/movie4.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie5')
+def get_movie5():
+    filename = 'uploads/movie5.mp4'
     return send_file(filename, mimetype='video/mp4')
 
 # condition3 - fetch
@@ -160,15 +176,10 @@ def compute_rules():
             }]
 
     # for index,ele in enumerate(filtered_entropy):
-    #     s=''
-    #     for item in split[ele[0]]:
-    #         s+=str(item['value'])+': '+str(item['counts'])+', '
-    #     s+='...'
     #     rules+=[{
     #         'id': index+1,
     #         'feature': ele[0],
     #         'entropy': ele[1],
-    #         'split': s,
     #     }]
 
 

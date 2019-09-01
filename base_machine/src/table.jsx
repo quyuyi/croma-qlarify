@@ -130,6 +130,8 @@ class DataTable extends React.Component {
                 onChange={event => {
                     console.log('filtering....')
                     console.log(event.target.value)
+                    const currentRecords = this.selectTable.getResolvedState().sortedData;
+                    console.log(currentRecords)
                     return onChange(event.target.value)
                 }}
                 style={{ width: "100%" }}
@@ -162,6 +164,9 @@ class DataTable extends React.Component {
 
         return( <div>
                     <ReactTable
+                        ref={(r) => {
+                            this.selectTable = r;
+                          }}
                         data={data}
                         columns={columns}
                         loading={loading}

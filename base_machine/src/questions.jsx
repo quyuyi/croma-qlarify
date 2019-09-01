@@ -57,7 +57,7 @@ class Questions extends React.Component {
                     </div>
                 )
         })}
-        <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+        <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Submit HIT</Button>
 
     </div>
     );
