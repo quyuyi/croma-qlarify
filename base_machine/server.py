@@ -128,15 +128,9 @@ def render_dataset():
 def fetch_question():
     # get question to be asked from the crowd worker
     question=request.json['question']
-    print(question)
-    print(simulated_answers)
     response = simulated_answers[question]
-    if response == '':
-        response = 'The end user does not know' 
-    # TODO
-    # create a json file of the simulated answers
-    # parse question
-    # search answer
+    if response[0] == '':
+        response = ['The end user does not know', 10]
 
     return_result={
         'answer': response,

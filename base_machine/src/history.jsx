@@ -42,24 +42,23 @@ class History extends React.Component {
         // how to filter open-ended questions?
         this.postData('/fetch_condition1/', {question:question}) 
         .then(data => {
-            console.log(data)
-            // TODO
-            // add (feature,value) pair to history
-            this.setState({
-                histories:[...this.state.histories,
-                    {'question':question,'answer':data.answer}],
-            });
+            console.log(data.answer)
+            setTimeout(() => {
+                this.setState({
+                    histories:[...this.state.histories,
+                        {'question':question,'answer':data.answer}],
+                });
+            }, data.answer[1]*1000);
         }) // JSON-string from `response.json()` call
         .catch(error => console.error(error));
         // document.getElementById('question').value='';
-    }        
+    }
 
     handleChange(e) {
         console.log(e)
         this.setState({ selectedOption : e.value });
       };
     
-
     render(){
 
         const options = [
@@ -94,13 +93,6 @@ class History extends React.Component {
                 <header>
                     <p className='head'>Chat History</p>
 
-                    {/* <input 
-                    id='question'
-                    className='input'
-                    type='text' 
-                    ref='textInput'
-                    placeholder='Type your question here.'></input> */}
-
                     <Select
                         onChange={this.handleChange.bind(this)}
                         options={options}
@@ -113,7 +105,7 @@ class History extends React.Component {
                         return (
                             <div key={idx}>
                                 <Badge variant="light">Question</Badge> {h.question} <br/>
-                                <Badge variant="secondary">Answer</Badge> {h.answer}
+                                <Badge variant="secondary">Answer</Badge> {h.answer[0]}
                             </div>
                         )
                     })}
