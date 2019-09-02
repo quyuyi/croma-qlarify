@@ -24,36 +24,35 @@ class Questions extends React.Component {
     const questions = [
         "id",
         "imdb_id",
-        "title",
         "belongs_to_collection",
-        "budget",
+        "budget (For example, greater than $5,000,000)",
         "genres",
         "homepage",
         "original_language",
-        "original_title",
         "overview",
         "popularity",
         "poster_path",
         "production_companies",
         "production_countries",
-        "release_date",
-        "revenue",
-        "runtime",
+        "release_date (For example, 2015-2016)",
+        "revenue (For example, $1,000,000 - $2,000,000)",
+        "runtime (For example, 100 minutes - 120 minutes)",
         "spoken_languages",
         "status",
         "tagline",
         "video",
         "vote_average",
         "vote_count",
-        "adult"
+        "adult (Is this movie R rated?)"
     ]
 
     return (
     <div>
+        <p>Please provide the information you remember about the movie. You can provide a range if you don't remember the exact answer. Or if you are not sure or don't remember, please answer <i>I don't know</i>.</p>
         {questions.map((q,idx) => {
                 return (
                     <div key={idx}>
-                        What is the {q} of the movie? <input type="text" />
+                        {q} <input type="text" />
                     </div>
                 )
         })}

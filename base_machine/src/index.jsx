@@ -58,7 +58,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'condition3'
+    const condition = 'end-user'
       return (
         <div>
           {this.handleConditions(condition)}
