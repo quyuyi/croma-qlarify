@@ -4,6 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
+import Question from './question.jsx';
+// import '../api/mturk.js';
+// import gup from '../api/mturk.js';
 
 class Questions extends React.Component {
 
@@ -12,55 +15,105 @@ class Questions extends React.Component {
     this.state = {
         selectedOption1: null,
         selectedOption2: null,
+        questionId: 0,
+        answers: [],
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.renderQuestion = this.renderQuestion.bind(this);
+    this.renderEnd = this.renderEnd.bind(this);
   }
 
   handleSubmit() {
-    console.log('submit')
+    // const workerId=gup("workerId");
+    // console.log("workerId");
+    // const result={
+    //   'workerId': workerId,
+    //   'answers': this.state.answers,
+    // };
+    console.log(this.state.answers);
+
+    // TODO:
+    // send result back to server
+    // or to a database?
+
+    console.log('submit from outside');
+    $(document).ready(function(){
+      $("form#mturk_form").submit();
+    });
   }
 
-  render(){
+  handleNext(question,answer,time){
+    const record={
+      'question': question,
+      'answer': answer,
+      'time': time,
+    }
 
-    const questions = [
-        "id",
-        "imdb_id",
-        "title",
-        "belongs_to_collection",
-        "budget",
-        "genres",
-        "homepage",
-        "original_language",
-        "original_title",
-        "overview",
-        "popularity",
-        "poster_path",
-        "production_companies",
-        "production_countries",
-        "release_date",
-        "revenue",
-        "runtime",
-        "spoken_languages",
-        "status",
-        "tagline",
-        "video",
-        "vote_average",
-        "vote_count",
-        "adult"
-    ]
+    const nextId=this.state.questionId+1;
+    const previous=this.state.answers;
+    this.setState({
+      questionId: nextId,
+      answers: [...previous,record],
+    });
+  }
 
+  renderQuestion(){
     return (
-    <div>
-        {questions.map((q,idx) => {
-                return (
-                    <div key={idx}>
-                        What is the {q} of the movie? <input type="text" />
-                    </div>
-                )
-        })}
-        <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Submit HIT</Button>
-
-    </div>
+      <Question
+      questionId={this.state.questionId}
+      handleNext={this.handleNext}
+      />
     );
+  }
+
+  renderEnd(){
+    return (
+      <div>
+        You've finished the task. Click submit to submit HIT.
+        <br></br>
+        <form id='mturk_form'>
+          <Button variant="dark" onClick={this.handleSubmit} block>Submit HIT</Button>
+        </form>
+     </div>
+    );
+  }
+
+
+  render(){
+    return (
+      <div className='questions'>
+        <div className='questions-header'>
+          <h2>Please provide the information you remember about the movie. You can provide a range if you don't remember the exact answer. Or if you are not sure or don't remember, please answer <i>I don't know</i>.</h2>
+        </div>
+        {(this.state.questionId==22/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+      </div>
+    );
+
+    // return (
+    // <div>
+    //     {questions.map((q,idx) => {
+    //       if (q=='genres' || q=='status' || q=='original_language' || q=='spoken_languages'
+    //       || q=='production_countries' || q=='adult' || q=='video'){
+    //         const options=allOptions[q];
+    //         return (
+    //           <div key={idx}>
+    //             What is the {q} of the movie?<Select name={q} options={options} />
+    //           </div>
+    //         );
+    //       }
+    //       else {
+    //             return (
+    //               <div key={idx}>
+    //                   What is the {q} of the movie? <input id={q} type="text" />
+    //               </div>
+    //           );
+    //       }
+    //     })}
+    //     <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Submit HIT</Button>
+
+    // </div>
+    // );
   }
 }
 
