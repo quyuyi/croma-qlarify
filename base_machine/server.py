@@ -92,6 +92,12 @@ def render_dataset():
 def fetch_question():
     # get question to be asked from the crowd worker
     question=request.json['question']
+    responseTime = request.json['responseTime']
+    print("Here is the crowd worker's response time in milliseconds")
+    print(responseTime)
+    with open(logCrowd, 'a') as f:
+        f.write("%s: %s\n" % (question,responseTime))
+
     response = simulated_answers[question]
     if response[0] == '':
         response = ['The end user does not know', 10]
@@ -165,11 +171,7 @@ def get_entropy(feature_name):
         value,counts=np.unique(feature_list,return_counts=True)
 
     split=get_split(value,counts)
-
-    # if (feature_name=='production_countries'):
-    #     print("**********************production_countries******************************")
-    #     for v in value:
-    #         print("'%s', " % v)
+    
 
     return entropy(counts,base=2),split
 
@@ -208,6 +210,9 @@ current_indices=[]
 selected_features=[]
 
 simulated_answers = json.load(open("answers.json"))
+
+from time import gmtime, strftime
+logCrowd='logCrowd_'+strftime("%m%d_%H%M", gmtime())
 
 
 if __name__ == "__main__":

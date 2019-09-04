@@ -11,7 +11,7 @@ class Enduser extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedOption1: null,
+			selectedOption1: 'null',
 			selectedOption2: null,
 			onWatch: true,
 			onRemember: false,
@@ -46,9 +46,14 @@ class Enduser extends React.Component {
 		}
 		else if (this.state.selectedOption1 == 'no') {
 			this.setState({ 
-				selectedOption1: null,
+				selectedOption1: 'null',
 				movieIndex: this.state.movieIndex + 1
 			});
+			console.log("previously selectedOption1 is no, after change it becomes: ");
+			console.log(document.getElementsByName('select1')[0].value);
+			setTimeout(() => {
+				console.log(this.state.selectedOption1);
+			}, 100);
 		}
 		else if (this.state.selectedOption2 == 'yes') {
 			this.setState({
@@ -74,7 +79,10 @@ class Enduser extends React.Component {
 
 	renderQuestion1() {
 
+		console.log("print from renderQuestion1");
+		console.log(this.state.selectedOption1);
 		const options = [
+			{ value: 'null', label: 'Please select...'},
 			{ value: 'yes', label: 'Yes' },
 			{ value: 'no', label: 'No' },
 		]
@@ -84,13 +92,15 @@ class Enduser extends React.Component {
 				<div>
 					Have you watched this movie before? 
 					<Select
+						name='select1'
 						onChange={this.handleChange1.bind(this)}
 						options={options}
+						value={options.find(option => option.value === this.state.selectedOption1)}
 					/>
 					<Button variant="dark" onClick={this.handleSubmit.bind(this)}>Next</Button>
 				</div>
 			)
-    }
+	}
 
 	renderQuestion2() {
 
@@ -133,7 +143,7 @@ class Enduser extends React.Component {
 		const shouldShow5 = movieIndex===5
 		const shouldShow6 = movieIndex===6
 
-		console.log(shouldShow6)
+		// console.log(shouldShow6)
 		if (!this.state.metadata) {
 			return (
 				<div>
@@ -172,7 +182,7 @@ class Enduser extends React.Component {
 	}
 
 	render() {
-
+		console.log("print from render");
 		return (
 		<div>
 			<Container>

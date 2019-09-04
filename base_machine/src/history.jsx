@@ -11,11 +11,12 @@ class History extends React.Component {
         this.state = {
             histories:[],
             selectedOption: null,
+            startTime: null,
+            first: true,
         };
     }
 
     componentWillMount() {
-
     }
 
 
@@ -38,13 +39,30 @@ class History extends React.Component {
     }
     
     handleSubmit() {
+        let startTime;
+        if (this.state.first){
+            startTime=this.props.startTime;
+            this.setState({
+                first: false,
+            })
+        }
+        else {
+            startTime=this.state.startTime;
+        }
+        const endTime=new Date().getTime();
+        let responseTime=endTime-startTime;
+        console.log("Time used to ask this question is: ");
+        console.log(responseTime);
         let question=this.state.selectedOption;
+
         // how to filter open-ended questions?
-        this.postData('/fetch_condition1/', {question:question}) 
+        this.postData('/fetch_condition1/', {question:question, responseTime:responseTime}) 
         .then(data => {
             console.log(data.answer)
             setTimeout(() => {
                 this.setState({
+                    // set start Time for the next question
+                    startTime: new Date().getTime(),
                     histories:[...this.state.histories,
                         {'question':question,'answer':data.answer}],
                 });
@@ -60,7 +78,7 @@ class History extends React.Component {
       };
     
     render(){
-
+        
         const options = [
             { value: 'id', label: 'id' },
             { value: 'imdb_id', label: 'imdb id' },

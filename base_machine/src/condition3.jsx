@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Entropy from './entropy.jsx';
+import { isThisSecond } from "date-fns";
 
 class Condition3 extends React.Component {
 
@@ -13,10 +14,12 @@ class Condition3 extends React.Component {
         this.state = {
             rules: [],
             loading: true,
+            startTime: null,
         };
     
         this.myCallback = this.myCallback.bind(this);
         this.fetchData = this.fetchData.bind(this);
+        this.checkFinishLoading = this.checkFinishLoading.bind(this);
     
     }
     
@@ -47,24 +50,41 @@ class Condition3 extends React.Component {
         // console.log(dataFromChild);
         this.setState({
             rules: dataFromChild,
-            loading: false,
+            loading: true,
         });
     }
 
-  render(){
+    // set the start time for the first question
+    // when the table is fully loaded
+    checkFinishLoading(loading){
+        if (!loading){
+            this.setState({
+                startTime: new Date().getTime(),
+            });
+        }
+    }
 
+  render(){
       return (
         <div>
             <Container>
                 <Row>
                     <Col sm md={3}>
-                        <Entropy rules={this.state.rules} loading={this.state.loading}/>
+                        <Entropy 
+                        rules={this.state.rules} 
+                        loading={this.state.loading}
+                        />
                     </Col>
                     <Col sm md={6}>
-                        <DataTable callbackFromParent={this.myCallback}/>
+                        <DataTable 
+                        callbackFromParent={this.myCallback} 
+                        checkFinishLoading={this.checkFinishLoading}
+                        />
                     </Col>
                     <Col sm md={3}>
-                        <History />
+                        <History
+                        startTime={this.state.startTime} 
+                        />
                     </Col>
                 </Row>
             </Container>
