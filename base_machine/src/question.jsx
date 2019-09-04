@@ -461,7 +461,7 @@ const allOptions={
     'video': videoOptions,
     };
     
-const questions = [
+const questionsContent = [
         "id",
         "imdb_id",
         "belongs_to_collection",
@@ -484,6 +484,31 @@ const questions = [
         "vote_average",
         "vote_count",
         "adult (Is this movie R rated?)"
+];
+
+const questions = [
+    "id",
+    "imdb_id",
+    "belongs_to_collection",
+    "budget",
+    "genres",
+    "homepage",
+    "original_language",
+    "overview",
+    "popularity",
+    "poster_path",
+    "production_companies",
+    "production_countries",
+    "release_date",
+    "revenue",
+    "runtime",
+    "spoken_languages",
+    "status",
+    "tagline",
+    "video",
+    "vote_average",
+    "vote_count",
+    "adult"
 ];
 
 class Question extends React.Component {
@@ -514,13 +539,14 @@ class Question extends React.Component {
 
     renderQuestion(){
         const q=questions[this.props.questionId];
+        const content=questionsContent[this.props.questionId];
 
         if (q=='genres' || q=='status' || q=='original_language' || q=='spoken_languages'
         || q=='production_countries' || q=='adult' || q=='video'){
           const options=allOptions[q];
           return (
             <h2 key={this.props.questionId} className='question'>
-              {q}
+              {content}
               <Select name={q} options={options} />
             </h2>
           );
@@ -528,7 +554,7 @@ class Question extends React.Component {
         else {
           return (
             <h2 key={this.props.questionId} className='question'>
-                {q} 
+                {content} 
                 <br></br>
                 <input autoFocus id={q} type="text" />
             </h2>

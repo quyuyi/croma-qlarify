@@ -200,12 +200,30 @@ class DataTable extends React.Component {
                // do we need exact match for id and imdb_id?
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["id"] }),
+               Filter: ({filter,onChange}) => {
+                    return (
+                        <TextFilter
+                        accessor='id'
+                        value={filter ? filter.value : ''}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        />
+                    );
+                },
                filterAll: true,
             }, {
                Header: 'imdb_id',
                accessor: 'imdb_id',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["imdb_id"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='imdb_id'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'title',
@@ -213,6 +231,15 @@ class DataTable extends React.Component {
                style: textStyle,
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["title"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='title'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'belongs_to_collection',
@@ -220,6 +247,15 @@ class DataTable extends React.Component {
                style: textStyle,
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["belongs_to_collection"] }),
+               Filter: ({filter,onChange}) => {
+                   return (
+                    <TextFilter
+                    accessor='belongs_to_collection'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                   );
+               },
                filterAll: true,
             }, {
                Header: 'budget',
@@ -263,6 +299,15 @@ class DataTable extends React.Component {
                accessor: 'homepage',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["homepage"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='homepage'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'original_language',
@@ -283,6 +328,15 @@ class DataTable extends React.Component {
                style: textStyle,
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["original_title"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='original_title'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'overview',
@@ -294,6 +348,15 @@ class DataTable extends React.Component {
                ),
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["overview"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='overview'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'popularity',
@@ -317,12 +380,30 @@ class DataTable extends React.Component {
                accessor: 'poster_path',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["poster_path"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='poster_path'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'production_companies',
                accessor: 'production_companies',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["peoduction_companies"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='production_companies'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                 Header: 'production_countries',
@@ -432,6 +513,15 @@ class DataTable extends React.Component {
                 ),
                 filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["tagline"] }),
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <TextFilter
+                        accessor='tagline'
+                        value={filter ? filter.value : ''}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        />
+                    );
+                },
                 filterAll: true,
             }, {
                 Header: 'video',
@@ -664,6 +754,25 @@ function singleSelectionContains(filter,row){
     }
 }
 
+class TextFilter extends React.Component {
+    constructor(){
+        super();
+    }
+
+    render() {
+        return (
+            <DelayInput
+            delayTimeout={1000} 
+            type='text'
+            className='text-filter' 
+            id={this.props.accessor} 
+            value={this.props.value} 
+            onChange={e => this.props.onFilteredChangeCustom(e.target.value,this.props.accessor)}
+            />
+        );
+    }
+}
+
 
 
 // e.g.,
@@ -795,7 +904,7 @@ class RangeSelection extends React.Component {
                 id={rightId} 
                 value={range[1]} 
                 onChange={this.handleChange} />
-                <Button variant="secondary" size="sm" className='reset' onClick={this.handleReset}><span className='reset'>Reset</span></Button>
+                <Button title='Reset range' variant="secondary" size="sm" className='reset' onClick={this.handleReset}></Button>
             </div>
         );
 

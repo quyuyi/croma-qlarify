@@ -6,6 +6,16 @@ import Enduser from './enduser.jsx';
 import Condition3 from "./condition3.jsx";
 import Condition4 from "./condition4.jsx";
 
+function gup(name) {
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp(regexS);
+	var results = regex.exec(window.location.href);
+	if(results == null)
+	  return "";
+	else return unescape(results[1]);
+}
+
 class App extends React.Component {
 
   constructor(props) {
@@ -17,17 +27,40 @@ class App extends React.Component {
     this.handleConditions = this.handleConditions.bind(this);
   }
 
+  submitHIT(result) {
+		// TODO:
+		// send result back to server
+		// or to a database?
+
+		console.log('submit from outside');
+		console.log(result);
+		$(document).ready(function(){
+		  $("form#mturk_form").submit();
+		});
+		console.log('submitting hit....')
+  }
+  
+
   handleConditions(condition) {
+		const workerId=gup("workerId");
+		console.log("workerId is ", workerId);
+
     if (condition == "human") {
       return (
-          <Baseline />
+          <Baseline
+          workerId= {workerId}
+          submitHIT= {this.submitHIT}
+          />
       )
     }
 
     if (condition == "hybrid") {
       return (
         <div>
-          <Hybrid />
+          <Hybrid
+          workerId= {workerId}
+          submitHIT= {this.submitHIT} 
+          />
         </div>
       )   
     }
@@ -35,14 +68,20 @@ class App extends React.Component {
     if (condition == "end-user") {
       return (
         <div>
-          <Enduser />
+          <Enduser
+          workerId= {workerId}
+          submitHIT= {this.submitHIT}
+          />
         </div>
       )   
     }
     if (condition == "condition3") {
       return (
         <div>
-          <Condition3 />
+          <Condition3 
+          workerId= {workerId}
+          submitHIT= {this.submitHIT}
+          />
         </div>
       )   
     }
@@ -50,7 +89,10 @@ class App extends React.Component {
     if (condition == "condition4") {
       return (
         <div>
-          <Condition4 />
+          <Condition4 
+          workerId= {workerId}
+          submitHIT= {this.submitHIT}
+          />
         </div>
       )
     }
@@ -58,7 +100,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'end-user'
+    const condition = 'human'
       return (
         <div>
           {this.handleConditions(condition)}

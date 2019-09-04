@@ -64,7 +64,7 @@ class History extends React.Component {
                     // set start Time for the next question
                     startTime: new Date().getTime(),
                     histories:[...this.state.histories,
-                        {'question':question,'answer':data.answer}],
+                        {'question':question,'answer':data.answer, 'duration': responseTime}],
                 });
             }, data.answer[1]*1000);
         }) // JSON-string from `response.json()` call

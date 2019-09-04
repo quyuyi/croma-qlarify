@@ -14,10 +14,18 @@
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
   },
+  "name": "deploy",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "npm": "6.9.0",
+    "node": "v10.16.0"
+  },
   "dependencies": {
     "bootstrap": "^4.3.1",
     "d3-scale": "^3.0.1",
     "date-fns": "^2.0.1",
+    "jquery": "^3.4.1",
     "match-sorter": "^4.0.1",
     "rc-slider": "^8.6.13",
     "react": "^16.9.0",

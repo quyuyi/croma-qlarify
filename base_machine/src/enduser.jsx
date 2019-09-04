@@ -32,7 +32,7 @@ class Enduser extends React.Component {
 			this.setState({ 
 				onWatch: false,
 				onRemember: false,
-				selectedOption1: null,
+				selectedOption1: 'null',
 				selectedOption2: null,
 				movieIndex: this.state.movieIndex + 1
 			});
@@ -41,7 +41,7 @@ class Enduser extends React.Component {
 			this.setState({ 
 				onWatch: false,
 				onRemember: true,
-				selectedOption1: null
+				selectedOption1: 'null'
 			});
 		}
 		else if (this.state.selectedOption1 == 'no') {
@@ -123,15 +123,41 @@ class Enduser extends React.Component {
 	}
 
 	renderMetadataQuestions() {
+		// const workerId=gup("workerId");
 		if (this.state.metadata)
 			return (
-				<Questions />
+				<Questions 
+				workerId={this.props.workerId}
+				movieIndex={this.state.movieIndex}
+				submitHIT={this.props.submitHIT}/>
 			)
 	}
 
-	submitHIT() {
-		console.log('submitting hit....')
+	onSubmitHIT() {
+		// const workerId=gup("workerId");
+		// console.log("workerId");
+		const result={
+		  'workerId': this.props.workerId,
+		  'movieIndex': -1,
+		  'answers': "No movie can be applied.",
+		};
+		
+		this.props.submitHIT(result);
 	}
+
+	// submitHIT(result) {
+	// 	// TODO:
+	// 	// send result back to server
+	// 	// or to a database?
+
+	// 	console.log('submit from outside');
+	// 	console.log(result);
+	// 	$(document).ready(function(){
+	// 	  $("form#mturk_form").submit();
+	// 	});
+	// 	console.log('submitting hit....')
+	// }
+
 
 	renderMovie() {
 
@@ -170,7 +196,7 @@ class Enduser extends React.Component {
 					</video>
 					<Button 
 					variant="dark" 
-					onClick={this.submitHIT.bind(this)} 
+					onClick={this.onSubmitHIT.bind(this)} 
 					bsPrefix={shouldShow6 ? '':'hidden'}>
 					Submit HIT
 					</Button>

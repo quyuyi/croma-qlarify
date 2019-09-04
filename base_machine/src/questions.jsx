@@ -5,8 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Question from './question.jsx';
-// import '../api/mturk.js';
-// import gup from '../api/mturk.js';
+
 
 class Questions extends React.Component {
 
@@ -15,32 +14,24 @@ class Questions extends React.Component {
     this.state = {
         selectedOption1: null,
         selectedOption2: null,
-        questionId: 0,
+        questionId: 21,
         answers: [],
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmitHit = this.onSubmitHit.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.renderQuestion = this.renderQuestion.bind(this);
     this.renderEnd = this.renderEnd.bind(this);
   }
 
-  handleSubmit() {
-    // const workerId=gup("workerId");
-    // console.log("workerId");
-    // const result={
-    //   'workerId': workerId,
-    //   'answers': this.state.answers,
-    // };
+  onSubmitHit() {
+    const result={
+      'workerId': this.props.workerId,
+      'movieIndex': this.props.movieIndex,
+      'answers': this.state.answers,
+    };
     console.log(this.state.answers);
 
-    // TODO:
-    // send result back to server
-    // or to a database?
-
-    console.log('submit from outside');
-    $(document).ready(function(){
-      $("form#mturk_form").submit();
-    });
+    this.props.submitHIT(result);
   }
 
   handleNext(question,answer,time){
@@ -73,7 +64,7 @@ class Questions extends React.Component {
         You've finished the task. Click submit to submit HIT.
         <br></br>
         <form id='mturk_form'>
-          <Button variant="dark" onClick={this.handleSubmit} block>Submit HIT</Button>
+          <Button variant="dark" onClick={this.onSubmitHit} block>Submit HIT</Button>
         </form>
      </div>
     );
