@@ -41,7 +41,7 @@ class DataTable extends React.Component {
                     data: dat.dataset,
                     loading: false
                 });
-                // this.props.checkFinishLoading(this.state.loading);
+                this.props.checkFinishLoading(false);
                 console.log("table finish loading")
             })
             .catch(error => console.log(error)); // eslint-disable-line no-console
@@ -92,8 +92,8 @@ class DataTable extends React.Component {
                 this.props.callbackFromParent([])
             }
             else {
-                this.postData('/update_features/', {currentIndices: currentIndices})
-                .then(data => {
+                this.postData('/update_indices/', {currentIndices: currentIndices})
+                .then( data => {
                     // console.log("print from onTableViewChange")
                     // console.log(data.rules)
                     this.props.callbackFromParent(data.rules)
@@ -174,13 +174,13 @@ class DataTable extends React.Component {
         // display the input with domain value
         const left=accessor+"left";
         const right=accessor+"right";
-        let leftValue=document.getElementById(left).value;
-        console.log("previous left is: ",leftValue);
         document.getElementById(left).value=allDomain[accessor][0];
-        console.log("reset left value to ", leftValue);
-        let rightValue=document.getElementById(right).value;
         document.getElementById(right).value=allDomain[accessor][1];
 
+        console.log("previous left is: ",document.getElementById(left).value);
+        console.log("reset left value to ", document.getElementById(left).value);
+
+        this.setState({ filtered: filtered });
         this.onTableViewChange();
     }
 
@@ -190,7 +190,7 @@ class DataTable extends React.Component {
         const width=200;
         const textStyle={ 
             'height': 80,
-            'white-space': 'unset',
+            'whiteSpace': 'unset',
         };
 
         const columns = [
@@ -927,8 +927,8 @@ class SingleSelection extends React.Component {
             value={this.props.value}
             >
             <option value="all">All</option>
-            {options.map((o) => {
-                return <option value={o}>{o}</option>
+            {options.map((o,idx) => {
+                return <option key={idx} value={o}>{o}</option>
             })}
             </select>  
         );

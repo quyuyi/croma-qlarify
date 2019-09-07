@@ -531,10 +531,18 @@ class Question extends React.Component {
             answer=document.getElementById(q).value;
         }
 
-        const endTime=new Date().getTime();
-        const duration=endTime-this.state.startTime;
-        console.log("response time for answering ", q , " is ", duration/1000," seconds");
-        this.props.handleNext(q,answer,duration);
+        if (answer!=''){
+            const endTime=new Date().getTime();
+            const duration=endTime-this.state.startTime;
+            this.setState({
+                startTime: new Date().getTime(),
+            })
+            console.log("response time for answering ", q , " is ", duration/1000," seconds");
+            this.props.handleNext(q,answer,duration);
+        }
+        else{
+            alert("Please enter an answer.");
+        }
     }
 
     renderQuestion(){

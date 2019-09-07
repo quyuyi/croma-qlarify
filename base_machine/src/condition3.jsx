@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Entropy from './entropy.jsx';
-import { isThisSecond } from "date-fns";
 
 class Condition3 extends React.Component {
 
@@ -14,13 +13,10 @@ class Condition3 extends React.Component {
         this.state = {
             rules: [],
             loading: true,
-            startTime: null,
         };
     
         this.myCallback = this.myCallback.bind(this);
-        this.fetchData = this.fetchData.bind(this);
-        this.checkFinishLoading = this.checkFinishLoading.bind(this);
-    
+        this.fetchData = this.fetchData.bind(this);    
     }
     
       
@@ -50,19 +46,10 @@ class Condition3 extends React.Component {
         // console.log(dataFromChild);
         this.setState({
             rules: dataFromChild,
-            loading: true,
+            loading: false,
         });
     }
 
-    // set the start time for the first question
-    // when the table is fully loaded
-    checkFinishLoading(loading){
-        if (!loading){
-            this.setState({
-                startTime: new Date().getTime(),
-            });
-        }
-    }
 
   render(){
       return (
@@ -78,12 +65,13 @@ class Condition3 extends React.Component {
                     <Col sm md={6}>
                         <DataTable 
                         callbackFromParent={this.myCallback} 
-                        checkFinishLoading={this.checkFinishLoading}
+                        checkFinishLoading={this.props.checkFinishLoading}
                         />
                     </Col>
                     <Col sm md={3}>
                         <History
-                        startTime={this.state.startTime} 
+                        startTime={this.props.startTime}
+                        condition='entropy'
                         />
                     </Col>
                 </Row>

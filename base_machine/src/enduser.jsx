@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
+import Submit from "./submit.jsx";
 
 class Enduser extends React.Component {
 
@@ -49,11 +50,6 @@ class Enduser extends React.Component {
 				selectedOption1: 'null',
 				movieIndex: this.state.movieIndex + 1
 			});
-			console.log("previously selectedOption1 is no, after change it becomes: ");
-			console.log(document.getElementsByName('select1')[0].value);
-			setTimeout(() => {
-				console.log(this.state.selectedOption1);
-			}, 100);
 		}
 		else if (this.state.selectedOption2 == 'yes') {
 			this.setState({
@@ -78,9 +74,6 @@ class Enduser extends React.Component {
 	}
 
 	renderQuestion1() {
-
-		console.log("print from renderQuestion1");
-		console.log(this.state.selectedOption1);
 		const options = [
 			{ value: 'null', label: 'Please select...'},
 			{ value: 'yes', label: 'Yes' },
@@ -123,27 +116,27 @@ class Enduser extends React.Component {
 	}
 
 	renderMetadataQuestions() {
-		// const workerId=gup("workerId");
 		if (this.state.metadata)
 			return (
 				<Questions 
-				workerId={this.props.workerId}
+				// workerId={this.props.workerId}
 				movieIndex={this.state.movieIndex}
-				submitHIT={this.props.submitHIT}/>
+				// submitHIT={this.props.submitHIT}
+				/>
 			)
 	}
 
-	onSubmitHIT() {
-		// const workerId=gup("workerId");
-		// console.log("workerId");
-		const result={
-		  'workerId': this.props.workerId,
-		  'movieIndex': -1,
-		  'answers': "No movie can be applied.",
-		};
+	// onSubmitHIT() {
+	// 	// const workerId=gup("workerId");
+	// 	// console.log("workerId");
+	// 	const result={
+	// 	  'workerId': this.props.workerId,
+	// 	  'movieIndex': -1,
+	// 	  'answers': "No movie can be applied.",
+	// 	};
 		
-		this.props.submitHIT(result);
-	}
+	// 	this.props.submitHIT(result);
+	// }
 
 	// submitHIT(result) {
 	// 	// TODO:
@@ -162,19 +155,19 @@ class Enduser extends React.Component {
 	renderMovie() {
 
 		const movieIndex = this.state.movieIndex
-		const shouldShow1 = movieIndex===1
-		const shouldShow2 = movieIndex===2
-		const shouldShow3 = movieIndex===3
-		const shouldShow4 = movieIndex===4
-		const shouldShow5 = movieIndex===5
-		const shouldShow6 = movieIndex===6
-
-		// console.log(shouldShow6)
+		const src='/get_movie'+movieIndex.toString();
+		// const shouldShow1 = movieIndex===1
+		// const shouldShow2 = movieIndex===2
+		// const shouldShow3 = movieIndex===3
+		// const shouldShow4 = movieIndex===4
+		// const shouldShow5 = movieIndex===5
+		// const shouldShow6 = movieIndex===6
+		
 		if (!this.state.metadata) {
 			return (
 				<div>
 					<br/>
-					<video width="400" controls className={shouldShow1 ? '':'hidden'}>
+					{/* <video width="400" controls className={shouldShow1 ? '':'hidden'}>
 						<source src={'get_movie1'} type="video/mp4" />
 						Your browser does not support HTML5 video.
 					</video>
@@ -193,13 +186,21 @@ class Enduser extends React.Component {
 					<video width="400" controls className={shouldShow5 ? '':'hidden'}>
 						<source src={'/get_movie5'} type="video/mp4" />
 						Your browser does not support HTML5 video.
-					</video>
-					<Button 
+					</video> */}
+					{/* <video 
+					width="400" 
+					src={src}
+					controls
+					 >
+					Your browser does not support HTML5 video.
+					</video> */}
+					{/* <Button 
 					variant="dark" 
 					onClick={this.onSubmitHIT.bind(this)} 
 					bsPrefix={shouldShow6 ? '':'hidden'}>
 					Submit HIT
-					</Button>
+					</Button> */}
+					{(movieIndex===6) ? this.renderEnd() : this.renderVideo(src)}
 					<br/>
 				</div>
 			)
@@ -207,8 +208,31 @@ class Enduser extends React.Component {
 
 	}
 
+	renderEnd(){
+		return (
+			<Submit
+			movieIndex={-1}
+			result="No movie can be applied"
+			condition='end_user'
+			/>
+		);
+	}
+
+	renderVideo(src){
+		return (
+			<div>
+				<video 
+				width="400" 
+				src={src}
+				controls
+				>
+				Your browser does not support HTML5 video.
+				</video>
+			</div>
+		);
+	}
+
 	render() {
-		console.log("print from render");
 		return (
 		<div>
 			<Container>

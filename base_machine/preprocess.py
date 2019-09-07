@@ -66,6 +66,7 @@ def preprocess_dataset():
     multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection']
     single_col=[col for col in all_col if col not in multi_col]
 
+    # assgin all empty(nan) cells a value 'null'
     for col in single_col:
         processed_dict[col]=process_nan(processed_dict[col])
 

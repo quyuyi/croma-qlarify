@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Question from './question.jsx';
+import Submit from './submit.jsx';
 
 
 class Questions extends React.Component {
@@ -14,25 +15,25 @@ class Questions extends React.Component {
     this.state = {
         selectedOption1: null,
         selectedOption2: null,
-        questionId: 21,
+        questionId: 0, //0-based
         answers: [],
     };
-    this.onSubmitHit = this.onSubmitHit.bind(this);
+    // this.onSubmitHit = this.onSubmitHit.bind(this);
     this.handleNext = this.handleNext.bind(this);
     this.renderQuestion = this.renderQuestion.bind(this);
     this.renderEnd = this.renderEnd.bind(this);
   }
 
-  onSubmitHit() {
-    const result={
-      'workerId': this.props.workerId,
-      'movieIndex': this.props.movieIndex,
-      'answers': this.state.answers,
-    };
-    console.log(this.state.answers);
+  // onSubmitHit() {
+  //   const result={
+  //     'workerId': this.props.workerId,
+  //     'movieIndex': this.props.movieIndex,
+  //     'answers': this.state.answers,
+  //   };
+  //   console.log(this.state.answers);
 
-    this.props.submitHIT(result);
-  }
+  //   this.props.submitHIT(result);
+  // }
 
   handleNext(question,answer,time){
     const record={
@@ -59,19 +60,26 @@ class Questions extends React.Component {
   }
 
   renderEnd(){
+    console.log("print from renderEnd in questions.jsx");
     return (
       <div>
         You've finished the task. Click submit to submit HIT.
         <br></br>
-        <form id='mturk_form'>
+        <Submit
+        movieIndex={this.props.movieIndex}
+        result={this.state.answers}
+        condition='end_user'
+        />
+        {/* <form id='mturk_form'>
           <Button variant="dark" onClick={this.onSubmitHit} block>Submit HIT</Button>
-        </form>
+        </form> */}
      </div>
     );
   }
 
 
   render(){
+    // render question one at a time
     return (
       <div className='questions'>
         <div className='questions-header'>
@@ -81,6 +89,7 @@ class Questions extends React.Component {
       </div>
     );
 
+    // render all questions at a time
     // return (
     // <div>
     //     {questions.map((q,idx) => {

@@ -2,7 +2,16 @@ import React from 'react';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import { css } from '@emotion/core';
+import BeatLoader from 'react-spinners/BeatLoader';
+import Submit from './submit.jsx';
 
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 
 class History extends React.Component {
 
@@ -13,10 +22,11 @@ class History extends React.Component {
             selectedOption: null,
             startTime: null,
             first: true,
+            loading: false,
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
     }
 
 
@@ -55,6 +65,10 @@ class History extends React.Component {
         console.log(responseTime);
         let question=this.state.selectedOption;
 
+        this.setState({
+            loading: true,
+        })
+
         // how to filter open-ended questions?
         this.postData('/fetch_condition1/', {question:question, responseTime:responseTime}) 
         .then(data => {
@@ -62,6 +76,7 @@ class History extends React.Component {
             setTimeout(() => {
                 this.setState({
                     // set start Time for the next question
+                    loading: false,
                     startTime: new Date().getTime(),
                     histories:[...this.state.histories,
                         {'question':question,'answer':data.answer, 'duration': responseTime}],
@@ -76,6 +91,23 @@ class History extends React.Component {
         console.log(e)
         this.setState({ selectedOption : e.value });
       };
+
+
+    renderLoader(){
+        return (
+            <div>
+                <div className='sweet-loading'>
+                <BeatLoader
+                css={override}
+                sizeUnit={"px"}
+                size={15}
+                color={'grey'}
+                loading={this.state.loading}
+                />
+            </div> 
+          </div>
+        );
+    }
     
     render(){
         
@@ -127,7 +159,16 @@ class History extends React.Component {
                             </div>
                         )
                     })}
+                    <br></br>
+                    {this.renderLoader()}
                 </div>
+
+                <Submit
+                movieIndex="where to get movie index?"
+                result={this.state.histories}
+                condition={this.props.condition}
+                />
+
             </div>
         );
     }
