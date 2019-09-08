@@ -2,13 +2,12 @@
 
 import os
 from flask import Flask, render_template, jsonify, request, send_file
-from pymongo import MongoClient
-from sklearn.feature_extraction.text import TfidfVectorizer
 import numpy as np
 import pandas as pd
 import json
 import string
 import csv
+from pymongo import MongoClient
 
 from preprocess import *
 
@@ -46,6 +45,23 @@ def get_movie5():
     filename = 'uploads/movie5.mp4'
     return send_file(filename, mimetype='video/mp4')
 
+
+@app.route('/write_database/', methods=["POST"])
+def  write_database():
+    condition=request.json['condition']
+    print(condition)
+    
+    client = MongoClient('mongodb://worker1:worker111@ds147344.mlab.com:47344/heroku_7lq7rsch?retryWrites=false')
+    db = client.heroku_7lq7rsch  # use a database called heroku_vbl2phnb
+    collection = db[condition]   # and inside that DB, a collection called news
+
+    mydict=request.json['result']
+    x = collection.insert_one(mydict)
+    print(x.inserted_id)
+
+
+
+
 # condition3 - fetch
 # render features based on the whole dataset 
 # since fetch data is called firstly and once
@@ -62,11 +78,18 @@ def suggest_rules():
     return compute_rules()
 
 
-@app.route('/update_features/', methods=["GET", "POST"])
-def update_rules():
+@app.route('/update_indices/', methods=["GET", "POST"])
+def update_indices():
     global current_indices
     current_indices=request.json['currentIndices']
 
+    print('current dataset size: ')
+    print(len(current_indices))
+
+    return update_features()
+
+# @app.route('/update_features/', methods=["GET", "POST"])
+def update_features():
     print('current dataset size: ')
     print(len(current_indices))
     return compute_rules()
@@ -92,6 +115,12 @@ def render_dataset():
 def fetch_question():
     # get question to be asked from the crowd worker
     question=request.json['question']
+    # responseTime = request.json['responseTime']
+    # print("Here is the crowd worker's response time in milliseconds")
+    # print(responseTime)
+    # with open(logCrowd, 'a') as f:
+    #     f.write("%s: %s\n" % (question,responseTime))
+
     response = simulated_answers[question]
     if response[0] == '':
         response = ['The end user does not know', 10]
@@ -119,23 +148,26 @@ def compute_rules():
     rules=[]
     # check if condition in index.jsx
     # split.jsx
-    # for index,ele in enumerate(filtered_entropy):
-    #     for item in split[ele[0]]:
-    #         rules+=[{
-    #             'id': index+1,
-    #             'feature': ele[0],
-    #             'entropy': ele[1],
-    #             'value': item['value'],
-    #             'counts': item['counts'],
-    #         }]
+    for index,ele in enumerate(filtered_entropy):
+        for item in split[ele[0]]:
+            value=item['value']
+            if (type(value) is np.int32):
+                value=int(value)
+            rules+=[{
+                'id': index+1,
+                'feature': ele[0],
+                'entropy': ele[1],
+                'value': value,
+                'counts': item['counts'],
+            }]
 
     # rules.jsx or entropy.jsx
-    for index,ele in enumerate(filtered_entropy):
-        rules+=[{
-            'id': index+1,
-            'feature': ele[0],
-            'entropy': ele[1],
-        }]
+    # for index,ele in enumerate(filtered_entropy):
+    #     rules+=[{
+    #         'id': index+1,
+    #         'feature': ele[0],
+    #         'entropy': ele[1],
+    #     }]
 
 
     dat = {
@@ -165,11 +197,7 @@ def get_entropy(feature_name):
         value,counts=np.unique(feature_list,return_counts=True)
 
     split=get_split(value,counts)
-
-    # if (feature_name=='production_countries'):
-    #     print("**********************production_countries******************************")
-    #     for v in value:
-    #         print("'%s', " % v)
+    
 
     return entropy(counts,base=2),split
 
@@ -208,6 +236,9 @@ current_indices=[]
 selected_features=[]
 
 simulated_answers = json.load(open("answers.json"))
+
+# from time import gmtime, strftime
+# logCrowd='logCrowd_'+strftime("%m%d_%H%M", gmtime())
 
 
 if __name__ == "__main__":

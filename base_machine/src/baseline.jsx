@@ -27,9 +27,6 @@ class Baseline extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
   }
 
   render(){
@@ -39,14 +36,16 @@ class Baseline extends React.Component {
             <Container>
                 <Row>
                     <Col md={9}>
-                        <DataTable />
+                        <DataTable
+                        checkFinishLoading={this.props.checkFinishLoading} />
                     </Col>
                     <Col md={3}>
-                        <History />
+                        <History
+                        startTime={this.props.startTime}
+                        condition='human' />
                     </Col>
                 </Row>
             </Container>
-            
             
         </div>
       );

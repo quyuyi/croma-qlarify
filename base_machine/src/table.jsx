@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
-import { Handle, Track, Tick } from './slider-components.jsx'
-
+import Button from 'react-bootstrap/Button';
+import {DelayInput} from 'react-delay-input';
+import NumberFormat from 'react-number-format';
 
 class DataTable extends React.Component {
 
@@ -20,7 +20,8 @@ class DataTable extends React.Component {
         this.fetchDataset = this.fetchDataset.bind(this);
         this.onTableViewChange = this.onTableViewChange.bind(this);
         this.onFilteredChangeCustom = this.onFilteredChangeCustom.bind(this);
-        this.handleSliderChange = this.handleSliderChange.bind(this);
+        this.handleClear = this.handleClear.bind(this);
+
     }
 
 
@@ -40,6 +41,8 @@ class DataTable extends React.Component {
                     data: dat.dataset,
                     loading: false
                 });
+                this.props.checkFinishLoading(false);
+                console.log("table finish loading")
             })
             .catch(error => console.log(error)); // eslint-disable-line no-console
     }
@@ -61,7 +64,9 @@ class DataTable extends React.Component {
               body: JSON.stringify(data), // body data type must match "Content-Type" header
           })
           .then(response => response.json()); // parses JSON response into native JavaScript objects 
-      }
+    }
+
+
 
     // sent the current filtered dataset to server.py
     // update the ranked feature list
@@ -75,6 +80,10 @@ class DataTable extends React.Component {
             currentData.forEach(ele => {
                 currentIndices.push(ele['_index'])            
             });
+
+            console.log("*****on table view change*****");
+            console.log("current filters: ");
+            console.log(this.state.filtered);
             console.log("current dataset size:")
             console.log(currentIndices.length)
     
@@ -83,8 +92,8 @@ class DataTable extends React.Component {
                 this.props.callbackFromParent([])
             }
             else {
-                this.postData('/update_features/', {currentIndices: currentIndices})
-                .then(data => {
+                this.postData('/update_indices/', {currentIndices: currentIndices})
+                .then( data => {
                     // console.log("print from onTableViewChange")
                     // console.log(data.rules)
                     this.props.callbackFromParent(data.rules)
@@ -92,22 +101,20 @@ class DataTable extends React.Component {
                 .catch(error => console.error(error));
             }
         }
-        ,500)
+        ,0)
     }
-
-
-
 
 
     onFilteredChangeCustom (value, accessor, type='') {
         let filtered = this.state.filtered;
         let insertNewFilter = 1;
     
-        console.log(filtered)
+        // console.log(filtered)
+
+        // check whether to remove the filter from the current filters
         if (filtered.length) {
           filtered.forEach((filter, i) => {
             if (filter["id"] === accessor) {
-              // check whether to remove the filter
               if (
                 value === "" || !value.length || value === "all" 
                 // || (value.length == 1 && value[0]==="all")
@@ -117,6 +124,7 @@ class DataTable extends React.Component {
                 || (accessor=='runtime' && value.length==2 && value[0]==allDomain['runtime'][0] && value[1]==allDomain['runtime'][1])
                 || (accessor=='vote_average' && value.length==2 && value[0]==allDomain['vote_average'][0] && value[1]==allDomain['vote_average'][1])
                 || (accessor=='vote_count' && value.length==2 && value[0]==allDomain['vote_count'][0] && value[1]==allDomain['vote_count'][1])
+                || (accessor=='release_date' && value.length==2 && value[0]==allDomain['release_date'][0] && value[1]==allDomain['release_date'][1])
                 ) 
               {
                   // remove the filter
@@ -136,6 +144,7 @@ class DataTable extends React.Component {
           });
         }
     
+        // if not exist in the current filters
         // insert new filter
         if (insertNewFilter) {
           if (type===''){
@@ -146,17 +155,44 @@ class DataTable extends React.Component {
     
         this.setState({ filtered: filtered });
 
+        // refresh entropy based on the filtered result
         this.onTableViewChange();
     };
 
 
-    handleSliderChange (range,accessor) {
-        this.onFilteredChangeCustom(range,accessor)
+    handleClear(accessor){
+        // remove the filter
+        let filtered = this.state.filtered;
+        if (filtered.length) {
+            filtered.forEach((filter, i) => {
+              if (filter["id"] === accessor) {
+                filtered.splice(i, 1);
+              }
+            });
+        }
+
+        // display the input with domain value
+        const left=accessor+"left";
+        const right=accessor+"right";
+        document.getElementById(left).value=allDomain[accessor][0];
+        document.getElementById(right).value=allDomain[accessor][1];
+
+        console.log("previous left is: ",document.getElementById(left).value);
+        console.log("reset left value to ", document.getElementById(left).value);
+
+        this.setState({ filtered: filtered });
+        this.onTableViewChange();
     }
 
 
     render() {
         const { data, loading } = this.state;
+        const width=200;
+        const textStyle={ 
+            'height': 80,
+            'whiteSpace': 'unset',
+        };
+
         const columns = [
             {
                Header: 'id',
@@ -164,51 +200,96 @@ class DataTable extends React.Component {
                // do we need exact match for id and imdb_id?
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["id"] }),
+               Filter: ({filter,onChange}) => {
+                    return (
+                        <TextFilter
+                        accessor='id'
+                        value={filter ? filter.value : ''}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        />
+                    );
+                },
                filterAll: true,
             }, {
                Header: 'imdb_id',
                accessor: 'imdb_id',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["imdb_id"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='imdb_id'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'title',
                accessor: 'title',
+               style: textStyle,
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["title"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='title'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'belongs_to_collection',
                accessor: 'belongs_to_collection',
+               style: textStyle,
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["belongs_to_collection"] }),
+               Filter: ({filter,onChange}) => {
+                   return (
+                    <TextFilter
+                    accessor='belongs_to_collection'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                   );
+               },
                filterAll: true,
             }, {
                Header: 'budget',
                accessor: 'budget',
+               width: width,
                filterMethod: rangeFilter,
                Filter: ({filter,onChange}) => {
                    const domain=allDomain['budget'];
                    return (
-                       <SliderCustom 
-                       domain={domain}
-                       values={filter ? filter.value : domain}
-                       handleSliderChange={this.handleSliderChange}
-                       accessor='budget'
-                       />
+                    //    <SliderCustom 
+                    //    domain={domain}
+                    //    values={filter ? filter.value : domain}
+                    //    handleSliderChange={this.onFilteredChangeCustom}
+                    //    accessor='budget'
+                    //    />
+                    <RangeSelection
+                    range={filter ? filter.value : domain}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    handleClear={this.handleClear}
+                    accessor='budget'
+                    />
                    );
                },
 
             }, {
                Header: 'genres',
                accessor: 'genres',
-               filterMethod: multiSelectionFilter,
+               width: width,
+               filterMethod: singleSelectionContains,
                Filter: ({filter,onChange}) => {
                     return (
-                        <MultiSelection
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
                         onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        type={filter ? filter.type : 'or'}
-                        value={filter ? filter.value : ["all"]}
                         accessor='genres'
                         />
                     );
@@ -218,33 +299,77 @@ class DataTable extends React.Component {
                accessor: 'homepage',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["homepage"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='homepage'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'original_language',
-               accessor: 'original_language'
+               accessor: 'original_language',
+               filterMethod: singleSelectionExactMatch,
+               Filter: ({filter,onChange}) => {
+                   return (
+                       <SingleSelection
+                       value={filter ? filter.value : "all"}
+                       onFilteredChangeCustom={this.onFilteredChangeCustom}
+                       accessor='original_language'
+                       />
+                   );
+               },
             }, {
                Header: 'original_title',
                accessor: 'original_title',
+               style: textStyle,
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["original_title"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='original_title'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'overview',
                accessor: 'overview',
+               width: width,
+               style: textStyle,
+               Cell: row => (
+                   <div className='verticalScroll'>{row.value}</div>
+               ),
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["overview"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='overview'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'popularity',
                accessor: 'popularity',
                filterMethod: rangeFilter,
+               width: width,
                Filter: ({filter,onChange}) => {
                     const domain=allDomain['popularity'];
                     return (
-                        <SliderCustom 
-                        domain={domain}
-                        values={filter ? filter.value : domain}
-                        handleSliderChange={this.handleSliderChange}
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
                         accessor='popularity'
                         />
                     );
@@ -255,30 +380,74 @@ class DataTable extends React.Component {
                accessor: 'poster_path',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["poster_path"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='poster_path'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                Header: 'production_companies',
                accessor: 'production_companies',
                filterMethod: (filter, rows) =>
                matchSorter(rows, filter.value, { keys: ["peoduction_companies"] }),
+               Filter: ({filter,onChange}) => {
+                return (
+                    <TextFilter
+                    accessor='production_companies'
+                    value={filter ? filter.value : ''}
+                    onFilteredChangeCustom={this.onFilteredChangeCustom}
+                    />
+                );
+                },
                filterAll: true,
             }, {
                 Header: 'production_countries',
-                accessor: 'production_countries'
+                accessor: 'production_countries',
+                width: width,
+                filterMethod: singleSelectionContains,
+                Filter: ({filter,onChange}) => {
+                     return (
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        accessor='production_countries'
+                        />
+                     );
+                }
+                
             }, {
                 Header: 'release_date',
-                accessor: 'release_date'
+                accessor: 'release_date',
+                width: width,
+                filterMethod: rangeFilter,
+                Filter: ({filter,onChange}) => {
+                    const domain=allDomain['release_date'];
+                    return (
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
+                        accessor='release_date'
+                        />
+                    );
+                },
             }, {
                 Header: 'revenue',
                 accessor: 'revenue',
+                width: width,
                 filterMethod: rangeFilter,
                 Filter: ({filter,onChange}) => {
                     const domain=allDomain['revenue']
                     return (
-                        <SliderCustom 
-                        domain={domain}
-                        values={filter ? filter.value : domain}
-                        handleSliderChange={this.handleSliderChange}
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
                         accessor='revenue'
                         />
                     );
@@ -286,14 +455,15 @@ class DataTable extends React.Component {
             }, {
                 Header: 'runtime',
                 accessor: 'runtime',
+                width: width,
                 filterMethod: rangeFilter,
                 Filter: ({filter,onChange}) => {
                     const domain=allDomain['runtime'];
                     return (
-                        <SliderCustom 
-                        domain={domain}
-                        values={filter ? filter.value : domain}
-                        handleSliderChange={this.handleSliderChange}
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
                         accessor='runtime'
                         />
                     );
@@ -302,27 +472,34 @@ class DataTable extends React.Component {
             }, {
                 Header: 'spoken_languages',
                 accessor: 'spoken_languages',
-                filterMethod: multiSelectionFilter,
+                width: width,
+                filterMethod: singleSelectionContains,
                 Filter: ({filter,onChange}) => {
                      return (
-                         <MultiSelection
-                         onFilteredChangeCustom={this.onFilteredChangeCustom}
-                         type={filter ? filter.type : 'or'}
-                         value={filter ? filter.value : ["all"]}
-                         accessor='spoken_languages'
-                         />
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        accessor='spoken_languages'
+                        />
                      );
                 }
             }, {
                 Header: 'status',
                 accessor: 'status',
-                filterMethod: multiSelectionFilter,
+                width: width,
+                // filterMethod: multiSelectionFilter,
+                filterMethod: singleSelectionContains,
                 Filter: ({filter,onChange}) => {
                     return (
-                        <MultiSelection
+                        // <MultiSelection
+                        // onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        // type={filter ? filter.type : 'or'}
+                        // value={filter ? filter.value : ["all"]}
+                        // accessor='status'
+                        // />
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
                         onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        type={filter ? filter.type : 'or'}
-                        value={filter ? filter.value : ["all"]}
                         accessor='status'
                         />
                     );
@@ -330,23 +507,47 @@ class DataTable extends React.Component {
             }, {
                 Header: 'tagline',
                 accessor: 'tagline',
+                style: textStyle,
+                Cell: row => (
+                    <div className='verticalScroll'>{row.value}</div>
+                ),
                 filterMethod: (filter, rows) =>
                 matchSorter(rows, filter.value, { keys: ["tagline"] }),
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <TextFilter
+                        accessor='tagline'
+                        value={filter ? filter.value : ''}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        />
+                    );
+                },
                 filterAll: true,
             }, {
                 Header: 'video',
-                accessor: 'video'
+                accessor: 'video',
+                filterMethod: singleSelectionExactMatch,
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        accessor='video'
+                        />
+                    );
+                },
             }, {
                 Header: 'vote_average',
                 accessor: 'vote_average',
+                width: width,
                 filterMethod: rangeFilter,
                 Filter: ({filter,onChange}) => {
                     const domain=allDomain['vote_average'];
                     return (
-                        <SliderCustom 
-                        domain={domain}
-                        values={filter ? filter.value : domain}
-                        handleSliderChange={this.handleSliderChange}
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
                         accessor='vote_average'
                         />
                     );
@@ -354,14 +555,15 @@ class DataTable extends React.Component {
             }, {
                 Header: 'vote_count',
                 accessor: 'vote_count',
+                width: width,
                 filterMethod: rangeFilter,
                 Filter: ({filter,onChange}) => {
                     const domain=allDomain['vote_count'];
                     return (
-                        <SliderCustom 
-                        domain={domain}
-                        values={filter ? filter.value : domain}
-                        handleSliderChange={this.handleSliderChange}
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
                         accessor='vote_count'
                         />
                     );
@@ -369,31 +571,17 @@ class DataTable extends React.Component {
             }, {
                 Header: 'adult',
                 accessor: 'adult',
-                filterMethod: (filter, row) => {
-                    if (filter.value === "all") {
-                      return true;
-                    }
-                    else if (filter.value === "True") {
-                      return row[filter.id] == "True";
-                    }
-                    else if (filter.value === "False"){
-                        return row[filter.id] == "False";
-                    }
+                filterMethod: singleSelectionExactMatch,
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        accessor='adult'
+                        />
+                    );
                 },
-                Filter: ({ filter, onChange }) => 
-                <select
-                onChange={event => {
-                    console.log('filtering....');
-                    console.log(event.target.value);
-                    return onChange(event.target.value);
-                }}
-                style={{ width: "100%" }}
-                value={filter ? filter.value : "all"}
-                >
-                <option value="all">All</option>
-                <option value="True">True</option>
-                <option value="False">False</option>
-                </select>                
+           
             },
         ]
        
@@ -424,6 +612,7 @@ class DataTable extends React.Component {
 
                         // defaultFilterMethod={(filter, row) => 
                         //     String(row[filter.id]) === filter.value}
+
                         defaultPageSize={10}
                         className="-striped -highlight"
                         ref={(r) => {this.reactTable = r;}}
@@ -435,12 +624,19 @@ class DataTable extends React.Component {
 }
 
 
-const budgetDomain=[0,380000000];
-const popularityDomain=[0,548];
-const revenueDomain=[0,2787965087];
-const runtimeDmain=[0,840];
-const vote_averageDomain=[0,10];
-const vote_countDomain=[0,14075];
+const budgetDomain=['0',380000000];
+const popularityDomain=['0',548];
+const revenueDomain=['0',2787965087];
+const runtimeDmain=['0',840];
+const vote_averageDomain=['0',10];
+const vote_countDomain=['0',14075];
+const release_dateDomain=['1874-12-09','2020-12-16'];
+// const startDate=new Date(1870,0,1);
+// const endDate=new Date(2021,0,0);
+// const release_dateDomain=[+startDate,+endDate];
+// console.log("release_dateDomain");
+// console.log(release_dateDomain);
+// console.log([format(startDate,"yyyy-MM-dd"),format(endDate,"yyyy-MM-dd")]);
 const allDomain={
     'budget': budgetDomain,
     'popularity': popularityDomain,
@@ -448,8 +644,8 @@ const allDomain={
     'runtime': runtimeDmain,
     'vote_average': vote_averageDomain,
     'vote_count': vote_countDomain,
+    'release_date': release_dateDomain,
 };
-
 
 const genresOptions=[
 'Action', 'Adventure', 'Animation', 'Aniplex', 'BROSTA TV', 'Comedy', 'Crime',
@@ -485,70 +681,98 @@ const spoken_languagesOptions=[
 'wo','xh','xx','yi','zh','zu'
 ];
 
+const production_countriesOptions=[
+'Afghanistan','Albania','Algeria','Angola','Antarctica','Argentina','Armenia','Aruba',
+'Australia','Austria','Azerbaijan','Bahamas','Bangladesh','Barbados','Belarus','Belgium',
+'Bermuda','Bhutan','Bolivia','Bosnia and Herzegovina','Botswana','Brazil','Brunei Darussalam','Bulgaria',
+'Burkina Faso','Cambodia','Cameroon','Canada','Cayman Islands','Chad','Chile','China',
+'Colombia','Congo','Costa Rica',"Cote D'Ivoire",'Croatia','Cuba','Cyprus','Czech Republic','Czechoslovakia',
+'Denmark','Dominican Republic','East Germany','Ecuador','Egypt','El Salvador',
+'Estonia','Ethiopia','Finland','France','French Polynesia','French Southern Territories',
+'Georgia','Germany','Ghana','Gibraltar','Greece','Guatemala','Guinea','Honduras',
+'Hong Kong','Hungary','Iceland','India','Indonesia','Iran','Iraq','Ireland',
+'Israel','Italy','Jamaica','Japan','Jordan','Kazakhstan','Kenya','Kuwait',
+'Kyrgyz Republic',"Lao People's Democratic Republic",'Latvia','Lebanon','Liberia','Libyan Arab Jamahiriya',
+'Liechtenstein','Lithuania','Luxembourg','Macao','Macedonia','Madagascar','Malaysia','Mali',
+'Malta','Martinique','Mauritania','Mexico','Moldova','Monaco','Mongolia','Montenegro',
+'Morocco','Myanmar','Namibia','Nepal','Netherlands','Netherlands Antilles',
+'New Zealand','Nicaragua','Nigeria','North Korea','Norway','Pakistan','Palestinian Territory','Panama',
+'Papua New Guinea','Paraguay','Peru','Philippines','Poland','Portugal','Puerto Rico','Qatar',
+'Romania','Russia','Rwanda','Samoa','Saudi Arabia','Senegal','Serbia','Serbia and Montenegro',
+'Singapore','Slovakia','Slovenia','Somalia','South Africa','South Korea','Soviet Union','Spain',
+'Sri Lanka','Sweden','Switzerland','Syrian Arab Republic','Taiwan','Tajikistan','Tanzania','Thailand',
+'Trinidad and Tobago','Tunisia','Turkey','Uganda','Ukraine','United Arab Emirates','United Kingdom','United States Minor Outlying Islands',
+'United States of America','Uruguay','Uzbekistan','Venezuela','Vietnam','Yugoslavia','Zimbabwe','null',
+];
+
+const adultOptions=[
+'True','False'
+];
+
+const videoOptions=[
+'True','False'
+]
+
 const allOptions={
     'genres': genresOptions,
     'status': statusOptions,
     'original_language': original_languageOptions,
     'spoken_languages': spoken_languagesOptions,
+    'production_countries': production_countriesOptions,
+    'adult': adultOptions,
+    'video': videoOptions,
 };
 
 
-// function singleSelectionFilter(filter,row){
-//     const rowValue = row[filter.id];
-//     if (!rowValue) {
-//         return true;
-//     }
-
-//     const options=allOptions[filter.id]
 
 
-// }
+function singleSelectionExactMatch(filter,row){
+    const rowValue = row[filter.id];
+    // if (!rowValue) {
+    //     return true;
+    // }
+    
+    if (filter.value==='all'){
+        return true;
+    }
 
+    else {
+        return rowValue==filter.value;
+    }
 
-function multiSelectionFilter(filter,row){
-        const rowValue = row[filter.id];
-        if (!rowValue) {
-            return true;
-        }
-
-        const options=allOptions[filter.id];
-
-        if (filter.type=='or'){
-            let orTrue=options.some((o) => {
-                if (filter.value.indexOf(o) > -1) {
-                    return row[filter.id].includes(o);
-                }
-            });
-            if (orTrue){
-                return true;
-            }
-            if (filter.value.indexOf("all") > -1) {
-              return true;
-            }
-        }
-
-        // and condition
-        else if (filter.type=='and'){
-            let andTrue=options.every((o) => {
-                if (filter.value.indexOf(o) > -1) {
-                    return row[filter.id].includes(o);
-                }
-                else {
-                    return true;
-                }
-            });
-            if (andTrue){
-                return true;
-            }
-            if (filter.value.indexOf("all") > -1 && andTrue) {
-              return true;
-            }
-        }
-
-        else {
-            console.log('wrong filter type for multi selection filter function');
-        }
 }
+
+function singleSelectionContains(filter,row){
+    const rowValue = row[filter.id];
+
+    if (filter.value==='all'){
+        return true;
+    }
+
+    else {
+        return rowValue.includes(filter.value);
+    }
+}
+
+class TextFilter extends React.Component {
+    constructor(){
+        super();
+    }
+
+    render() {
+        return (
+            <DelayInput
+            delayTimeout={1000} 
+            type='text'
+            className='text-filter' 
+            id={this.props.accessor} 
+            value={this.props.value} 
+            onChange={e => this.props.onFilteredChangeCustom(e.target.value,this.props.accessor)}
+            />
+        );
+    }
+}
+
 
 
 // e.g.,
@@ -567,10 +791,24 @@ function rangeFilter(filter,row){
         return true;
     }
 
+    // let processedRowValue;
+    // if (filter.id=='release_date'){
+    //     const year=parseInt(rowValue.slice(0,4));
+    //     const month=parseInt(rowValue.slice(5,7));
+    //     const day=parseInt(rowValue.slice(8,10));
+    //     processedRowValue=new Date(year,month,day);
+    // }
+    // else{
+    //     processedRowValue=rowValue;
+    // }
+
+    const processedRowValue=rowValue;
+
     if (filter.value.length==2){
         const left=filter.value[0];
         const right=filter.value[1];
-        if (rowValue>=left && rowValue<=right){
+        if (processedRowValue>=left 
+            && processedRowValue<=right){
             return true;
         }
     }
@@ -583,172 +821,118 @@ function rangeFilter(filter,row){
 
 
 
-class SliderCustom extends React.Component {
+// usage:
+{/* <RangeSelection
+range={filter ? filter.value : allDomain['budget']}
+onFilteredChangeCustom={this.onFilteredChangeCustom}
+accessor='budget'
+/> */}
+class RangeSelection extends React.Component {
 
-    render () {
-        const sliderStyle = {  // Give the slider some width
-            position: 'relative',
-            width: '100%',
-            height: 80,
-            border: '1px solid steelblue',
+    constructor(){
+        super();
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+    }
+
+    checkFormat(v){
+        if (this.props.accessor!='release_date'){
+            return true;
         }
-        
-        const railStyle = { 
-            position: 'absolute',
-            width: '100%',
-            height: 10,
-            marginTop: 35,
-            borderRadius: 5,
-            backgroundColor: '#8B9CB6',
+        else {
+            // regular expression to match required date format
+            const re = /^\d{4}\-\d{1,2}\-\d{1,2}$/;
+
+            if(!v.match(re)) {
+                console.log("wrong format");
+                alert("Invalid date format: " + v + ". Please enter like this: YYYY-MM-DD");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    }
+
+    handleChange(){
+        const left=this.props.accessor+"left";
+        const right=this.props.accessor+"right";
+        const leftValue=document.getElementById(left).value;
+        const rightValue=document.getElementById(right).value;
+        if (this.checkFormat(leftValue) && this.checkFormat(rightValue)){
+            const newRange=[leftValue,rightValue];
+            console.log("change range to ", newRange);
+            this.props.onFilteredChangeCustom(newRange,this.props.accessor);
+        }
+    }
+
+    handleReset(){
+        this.props.handleClear(this.props.accessor);
+    }
+
+    render() {
+        const leftId=this.props.accessor+'left';
+        const rightId=this.props.accessor+'right';
+        let range=this.props.range;
+        let type='number';
+        let pattern='{*}';
+        let format='Input valid numbers';
+        if (this.props.accessor=='release_date'){
+            type='text';
+            pattern='[0-9]{4}-[0-9]{2}-[0-9]{2}';
+            format='format: YYYY-MM-DD';
         }
 
         return (
-            <Slider
-            mode={1}
-            step={1}
-            domain={this.props.domain}
-            rootStyle={sliderStyle}
-            onChange={values => this.props.handleSliderChange(values,this.props.accessor)}
-            values={this.props.values}
-            >
-            <Rail>
-                {({ getRailProps }) => (
-                <div style={railStyle} {...getRailProps()} />
-                )}
-            </Rail>
-            <Handles>
-                {({ handles, getHandleProps }) => (
-                <div className="slider-handles">
-                    {handles.map(handle => (
-                    <Handle
-                        key={handle.id}
-                        handle={handle}
-                        domain={this.props.domain}
-                        getHandleProps={getHandleProps}
-                    />
-                    ))}
-                </div>
-                )}
-            </Handles>
-            <Tracks left={false} right={false}>
-                {({ tracks, getTrackProps }) => (
-                <div className="slider-tracks">
-                    {tracks.map(({ id, source, target }) => (
-                    <Track
-                        key={id}
-                        source={source}
-                        target={target}
-                        getTrackProps={getTrackProps}
-                    />
-                    ))}
-                </div>
-                )}
-            </Tracks>
-            <Ticks count={10}>
-                {({ ticks }) => (
-                <div className="slider-ticks">
-                    {ticks.map(tick => (
-                    <Tick key={tick.id} tick={tick} count={ticks.length} />
-                    ))}
-                </div>
-                )}
-            </Ticks>
-        </Slider>
+            <div>
+                <DelayInput 
+                delayTimeout={1000} 
+                type={type}
+                pattern={pattern}
+                title={format}
+                className='range-input' 
+                id={leftId} 
+                value={range[0]} 
+                onChange={this.handleChange} />
+                <DelayInput 
+                delayTimeout={1000} 
+                type={type}
+                title={format}
+                pattern={pattern}
+                className='range-input' 
+                id={rightId} 
+                value={range[1]} 
+                onChange={this.handleChange} />
+                <Button title='Reset range' variant="secondary" size="sm" className='reset' onClick={this.handleReset}></Button>
+            </div>
         );
+
     }
 }
 
-class MultiSelection extends React.Component{
 
+
+class SingleSelection extends React.Component {
     render (){
         const options=allOptions[this.props.accessor];
-
         return (
-          <div>
-
             <select
             onChange={event => {
-                let type=event.target.value;
-                this.props.onFilteredChangeCustom(this.props.value,this.props.accessor, type);
+                console.log('filtering....');
+                console.log(event.target.value);
+                this.props.onFilteredChangeCustom(event.target.value,this.props.accessor);
             }}
-            style={{ width: "50%" }}
-            value={this.props.type}
-            >
-                <option value='or'>Or</option>
-                <option value='and'>And</option>
-            </select>
-
-            <select
-            onChange={event => {
-                let selectedOptions = [].slice
-                .call(event.target.selectedOptions)
-                .map(o => {
-                    return o.value;
-                });
-                this.props.onFilteredChangeCustom(selectedOptions,this.props.accessor);
-            }}
-            style={{ width: "50%" }}
+            style={{ width: "100%" }}
             value={this.props.value}
-            multiple={true}
             >
-            <option key='all' value="all">Show All</option>
-            {options.map((o) => {
-                return <option key={o} value={o}>{o}</option>
+            <option value="all">All</option>
+            {options.map((o,idx) => {
+                return <option key={idx} value={o}>{o}</option>
             })}
-            </select>
-
-          </div>
-
+            </select>  
         );
     }
-
 }
 
-
 export default DataTable;
-
-// ReactDOM.render(<Table />, document.getElementById('dataset'));
-
-// method 2
-// {<ReactTable 
-// data={this.state}
-// columns={[
-//     {
-//         Header:'overview',
-//         accessor:'overview'
-//     },
-//     {
-//         Header:'budget',
-//         accessor:'budget'
-//     }
-// ]}
-// defaultPageSize={10}
-// className='-striped -highlight'
-// ></ReactTable>}
-
-
-
-// Filter not using component
-// Filter: ({ filter, onChange }) => {
-//     const options=allOptions['status'];
-//     return (
-//       <select
-//         onChange={event => {
-//           let selectedOptions = [].slice
-//             .call(event.target.selectedOptions)
-//             .map(o => {
-//               return o.value;
-//             });
-//             this.onFilteredChangeCustom(selectedOptions,'status');
-//         }}
-//         style={{ width: "100%" }}
-//         value={filter ? filter.value : ["all"]}
-//         multiple={true}
-//       >
-//         <option value="all">Show All</option>
-//         {options.map((o) => {
-//             return <option value={o}>{o}</option>
-//         })}
-//       </select>
-//     );
-// }

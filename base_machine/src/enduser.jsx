@@ -5,13 +5,14 @@ import Col from 'react-bootstrap/Col';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
+import Submit from "./submit.jsx";
 
 class Enduser extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectedOption1: null,
+			selectedOption1: 'null',
 			selectedOption2: null,
 			onWatch: true,
 			onRemember: false,
@@ -32,7 +33,7 @@ class Enduser extends React.Component {
 			this.setState({ 
 				onWatch: false,
 				onRemember: false,
-				selectedOption1: null,
+				selectedOption1: 'null',
 				selectedOption2: null,
 				movieIndex: this.state.movieIndex + 1
 			});
@@ -41,12 +42,12 @@ class Enduser extends React.Component {
 			this.setState({ 
 				onWatch: false,
 				onRemember: true,
-				selectedOption1: null
+				selectedOption1: 'null'
 			});
 		}
 		else if (this.state.selectedOption1 == 'no') {
 			this.setState({ 
-				selectedOption1: null,
+				selectedOption1: 'null',
 				movieIndex: this.state.movieIndex + 1
 			});
 		}
@@ -73,8 +74,8 @@ class Enduser extends React.Component {
 	}
 
 	renderQuestion1() {
-
 		const options = [
+			{ value: 'null', label: 'Please select...'},
 			{ value: 'yes', label: 'Yes' },
 			{ value: 'no', label: 'No' },
 		]
@@ -84,13 +85,15 @@ class Enduser extends React.Component {
 				<div>
 					Have you watched this movie before? 
 					<Select
+						name='select1'
 						onChange={this.handleChange1.bind(this)}
 						options={options}
+						value={options.find(option => option.value === this.state.selectedOption1)}
 					/>
 					<Button variant="dark" onClick={this.handleSubmit.bind(this)}>Next</Button>
 				</div>
 			)
-    }
+	}
 
 	renderQuestion2() {
 
@@ -115,30 +118,56 @@ class Enduser extends React.Component {
 	renderMetadataQuestions() {
 		if (this.state.metadata)
 			return (
-				<Questions />
+				<Questions 
+				// workerId={this.props.workerId}
+				movieIndex={this.state.movieIndex}
+				// submitHIT={this.props.submitHIT}
+				/>
 			)
 	}
 
-	submitHIT() {
-		console.log('submitting hit....')
-	}
+	// onSubmitHIT() {
+	// 	// const workerId=gup("workerId");
+	// 	// console.log("workerId");
+	// 	const result={
+	// 	  'workerId': this.props.workerId,
+	// 	  'movieIndex': -1,
+	// 	  'answers': "No movie can be applied.",
+	// 	};
+		
+	// 	this.props.submitHIT(result);
+	// }
+
+	// submitHIT(result) {
+	// 	// TODO:
+	// 	// send result back to server
+	// 	// or to a database?
+
+	// 	console.log('submit from outside');
+	// 	console.log(result);
+	// 	$(document).ready(function(){
+	// 	  $("form#mturk_form").submit();
+	// 	});
+	// 	console.log('submitting hit....')
+	// }
+
 
 	renderMovie() {
 
 		const movieIndex = this.state.movieIndex
-		const shouldShow1 = movieIndex===1
-		const shouldShow2 = movieIndex===2
-		const shouldShow3 = movieIndex===3
-		const shouldShow4 = movieIndex===4
-		const shouldShow5 = movieIndex===5
-		const shouldShow6 = movieIndex===6
-
-		console.log(shouldShow6)
+		const src='/get_movie'+movieIndex.toString();
+		// const shouldShow1 = movieIndex===1
+		// const shouldShow2 = movieIndex===2
+		// const shouldShow3 = movieIndex===3
+		// const shouldShow4 = movieIndex===4
+		// const shouldShow5 = movieIndex===5
+		// const shouldShow6 = movieIndex===6
+		
 		if (!this.state.metadata) {
 			return (
 				<div>
 					<br/>
-					<video width="400" controls className={shouldShow1 ? '':'hidden'}>
+					{/* <video width="400" controls className={shouldShow1 ? '':'hidden'}>
 						<source src={'get_movie1'} type="video/mp4" />
 						Your browser does not support HTML5 video.
 					</video>
@@ -157,13 +186,21 @@ class Enduser extends React.Component {
 					<video width="400" controls className={shouldShow5 ? '':'hidden'}>
 						<source src={'/get_movie5'} type="video/mp4" />
 						Your browser does not support HTML5 video.
-					</video>
-					<Button 
+					</video> */}
+					{/* <video 
+					width="400" 
+					src={src}
+					controls
+					 >
+					Your browser does not support HTML5 video.
+					</video> */}
+					{/* <Button 
 					variant="dark" 
-					onClick={this.submitHIT.bind(this)} 
+					onClick={this.onSubmitHIT.bind(this)} 
 					bsPrefix={shouldShow6 ? '':'hidden'}>
 					Submit HIT
-					</Button>
+					</Button> */}
+					{(movieIndex===6) ? this.renderEnd() : this.renderVideo(src)}
 					<br/>
 				</div>
 			)
@@ -171,8 +208,31 @@ class Enduser extends React.Component {
 
 	}
 
-	render() {
+	renderEnd(){
+		return (
+			<Submit
+			movieIndex={-1}
+			result="No movie can be applied"
+			condition='end_user'
+			/>
+		);
+	}
 
+	renderVideo(src){
+		return (
+			<div>
+				<video 
+				width="400" 
+				src={src}
+				controls
+				>
+				Your browser does not support HTML5 video.
+				</video>
+			</div>
+		);
+	}
+
+	render() {
 		return (
 		<div>
 			<Container>

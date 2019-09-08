@@ -17,7 +17,6 @@ class Hybrid extends React.Component {
 
         this.myCallback = this.myCallback.bind(this);
         this.fetchData = this.fetchData.bind(this);
-
     }
 
   
@@ -61,13 +60,19 @@ class Hybrid extends React.Component {
             <Container>
                 <Row>
                     <Col sm md={3}>
-                        <Rules rules={this.state.rules} loading={this.state.loading}/>
+                        <Rules 
+                        rules={this.state.rules} 
+                        loading={this.state.loading}/>
                     </Col>
                     <Col sm md={6}>
-                        <DataTable callbackFromParent={this.myCallback} />
+                        <DataTable 
+                        callbackFromParent={this.myCallback}
+                        checkFinishLoading={this.props.checkFinishLoading} />
                     </Col>
                     <Col sm md={3}>
-                        <History />
+                        <History
+                        startTime={this.props.startTime}
+                        condition='rank' />
                     </Col>
                 </Row>
             </Container>

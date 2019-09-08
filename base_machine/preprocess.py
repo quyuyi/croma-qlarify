@@ -19,6 +19,12 @@ def process_nan(feature_list):
             result+=['null']
     return result
 
+def process_boolean(feature_list):
+    result=[]
+    for item in feature_list:
+        result+=[str(item)]
+    return result
+
 # TODO
 # language name are strange, should we use id?
 # e.g.,  ['English', 'Français', '한국어/조선말', 'Español']
@@ -60,8 +66,12 @@ def preprocess_dataset():
     multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection']
     single_col=[col for col in all_col if col not in multi_col]
 
+    # assgin all empty(nan) cells a value 'null'
     for col in single_col:
         processed_dict[col]=process_nan(processed_dict[col])
+
+    processed_dict['adult']=process_boolean(processed_dict['adult'])
+    processed_dict['video']=process_boolean(processed_dict['video'])
 
     # extract only the name filed and throw away ids, etc.
     processed_dict['genres']=get_feature_list('genres', processed_dict)

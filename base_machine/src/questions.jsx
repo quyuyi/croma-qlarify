@@ -4,6 +4,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
+import Question from './question.jsx';
+import Submit from './submit.jsx';
+
 
 class Questions extends React.Component {
 
@@ -12,54 +15,105 @@ class Questions extends React.Component {
     this.state = {
         selectedOption1: null,
         selectedOption2: null,
+        questionId: 0, //0-based
+        answers: [],
     };
+    // this.onSubmitHit = this.onSubmitHit.bind(this);
+    this.handleNext = this.handleNext.bind(this);
+    this.renderQuestion = this.renderQuestion.bind(this);
+    this.renderEnd = this.renderEnd.bind(this);
   }
 
-  handleSubmit() {
-    console.log('submit')
+  // onSubmitHit() {
+  //   const result={
+  //     'workerId': this.props.workerId,
+  //     'movieIndex': this.props.movieIndex,
+  //     'answers': this.state.answers,
+  //   };
+  //   console.log(this.state.answers);
+
+  //   this.props.submitHIT(result);
+  // }
+
+  handleNext(question,answer,time){
+    const record={
+      'question': question,
+      'answer': answer,
+      'time': time,
+    }
+
+    const nextId=this.state.questionId+1;
+    const previous=this.state.answers;
+    this.setState({
+      questionId: nextId,
+      answers: [...previous,record],
+    });
   }
+
+  renderQuestion(){
+    return (
+      <Question
+      questionId={this.state.questionId}
+      handleNext={this.handleNext}
+      />
+    );
+  }
+
+  renderEnd(){
+    console.log("print from renderEnd in questions.jsx");
+    return (
+      <div>
+        You've finished the task. Click submit to submit HIT.
+        <br></br>
+        <Submit
+        movieIndex={this.props.movieIndex}
+        result={this.state.answers}
+        condition='end_user'
+        />
+        {/* <form id='mturk_form'>
+          <Button variant="dark" onClick={this.onSubmitHit} block>Submit HIT</Button>
+        </form> */}
+     </div>
+    );
+  }
+
 
   render(){
-
-    const questions = [
-        "id",
-        "imdb_id",
-        "belongs_to_collection",
-        "budget (For example, greater than $5,000,000)",
-        "genres",
-        "homepage",
-        "original_language",
-        "overview",
-        "popularity",
-        "poster_path",
-        "production_companies",
-        "production_countries",
-        "release_date (For example, 2015-2016)",
-        "revenue (For example, $1,000,000 - $2,000,000)",
-        "runtime (For example, 100 minutes - 120 minutes)",
-        "spoken_languages",
-        "status",
-        "tagline",
-        "video",
-        "vote_average",
-        "vote_count",
-        "adult (Is this movie R rated?)"
-    ]
-
+    // render question one at a time
     return (
-    <div>
-        <p>Please provide the information you remember about the movie. You can provide a range if you don't remember the exact answer. Or if you are not sure or don't remember, please answer <i>I don't know</i>.</p>
-        {questions.map((q,idx) => {
-                return (
-                    <div key={idx}>
-                        {q} <input type="text" />
-                    </div>
-                )
-        })}
-        <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Submit HIT</Button>
-
-    </div>
+      <div className='questions'>
+        <div className='questions-header'>
+          <h2>Please provide the information you remember about the movie. You can provide a range if you don't remember the exact answer. Or if you are not sure or don't remember, please answer <i>I don't know</i>.</h2>
+        </div>
+        {(this.state.questionId==22/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+      </div>
     );
+
+    // render all questions at a time
+    // return (
+    // <div>
+    //     {questions.map((q,idx) => {
+    //       if (q=='genres' || q=='status' || q=='original_language' || q=='spoken_languages'
+    //       || q=='production_countries' || q=='adult' || q=='video'){
+    //         const options=allOptions[q];
+    //         return (
+    //           <div key={idx}>
+    //             What is the {q} of the movie?<Select name={q} options={options} />
+    //           </div>
+    //         );
+    //       }
+    //       else {
+    //             return (
+    //               <div key={idx}>
+    //                   What is the {q} of the movie? <input id={q} type="text" />
+    //               </div>
+    //           );
+    //       }
+    //     })}
+    //     <Button variant="dark" onClick={this.handleSubmit.bind(this)}>Submit HIT</Button>
+
+    // </div>
+    // );
   }
 }
 
