@@ -8,6 +8,7 @@ import json
 import string
 import csv
 from pymongo import MongoClient
+import datetime
 
 from preprocess import *
 
@@ -46,7 +47,7 @@ def get_movie5():
     return send_file(filename, mimetype='video/mp4')
 
 
-@app.route('/write_database/', methods=["POST"])
+@app.route('/write_database/', methods=["GET","POST"])
 def  write_database():
     condition=request.json['condition']
     print(condition)
@@ -55,9 +56,20 @@ def  write_database():
     db = client.heroku_7lq7rsch  # use a database called heroku_vbl2phnb
     collection = db[condition]   # and inside that DB, a collection called news
 
-    mydict=request.json['result']
+    result=request.json['result']
+    mydict={
+        "result": result,
+        "time": datetime.datetime.utcnow(),
+    }
     x = collection.insert_one(mydict)
     print(x.inserted_id)
+    print(datetime.datetime.utcnow())
+    print(mydict)
+
+    dat={
+        'response': "OK",
+    }
+    return jsonify(**dat)
 
 
 
