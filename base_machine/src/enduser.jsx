@@ -17,7 +17,8 @@ class Enduser extends React.Component {
 			onWatch: true,
 			onRemember: false,
 			metadata: false,
-			movieIndex: 1
+			movieIndex: 1,
+			start: false,
 		};
 	}
 
@@ -72,6 +73,32 @@ class Enduser extends React.Component {
 			console.log('Please enter a response')	
 		}	
 	}
+
+
+	onStart() {
+		this.setState({start: true});
+	}
+
+	renderInstruction() {
+		console.log("render instructions");
+		return (
+			<div>
+			<div className='questions-header'>
+				<h2>
+				In this HIT, you will be given up to 5 movie clips(some of them are R rated), and you will be asked to answer two questions to see if you are qualified to do the second part of the task, which will take approximately 5 more minutes.
+				<br></br>
+				You will be paid a bonus of $1 if you are matched with the requirement and do the second part of the task.
+				<br></br>
+				Your answers will be collected to simulate a hypothetical end user searching for a movie in a research study.
+				</h2>
+			</div>
+			
+			<Button variant="dark" onClick={this.onStart.bind(this)} block>Start</Button>
+			</div>
+		);
+
+	}
+
 
 	renderQuestion1() {
 		const options = [
@@ -232,16 +259,26 @@ class Enduser extends React.Component {
 		);
 	}
 
+	renderQuestion() {
+		return (
+			<div>
+				{this.renderMovie()}
+				{this.renderQuestion1()}
+				{this.renderQuestion2()}
+				{this.renderMetadataQuestions()}
+			</div>
+		);
+	}
+
 	render() {
+		const start=this.state.start;
+		console.log("print from render in enduser.jsx and the start status is now: ", start);
 		return (
 		<div>
 			<Container>
 				<Row>
 					<Col>
-						{this.renderMovie()}
-						{this.renderQuestion1()}
-						{this.renderQuestion2()}
-						{this.renderMetadataQuestions()}
+						{(start) ? this.renderQuestion() : this.renderInstruction()}
 					</Col>
 				</Row>
 			</Container>

@@ -45,6 +45,7 @@ $(document).ready(function () {
     console.log("hello2")
     // Set the Action of the form to the provided "turkSubmitTo" field
     if((submit_url=gup("turkSubmitTo"))!="") {
+      console.log("submit_url is: ", submit_url);
       $(form_selector).attr('action', submit_url + '/mturk/externalSubmit');
     }
 

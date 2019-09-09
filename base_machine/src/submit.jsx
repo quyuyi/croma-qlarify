@@ -41,21 +41,32 @@ class Submit extends React.Component {
     submitHIT(result) {
         const condition=this.props.condition;
         console.log(condition);
-        this.postData('/write_database/', {condition:condition ,result: result});
+        this.postData('/write_database/', {condition:condition ,result: result})
+        .then(data => {
+            console.log(data.response);
+            $(document).ready(function(){
+                $("form#mturk_form").submit();
+                console.log('submitting hit....')
+            });
+
+        })
 
 		console.log(result);
-		$(document).ready(function(){
-		  $("form#mturk_form").submit();
-		});
-		console.log('submitting hit....')
+		// $(document).ready(function(){
+        //     setTimeout(() => {
+        //         $("form#mturk_form").submit();
+        //     }, 1000);
+		// });
     }
 
 
     onSubmitHit(){
         const workerId=gup("workerId");
+        const assignmentId=gup("assignmentId");
         
         const result={
             'workerId': workerId,
+            'assignmentId': assignmentId,
             'movieIndex': this.props.movieIndex,
             'result': this.props.result,
         };
@@ -68,9 +79,9 @@ class Submit extends React.Component {
         console.log("print from render in submit.jsx");
         return (
             <div>
-                <form id='mturk_form'>
+                {/* <form id='mturk_form'> */}
                 <Button variant="dark" onClick={this.onSubmitHit} block>Submit HIT</Button>
-                </form>
+                {/* </form> */}
             </div>
         );
     }
