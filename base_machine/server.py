@@ -46,6 +46,21 @@ def get_movie5():
     filename = 'uploads/movie5.mp4'
     return send_file(filename, mimetype='video/mp4')
 
+@app.route('/get_movie6')
+def get_movie6():
+    filename = 'uploads/movie6.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie7')
+def get_movie7():
+    filename = 'uploads/movie7.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
+@app.route('/get_movie8')
+def get_movie8():
+    filename = 'uploads/movie8.mp4'
+    return send_file(filename, mimetype='video/mp4')
+
 
 @app.route('/write_database/', methods=["GET","POST"])
 def  write_database():

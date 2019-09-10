@@ -7,6 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
 import Submit from "./submit.jsx";
 
+const totalMovies=8;
+
+
 class Enduser extends React.Component {
 
 	constructor(props) {
@@ -19,6 +22,7 @@ class Enduser extends React.Component {
 			metadata: false,
 			movieIndex: 1,
 			start: false,
+			results: [],
 		};
 	}
 
@@ -30,7 +34,18 @@ class Enduser extends React.Component {
 	};
 
 	handleSubmit() {
-		if (this.state.movieIndex == 5) {
+		const record={
+			movieIndex: this.state.movieIndex,
+			watched: this.state.selectedOption1,
+			remenered: this.state.selectedOption2,
+		};
+		const previous=this.state.results;
+		this.setState({
+			results: [...previous,record],
+		});
+
+		if (this.state.movieIndex == totalMovies && 
+			(this.state.selectedOption1=='no' || this.state.selectedOption2=='yes')) {
 			this.setState({ 
 				onWatch: false,
 				onRemember: false,
@@ -80,12 +95,11 @@ class Enduser extends React.Component {
 	}
 
 	renderInstruction() {
-		console.log("render instructions");
 		return (
 			<div>
 			<div className='questions-header'>
 				<h2>
-				In this HIT, you will be given up to 5 movie clips(some of them are R rated), and you will be asked to answer two questions to see if you are qualified to do the second part of the task, which will take approximately 5 more minutes.
+				In this HIT, you will be given up to {totalMovies} movie clips(some of them are R rated), and you will be asked to answer two questions to see if you are qualified to do the second part of the task, which will take approximately 5 more minutes.
 				<br></br>
 				You will be paid a bonus of $1 if you are matched with the requirement and do the second part of the task.
 				<br></br>
@@ -227,7 +241,7 @@ class Enduser extends React.Component {
 					bsPrefix={shouldShow6 ? '':'hidden'}>
 					Submit HIT
 					</Button> */}
-					{(movieIndex===6) ? this.renderEnd() : this.renderVideo(src)}
+					{(movieIndex===totalMovies+1) ? this.renderEnd() : this.renderVideo(src)}
 					<br/>
 				</div>
 			)
@@ -239,7 +253,7 @@ class Enduser extends React.Component {
 		return (
 			<Submit
 			movieIndex={-1}
-			result="No movie can be applied"
+			result={this.state.results}
 			condition='end_user'
 			/>
 		);
@@ -272,7 +286,6 @@ class Enduser extends React.Component {
 
 	render() {
 		const start=this.state.start;
-		console.log("print from render in enduser.jsx and the start status is now: ", start);
 		return (
 		<div>
 			<Container>

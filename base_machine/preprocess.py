@@ -3,6 +3,7 @@ import string
 import csv
 import ast
 import numpy as np
+from random import sample
 
 # read specific rows from the csv file
 def read_csv(csvfile):
@@ -49,6 +50,36 @@ def get_feature_list(col_name, processed_dict):
             list_feature+=['null']
         processed+=[list_feature]
     return processed
+
+
+def sample99(processed_dict,df):
+    all = [i for i in range(0,len(processed_dict['adult']))]
+    # print("df length is")
+    # print(len(processed_dict['adult']))
+    sampled=sample(all,99)
+    print("******************sampled indices*************")
+    print(sampled)
+    # add the target movie with id=14160
+    print(len(processed_dict["id"]))
+    for idx,item in enumerate(processed_dict["imdb_id"]): 
+        if item=='tt1049413': # id==14160
+            if idx not in sampled:
+                print(idx)
+                sampled+=[idx]
+
+    sampled_dict={}
+    sampled_df = pd.DataFrame() 
+    for col in df:
+        new_col = [processed_dict[col][i] for i in sampled]
+        # print(new_col)
+        sampled_dict[col]=new_col
+        sampled_df[col]=pd.Series(new_col,name=col)
+
+    # print(sampled_df)
+    # print(sampled_dict["imdb_id"][99])
+    return sampled_dict,sampled_df
+
+
 
 
 
@@ -99,7 +130,8 @@ def preprocess_dataset():
     
     # df.astype({'id': 'int32'})
 
-    return processed_dict,df
+    # return processed_dict,df
+    return sample99(processed_dict,df)
 
 
 def analysis(feature='genres'):
