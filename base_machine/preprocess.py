@@ -80,6 +80,32 @@ def sample99(processed_dict,df):
     return sampled_dict,sampled_df
 
 
+def sampleSpecifics(processed_dict,df):
+    imdb_ids=['tt3659388', 'tt1454468', 'tt1631867', 'tt0470752', 'tt2562232', 'tt0482571', 'tt2872718', 'tt0209144', 'tt1663202', 'tt2379713', 'tt0816711', 
+    'tt0831387', 'tt1483013', 'tt2103281', 'tt0093870', 'tt2109248', 'tt1731141', 'tt1136608', 'tt1535109', 'tt1843866', 'tt1981115', 'tt2395427', 'tt1877832', 
+    'tt3896198', 'tt0478970', 'tt3498820', 'tt0800369', 'tt1872181', 'tt1228705', 'tt0376994', 'tt3385516', 'tt1430132', 'tt3501632', 'tt1211837', 'tt0451279',
+    'tt3315342', 'tt2975590', 'tt1300854', 'tt3748528', 'tt0382932', 'tt0266543', 'tt0910970', 'tt0198781', 'tt0114709', 'tt0120363', 'tt0435761', 'tt0317705',
+    'tt0126029', 'tt0298148', 'tt0413267', 'tt0892791', 'tt0317219', 'tt0268380', 'tt1453405', 'tt0120623', 'tt0351283', 'tt0438097', 'tt0441773', 'tt1302011', 
+    'tt1535108']
+
+    sampled=[]
+    for idx,item in enumerate(processed_dict["imdb_id"]): 
+        if item in imdb_ids: # id==14160
+            if idx not in sampled:
+                print(idx)
+                sampled+=[idx]
+
+    sampled_dict={}
+    sampled_df = pd.DataFrame() 
+    for col in df:
+        new_col = [processed_dict[col][i] for i in sampled]
+        # print(new_col)
+        sampled_dict[col]=new_col
+        sampled_df[col]=pd.Series(new_col,name=col)
+
+    # print(sampled_df)
+    # print(sampled_dict["imdb_id"][99])
+    return sampled_dict,sampled_df
 
 
 
@@ -131,7 +157,7 @@ def preprocess_dataset():
     # df.astype({'id': 'int32'})
 
     # return processed_dict,df
-    return sample99(processed_dict,df)
+    return sampleSpecifics(processed_dict,df)
 
 
 def analysis(feature='genres'):
