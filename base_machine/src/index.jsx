@@ -124,7 +124,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'human';
+    const condition = 'condition3';
       return (
         <div>
           {this.handleConditions(condition)}
