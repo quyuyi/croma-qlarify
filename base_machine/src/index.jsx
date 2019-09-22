@@ -5,6 +5,7 @@ import Hybrid from './hybrid.jsx';
 import Enduser from './enduser.jsx';
 import Condition3 from "./condition3.jsx";
 import Condition4 from "./condition4.jsx";
+import Enduser2 from "./enduser2.jsx";
 
 // function gup(name) {
 // 	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
@@ -112,6 +113,19 @@ class App extends React.Component {
       return (
         <div>
           <Condition4 
+          // workerId= {workerId}
+          // submitHIT= {this.submitHIT}
+          checkFinishLoading={this.checkFinishLoading}
+          startTime={this.state.startTime}
+          />
+        </div>
+      )
+    }
+
+    if (condition == "end-user2") {
+      return (
+        <div>
+          <Enduser2 
           // workerId= {workerId}
           // submitHIT= {this.submitHIT}
           checkFinishLoading={this.checkFinishLoading}
