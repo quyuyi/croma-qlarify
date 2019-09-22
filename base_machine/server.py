@@ -175,26 +175,26 @@ def compute_rules():
     rules=[]
     # check if condition in index.jsx
     # split.jsx
-    for index,ele in enumerate(filtered_entropy):
-        for item in split[ele[0]]:
-            value=item['value']
-            if (type(value) is np.int32):
-                value=int(value)
-            rules+=[{
-                'id': index+1,
-                'feature': ele[0],
-                'entropy': ele[1],
-                'value': value,
-                'counts': item['counts'],
-            }]
+    # for index,ele in enumerate(filtered_entropy):
+    #     for item in split[ele[0]]:
+    #         value=item['value']
+    #         if (type(value) is np.int32):
+    #             value=int(value)
+    #         rules+=[{
+    #             'id': index+1,
+    #             'feature': ele[0],
+    #             'entropy': ele[1],
+    #             'value': value,
+    #             'counts': item['counts'],
+    #         }]
 
     # rules.jsx or entropy.jsx
-    # for index,ele in enumerate(filtered_entropy):
-    #     rules+=[{
-    #         'id': index+1,
-    #         'feature': ele[0],
-    #         'entropy': ele[1],
-    #     }]
+    for index,ele in enumerate(filtered_entropy):
+        rules+=[{
+            'id': index+1,
+            'feature': ele[0],
+            'entropy': ele[1],
+        }]
 
 
     dat = {
@@ -204,6 +204,7 @@ def compute_rules():
 
 
 from scipy.stats import entropy
+import math
 # TODO need change?
 # condition3 - compute entropy for each feature
 def get_entropy(feature_name):
@@ -215,18 +216,33 @@ def get_entropy(feature_name):
     #     print(feature_list)
 
     labels=[]
+    # fuzzy entropy for multi-label case, e.g., genres
+    entropyy=0
     if isinstance(feature_list[0],list):
         for i in feature_list:
             l=[j for j in i]
             labels+=l
         value,counts=np.unique(labels,return_counts=True)
+        # calculate fuzzy entropy
+        # H(A)=-sum(membership_A(x_i))P(x_i)logP(x_i)
+        sum=0
+        for idx,feature in enumerate(value):
+            total=0
+            for item in feature_list:
+                if feature in item:
+                    total+=len(item)
+            membership=counts[idx]/total
+            p=counts[idx]/len(feature_list)
+            sum+=-membership*p*math.log(p,2)
+        entropyy=sum
     else:
         value,counts=np.unique(feature_list,return_counts=True)
+        entropyy=entropy(counts,base=2)
 
     split=get_split(value,counts)
     
 
-    return entropy(counts,base=2),split
+    return entropyy,split
 
 
 def get_split(value,counts):

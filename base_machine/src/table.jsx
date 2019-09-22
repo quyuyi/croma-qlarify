@@ -119,11 +119,11 @@ class DataTable extends React.Component {
                 value === "" || !value.length || value === "all" 
                 // || (value.length == 1 && value[0]==="all")
                 || (accessor=='budget' && value.length==2 && value[0]==allDomain['budget'][0] && value[1]==allDomain['budget'][1])
-                || (accessor=='popularity' && value.length==2 && value[0]==allDomain['popularity'][0] && value[1]==allDomain['popularity'][1])
+                // || (accessor=='popularity' && value.length==2 && value[0]==allDomain['popularity'][0] && value[1]==allDomain['popularity'][1])
                 || (accessor=='revenue' && value.length==2 && value[0]==allDomain['revenue'][0] && value[1]==allDomain['revenue'][1])
                 || (accessor=='runtime' && value.length==2 && value[0]==allDomain['runtime'][0] && value[1]==allDomain['runtime'][1])
                 || (accessor=='vote_average' && value.length==2 && value[0]==allDomain['vote_average'][0] && value[1]==allDomain['vote_average'][1])
-                || (accessor=='vote_count' && value.length==2 && value[0]==allDomain['vote_count'][0] && value[1]==allDomain['vote_count'][1])
+                // || (accessor=='vote_count' && value.length==2 && value[0]==allDomain['vote_count'][0] && value[1]==allDomain['vote_count'][1])
                 || (accessor=='release_date' && value.length==2 && value[0]==allDomain['release_date'][0] && value[1]==allDomain['release_date'][1])
                 ) 
               {
@@ -194,70 +194,74 @@ class DataTable extends React.Component {
         };
 
         const columns = [
+            // {
+            //    Header: 'id',
+            //    accessor: 'id',
+            //    // do we need exact match for id and imdb_id?
+            //    filterMethod: (filter, rows) =>
+            //    matchSorter(rows, filter.value, { keys: ["id"] }),
+            //    Filter: ({filter,onChange}) => {
+            //         return (
+            //             <TextFilter
+            //             accessor='id'
+            //             value={filter ? filter.value : ''}
+            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //             />
+            //         );
+            //     },
+            //    filterAll: true,
+            // }, 
+            // {
+            //    Header: 'imdb_id',
+            //    accessor: 'imdb_id',
+            //    filterMethod: (filter, rows) =>
+            //    matchSorter(rows, filter.value, { keys: ["imdb_id"] }),
+            //    Filter: ({filter,onChange}) => {
+            //     return (
+            //         <TextFilter
+            //         accessor='imdb_id'
+            //         value={filter ? filter.value : ''}
+            //         onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //         />
+            //     );
+            //     },
+            //    filterAll: true,
+            // }, 
+            // {
+            //    Header: 'title',
+            //    accessor: 'title',
+            //    style: textStyle,
+            //    filterMethod: (filter, rows) =>
+            //    matchSorter(rows, filter.value, { keys: ["title"] }),
+            //    Filter: ({filter,onChange}) => {
+            //     return (
+            //         <TextFilter
+            //         accessor='title'
+            //         value={filter ? filter.value : ''}
+            //         onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //         />
+            //     );
+            //     },
+            //    filterAll: true,
+            // }, 
+            // {
+            //    Header: 'belongs_to_collection',
+            //    accessor: 'belongs_to_collection',
+            //    style: textStyle,
+            //    filterMethod: (filter, rows) =>
+            //    matchSorter(rows, filter.value, { keys: ["belongs_to_collection"] }),
+            //    Filter: ({filter,onChange}) => {
+            //        return (
+            //         <TextFilter
+            //         accessor='belongs_to_collection'
+            //         value={filter ? filter.value : ''}
+            //         onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //         />
+            //        );
+            //    },
+            //    filterAll: true,
+            // }, 
             {
-               Header: 'id',
-               accessor: 'id',
-               // do we need exact match for id and imdb_id?
-               filterMethod: (filter, rows) =>
-               matchSorter(rows, filter.value, { keys: ["id"] }),
-               Filter: ({filter,onChange}) => {
-                    return (
-                        <TextFilter
-                        accessor='id'
-                        value={filter ? filter.value : ''}
-                        onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        />
-                    );
-                },
-               filterAll: true,
-            }, {
-               Header: 'imdb_id',
-               accessor: 'imdb_id',
-               filterMethod: (filter, rows) =>
-               matchSorter(rows, filter.value, { keys: ["imdb_id"] }),
-               Filter: ({filter,onChange}) => {
-                return (
-                    <TextFilter
-                    accessor='imdb_id'
-                    value={filter ? filter.value : ''}
-                    onFilteredChangeCustom={this.onFilteredChangeCustom}
-                    />
-                );
-                },
-               filterAll: true,
-            }, {
-               Header: 'title',
-               accessor: 'title',
-               style: textStyle,
-               filterMethod: (filter, rows) =>
-               matchSorter(rows, filter.value, { keys: ["title"] }),
-               Filter: ({filter,onChange}) => {
-                return (
-                    <TextFilter
-                    accessor='title'
-                    value={filter ? filter.value : ''}
-                    onFilteredChangeCustom={this.onFilteredChangeCustom}
-                    />
-                );
-                },
-               filterAll: true,
-            }, {
-               Header: 'belongs_to_collection',
-               accessor: 'belongs_to_collection',
-               style: textStyle,
-               filterMethod: (filter, rows) =>
-               matchSorter(rows, filter.value, { keys: ["belongs_to_collection"] }),
-               Filter: ({filter,onChange}) => {
-                   return (
-                    <TextFilter
-                    accessor='belongs_to_collection'
-                    value={filter ? filter.value : ''}
-                    onFilteredChangeCustom={this.onFilteredChangeCustom}
-                    />
-                   );
-               },
-               filterAll: true,
-            }, {
                Header: 'budget',
                accessor: 'budget',
                width: width,
@@ -280,10 +284,10 @@ class DataTable extends React.Component {
                    );
                },
 
-            }, {
+            }, 
+            {
                Header: 'genres',
                accessor: 'genres',
-               width: width,
                filterMethod: singleSelectionContains,
                Filter: ({filter,onChange}) => {
                     return (
@@ -294,7 +298,8 @@ class DataTable extends React.Component {
                         />
                     );
                }
-            }, {
+            }, 
+            {
                Header: 'homepage',
                accessor: 'homepage',
                filterMethod: (filter, rows) =>
@@ -309,7 +314,8 @@ class DataTable extends React.Component {
                 );
                 },
                filterAll: true,
-            }, {
+            }, 
+            {
                Header: 'original_language',
                accessor: 'original_language',
                filterMethod: singleSelectionExactMatch,
@@ -322,7 +328,8 @@ class DataTable extends React.Component {
                        />
                    );
                },
-            }, {
+            }, 
+            {
                Header: 'original_title',
                accessor: 'original_title',
                style: textStyle,
@@ -338,7 +345,8 @@ class DataTable extends React.Component {
                 );
                 },
                filterAll: true,
-            }, {
+            }, 
+            {
                Header: 'overview',
                accessor: 'overview',
                width: width,
@@ -358,69 +366,73 @@ class DataTable extends React.Component {
                 );
                 },
                filterAll: true,
-            }, {
-               Header: 'popularity',
-               accessor: 'popularity',
-               filterMethod: rangeFilter,
-               width: width,
-               Filter: ({filter,onChange}) => {
-                    const domain=allDomain['popularity'];
-                    return (
-                        <RangeSelection
-                        range={filter ? filter.value : domain}
-                        onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        handleClear={this.handleClear}
-                        accessor='popularity'
-                        />
-                    );
-                },
+            }, 
+            // {
+            //    Header: 'popularity',
+            //    accessor: 'popularity',
+            //    filterMethod: rangeFilter,
+            //    width: width,
+            //    Filter: ({filter,onChange}) => {
+            //         const domain=allDomain['popularity'];
+            //         return (
+            //             <RangeSelection
+            //             range={filter ? filter.value : domain}
+            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //             handleClear={this.handleClear}
+            //             accessor='popularity'
+            //             />
+            //         );
+            //     },
 
-            }, {
-               Header: 'poster_path',
-               accessor: 'poster_path',
-               filterMethod: (filter, rows) =>
-               matchSorter(rows, filter.value, { keys: ["poster_path"] }),
-               Filter: ({filter,onChange}) => {
-                return (
-                    <TextFilter
-                    accessor='poster_path'
-                    value={filter ? filter.value : ''}
-                    onFilteredChangeCustom={this.onFilteredChangeCustom}
-                    />
-                );
-                },
-               filterAll: true,
-            }, {
-               Header: 'production_companies',
-               accessor: 'production_companies',
-               filterMethod: (filter, rows) =>
-               matchSorter(rows, filter.value, { keys: ["peoduction_companies"] }),
-               Filter: ({filter,onChange}) => {
-                return (
-                    <TextFilter
-                    accessor='production_companies'
-                    value={filter ? filter.value : ''}
-                    onFilteredChangeCustom={this.onFilteredChangeCustom}
-                    />
-                );
-                },
-               filterAll: true,
-            }, {
-                Header: 'production_countries',
-                accessor: 'production_countries',
-                width: width,
-                filterMethod: singleSelectionContains,
-                Filter: ({filter,onChange}) => {
-                     return (
-                        <SingleSelection
-                        value={filter ? filter.value : "all"}
-                        onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        accessor='production_countries'
-                        />
-                     );
-                }
+            // }, 
+            // {
+            //    Header: 'poster_path',
+            //    accessor: 'poster_path',
+            //    filterMethod: (filter, rows) =>
+            //    matchSorter(rows, filter.value, { keys: ["poster_path"] }),
+            //    Filter: ({filter,onChange}) => {
+            //     return (
+            //         <TextFilter
+            //         accessor='poster_path'
+            //         value={filter ? filter.value : ''}
+            //         onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //         />
+            //     );
+            //     },
+            //    filterAll: true,
+            // }, 
+            // {
+            //    Header: 'production_companies',
+            //    accessor: 'production_companies',
+            //    filterMethod: (filter, rows) =>
+            //    matchSorter(rows, filter.value, { keys: ["peoduction_companies"] }),
+            //    Filter: ({filter,onChange}) => {
+            //     return (
+            //         <TextFilter
+            //         accessor='production_companies'
+            //         value={filter ? filter.value : ''}
+            //         onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //         />
+            //     );
+            //     },
+            //    filterAll: true,
+            // }, 
+            // {
+            //     Header: 'production_countries',
+            //     accessor: 'production_countries',
+            //     filterMethod: singleSelectionContains,
+            //     Filter: ({filter,onChange}) => {
+            //          return (
+            //             <SingleSelection
+            //             value={filter ? filter.value : "all"}
+            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //             accessor='production_countries'
+            //             />
+            //          );
+            //     }
                 
-            }, {
+            // }, 
+            {
                 Header: 'release_date',
                 accessor: 'release_date',
                 width: width,
@@ -472,7 +484,6 @@ class DataTable extends React.Component {
             }, {
                 Header: 'spoken_languages',
                 accessor: 'spoken_languages',
-                width: width,
                 filterMethod: singleSelectionContains,
                 Filter: ({filter,onChange}) => {
                      return (
@@ -483,10 +494,10 @@ class DataTable extends React.Component {
                         />
                      );
                 }
-            }, {
+            }, 
+            {
                 Header: 'status',
                 accessor: 'status',
-                width: width,
                 // filterMethod: multiSelectionFilter,
                 filterMethod: singleSelectionContains,
                 Filter: ({filter,onChange}) => {
@@ -504,9 +515,95 @@ class DataTable extends React.Component {
                         />
                     );
                }
-            }, {
-                Header: 'tagline',
-                accessor: 'tagline',
+            }, 
+            // {
+            //     Header: 'tagline',
+            //     accessor: 'tagline',
+            //     width: width,
+            //     style: textStyle,
+            //     Cell: row => (
+            //         <div className='verticalScroll'>{row.value}</div>
+            //     ),
+            //     filterMethod: (filter, rows) =>
+            //     matchSorter(rows, filter.value, { keys: ["tagline"] }),
+            //     Filter: ({filter,onChange}) => {
+            //         return (
+            //             <TextFilter
+            //             accessor='tagline'
+            //             value={filter ? filter.value : ''}
+            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //             />
+            //         );
+            //     },
+            //     filterAll: true,
+            // }, 
+            // {
+            //     Header: 'video',
+            //     accessor: 'video',
+            //     filterMethod: singleSelectionExactMatch,
+            //     Filter: ({filter,onChange}) => {
+            //         return (
+            //             <SingleSelection
+            //             value={filter ? filter.value : "all"}
+            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //             accessor='video'
+            //             />
+            //         );
+            //     },
+            // }, 
+            {
+                Header: 'vote_average',
+                accessor: 'vote_average',
+                width: width,
+                filterMethod: rangeFilter,
+                Filter: ({filter,onChange}) => {
+                    const domain=allDomain['vote_average'];
+                    return (
+                        <RangeSelection
+                        range={filter ? filter.value : domain}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        handleClear={this.handleClear}
+                        accessor='vote_average'
+                        />
+                    );
+                },
+            }, 
+            // {
+            //     Header: 'vote_count',
+            //     accessor: 'vote_count',
+            //     width: width,
+            //     filterMethod: rangeFilter,
+            //     Filter: ({filter,onChange}) => {
+            //         const domain=allDomain['vote_count'];
+            //         return (
+            //             <RangeSelection
+            //             range={filter ? filter.value : domain}
+            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
+            //             handleClear={this.handleClear}
+            //             accessor='vote_count'
+            //             />
+            //         );
+            //     },
+            // }, 
+            {
+                Header: 'adult',
+                accessor: 'adult',
+                filterMethod: singleSelectionExactMatch,
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <SingleSelection
+                        value={filter ? filter.value : "all"}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        accessor='adult'
+                        />
+                    );
+                },
+           
+            }, 
+            {
+                Header: 'characters',
+                accessor: 'characters',
+                width: width,
                 style: textStyle,
                 Cell: row => (
                     <div className='verticalScroll'>{row.value}</div>
@@ -523,66 +620,44 @@ class DataTable extends React.Component {
                     );
                 },
                 filterAll: true,
-            }, {
-                Header: 'video',
-                accessor: 'video',
-                filterMethod: singleSelectionExactMatch,
-                Filter: ({filter,onChange}) => {
-                    return (
-                        <SingleSelection
-                        value={filter ? filter.value : "all"}
-                        onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        accessor='video'
-                        />
-                    );
-                },
-            }, {
-                Header: 'vote_average',
-                accessor: 'vote_average',
+            }, 
+            {
+                Header: 'cast',
+                accessor: 'cast',
                 width: width,
-                filterMethod: rangeFilter,
+                style: textStyle,
+                Cell: row => (
+                    <div className='verticalScroll'>{row.value}</div>
+                ),
+                filterMethod: (filter, rows) =>
+                matchSorter(rows, filter.value, { keys: ["director"] }),
                 Filter: ({filter,onChange}) => {
-                    const domain=allDomain['vote_average'];
                     return (
-                        <RangeSelection
-                        range={filter ? filter.value : domain}
+                        <TextFilter
+                        accessor='cast'
+                        value={filter ? filter.value : ''}
                         onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        handleClear={this.handleClear}
-                        accessor='vote_average'
                         />
                     );
                 },
-            }, {
-                Header: 'vote_count',
-                accessor: 'vote_count',
-                width: width,
-                filterMethod: rangeFilter,
+                filterAll: true,
+            }, 
+            {
+                Header: 'director',
+                accessor: 'director',
+                filterMethod: (filter, rows) =>
+                matchSorter(rows, filter.value, { keys: ["director"] }),
                 Filter: ({filter,onChange}) => {
-                    const domain=allDomain['vote_count'];
                     return (
-                        <RangeSelection
-                        range={filter ? filter.value : domain}
+                        <TextFilter
+                        accessor='director'
+                        value={filter ? filter.value : ''}
                         onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        handleClear={this.handleClear}
-                        accessor='vote_count'
                         />
                     );
                 },
-            }, {
-                Header: 'adult',
-                accessor: 'adult',
-                filterMethod: singleSelectionExactMatch,
-                Filter: ({filter,onChange}) => {
-                    return (
-                        <SingleSelection
-                        value={filter ? filter.value : "all"}
-                        onFilteredChangeCustom={this.onFilteredChangeCustom}
-                        accessor='adult'
-                        />
-                    );
-                },
-           
-            },
+                filterAll: true,
+            }
         ]
        
         return( <div>

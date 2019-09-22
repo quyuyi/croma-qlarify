@@ -140,7 +140,7 @@ def process_crew(processed_dict):
     return director_col
 
     
-def sampleSpecifics(processed_dict,df):
+def sampleSpecifics(processed_dict):
     imdb_ids=['tt3659388', 'tt1454468', 'tt1631867', 'tt0470752', 'tt2562232', 'tt0482571', 'tt2872718', 'tt0209144', 'tt1663202', 'tt2379713', 'tt0816711', 
     'tt0831387', 'tt1483013', 'tt2103281', 'tt0093870', 'tt2109248', 'tt1731141', 'tt1136608', 'tt1535109', 'tt1843866', 'tt1981115', 'tt2395427', 'tt1877832', 
     'tt3896198', 'tt0478970', 'tt3498820', 'tt0800369', 'tt1872181', 'tt1228705', 'tt0376994', 'tt3385516', 'tt1430132', 'tt3501632', 'tt1211837', 'tt0451279',
@@ -152,20 +152,20 @@ def sampleSpecifics(processed_dict,df):
     for idx,item in enumerate(processed_dict["imdb_id"]): 
         if item in imdb_ids: # id==14160
             if idx not in sampled:
-                print(idx)
+                # print(idx)
                 sampled+=[idx]
 
     sampled_dict={}
-    sampled_df = pd.DataFrame() 
-    for col in df:
+    # sampled_df = pd.DataFrame() 
+    for col in processed_dict:
         new_col = [processed_dict[col][i] for i in sampled]
         # print(new_col)
         sampled_dict[col]=new_col
-        sampled_df[col]=pd.Series(new_col,name=col)
+        # sampled_df[col]=pd.Series(new_col,name=col)
 
     # print(sampled_df)
     # print(sampled_dict["imdb_id"][99])
-    return sampled_dict,sampled_df
+    return sampled_dict # ,sampled_df
 
 
 
@@ -181,7 +181,8 @@ def preprocess_dataset():
         all_col+=[col]
         raw_dict[col]=list(df[col])
 
-    sampled_dict=sample99(raw_dict)
+    # sampled_dict=sample99(raw_dict)
+    sampled_dict=sampleSpecifics(raw_dict)
 
     multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection','cast','crew']
     single_col=[col for col in all_col if col not in multi_col]
@@ -214,21 +215,21 @@ def preprocess_dataset():
     
     return processed_dict, processed_df
     # return processed_dict,df
-    return sampleSpecifics(processed_dict,df)
+    # return sampleSpecifics(processed_dict,df)
 
 
 
 
-a=sampled_dict['cast'][0]
-aa=ast.literal_eval(a)    
-with open('result.txt','a') as f:
-    for item in aa:
-        f.write(str(item))
-        f.write('\n')
+# a=sampled_dict['cast'][0]
+# aa=ast.literal_eval(a)    
+# with open('result.txt','a') as f:
+#     for item in aa:
+#         f.write(str(item))
+#         f.write('\n')
 
-b=sampled_dict['crew'][1]
-bb=ast.literal_eval(b)
-with open('result.txt','a', encoding='utf-8') as f:
-    for item in bb:
-        f.write(str(item))
-        f.write('\n')
+# b=sampled_dict['crew'][1]
+# bb=ast.literal_eval(b)
+# with open('result.txt','a', encoding='utf-8') as f:
+#     for item in bb:
+#         f.write(str(item))
+#         f.write('\n')

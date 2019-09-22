@@ -486,30 +486,48 @@ const questionsContent = [
         "adult (Is this movie R rated?)"
 ];
 
+// const questions = [
+//     "id",
+//     "imdb_id",
+//     "belongs_to_collection",
+//     "budget",
+//     "genres",
+//     "homepage",
+//     "original_language",
+//     "overview",
+//     "popularity",
+//     "poster_path",
+//     "production_companies",
+//     "production_countries",
+//     "release_date",
+//     "revenue",
+//     "runtime",
+//     "spoken_languages",
+//     "status",
+//     "tagline",
+//     "video",
+//     "vote_average",
+//     "vote_count",
+//     "adult"
+// ];
+
 const questions = [
-    "id",
-    "imdb_id",
-    "belongs_to_collection",
     "budget",
     "genres",
     "homepage",
     "original_language",
+    "original_title",
     "overview",
-    "popularity",
-    "poster_path",
-    "production_companies",
-    "production_countries",
     "release_date",
     "revenue",
     "runtime",
     "spoken_languages",
     "status",
-    "tagline",
-    "video",
     "vote_average",
-    "vote_count",
-    "adult"
+    "adult",
 ];
+
+
 
 class Question extends React.Component {
 

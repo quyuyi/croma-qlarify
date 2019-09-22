@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button';
+import Questions from './questions.jsx';
 
 class Enduser2 extends React.Component {
 
@@ -16,8 +17,11 @@ class Enduser2 extends React.Component {
         'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
         'Madagascar', 'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life"
         ],
+        showItems:5,
         checks: new Array(20).fill(false),
+        trueArr: [],
         renderMovieLinks: false,
+        renderQuestions: false,
         links: [
             'https://www.themoviedb.org/movie/36668-x-men-the-last-stand?language=en-US',
             'https://www.themoviedb.org/movie/76170-the-wolverine?language=en-US',
@@ -39,7 +43,8 @@ class Enduser2 extends React.Component {
             'https://www.themoviedb.org/movie/62211-monsters-university?language=en-US',
             'https://www.themoviedb.org/movie/950-ice-age-the-meltdown?language=en-US',
             'https://www.themoviedb.org/movie/9487-a-bug-s-life?language=en-US'
-        ]
+        ],
+        movieChosen: -1, //movie that chosen to be answered questions about
     };
   }
 
@@ -49,6 +54,13 @@ class Enduser2 extends React.Component {
     this.setState({
         checks: temp,
     });
+  }
+
+  handleShowMore() {
+      this.setState({
+          showItems: this.state.showItems >= this.state.movies.length ?
+            this.state.showItems : this.state.showItems+5
+      })
   }
 
   handleNext() {
@@ -67,14 +79,15 @@ class Enduser2 extends React.Component {
       } else {
         console.log('render the links to the 5 movies')
         this.setState({
-            renderMovieLinks: true
+            renderMovieLinks: true,
+            trueArr: trueArr,
         })
       }
   }
 
   renderMovieCheckboxes() {
     return (
-        this.state.movies.map((m,idx) => {
+        this.state.movies.slice(0,this.state.showItems).map((m,idx) => {
             return (
                 <InputGroup className="mb-3" key={idx}>
                     <InputGroup.Prepend>
@@ -100,7 +113,15 @@ class Enduser2 extends React.Component {
             trueArr.map((elem,idx) => {
                 return (
                     <div key={idx}>
-                        {this.state.links[elem]} <br/>
+                        {/* <iframe
+                        src={this.state.links[elem]}>
+                            <p>Your browser does not support iframes.</p>
+                        </iframe> */}
+                        <a 
+                        href={this.state.links[elem]} 
+                        target="_blank">
+                            {this.state.movies[elem]}
+                        </a>
                     </div>
                 )
             })
@@ -109,12 +130,22 @@ class Enduser2 extends React.Component {
 
     handleNext2() {
         console.log('next 2 ')
+        const length=this.state.trueArr.length;
+        const trueArr=this.state.trueArr;
+        let chosenMovieIndex=trueArr.slice(0,length-1)[Math.floor(Math.random() * (length-1))];
+        let chosenMovie=this.state.movies[chosenMovieIndex];
+        this.setState({
+            chosenMovie: chosenMovie,
+            renderQuestions: true,
+        });
+        console.log("chosen movie is ",chosenMovie);
     }
 
     renderPage1() {
         return(
             <div>
                 {this.renderMovieCheckboxes()}
+                <Button variant="dark" onClick={this.handleShowMore.bind(this)}>Show More</Button>
                 <Button variant="dark" onClick={this.handleNext.bind(this)}>Next</Button>
             </div>
         )
@@ -132,18 +163,38 @@ class Enduser2 extends React.Component {
     }
 
   render(){
-
-      return (
-        <div>
+      if (this.state.renderQuestions){
+          return(
+              <div>
+                <Questions 
+				    movieIndex={this.state.chosenMovie}
+				/>
+              </div>
+          );
+      }
+      if (this.state.renderMovieLinks){
+          return (
+            <div>
             <Container>
                 <Row>
-                    {this.renderPage1()}
                     {this.renderPage2()}
 
                 </Row>
             </Container>
         </div>
-      );
+          )
+      }
+      else {
+        return (
+            <div>
+                <Container>
+                    <Row>
+                        {this.renderPage1()}
+                    </Row>
+                </Container>
+            </div>
+          );
+      }
   }
 }
 

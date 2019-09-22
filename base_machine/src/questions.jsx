@@ -82,6 +82,8 @@ class Questions extends React.Component {
     return (
       <div className='questions-header'>
       <h2>
+      Please Answer questions about <strong>{this.props.movieIndex}</strong>
+      <br></br>
       For part 2, please provide what you remember about the movie for each metadata. If you don’t remember exactly, you can provide a range. (an example answer to movie runtime could be: more than 100 minutes, or in the range of 80 - 120 minutes. But please don’t answer around "100 minutes", because then we don’t know what the range is.)
       <br></br>
       It is fine that if you don’t know the information about a metadata, or if you don't understand what a metadata means. Please write “I don’t know” if you don’t know.
@@ -100,7 +102,7 @@ class Questions extends React.Component {
       return (
         <div className='questions'>
           {this.renderInstruction()}
-          {(this.state.questionId==22/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+          {(this.state.questionId==13/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
         </div>
       );
     }
