@@ -98,7 +98,7 @@ def suggest_rules():
     # don't do this globally
     current_indices=[i for i in range(0,len(processed_dict['adult']))]
     global selected_features
-    selected_features=[]
+    selected_features=['title', 'original_title', 'cast', 'director', 'characters']
 
     print('original dataset size: ')
     print(len(current_indices))
@@ -219,20 +219,25 @@ def get_entropy(feature_name):
     # fuzzy entropy for multi-label case, e.g., genres
     entropyy=0
     if isinstance(feature_list[0],list):
+        clean_feature_list=[]
         for i in feature_list:
-            l=[j for j in i]
-            labels+=l
+            # l=[j for j in i]
+            # labels+=l
+            clean_feature=[j[2:] if j[0]==',' else j for j in i]
+            labels+=clean_feature
+            clean_feature_list.append(clean_feature)
+            
         value,counts=np.unique(labels,return_counts=True)
         # calculate fuzzy entropy
         # H(A)=-sum(membership_A(x_i))P(x_i)logP(x_i)
         sum=0
         for idx,feature in enumerate(value):
             total=0
-            for item in feature_list:
+            for item in clean_feature_list:
                 if feature in item:
                     total+=len(item)
             membership=counts[idx]/total
-            p=counts[idx]/len(feature_list)
+            p=counts[idx]/len(labels)
             sum+=-membership*p*math.log(p,2)
         entropyy=sum
     else:
@@ -240,7 +245,6 @@ def get_entropy(feature_name):
         entropyy=entropy(counts,base=2)
 
     split=get_split(value,counts)
-    
 
     return entropyy,split
 
