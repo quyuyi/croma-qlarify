@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Entropy from './entropy.jsx';
+import Ask from './ask.jsx';
 
 class Condition3 extends React.Component {
 
@@ -69,7 +70,7 @@ class Condition3 extends React.Component {
                         />
                     </Col>
                     <Col sm md={3}>
-                        <History
+                        <Ask
                         startTime={this.props.startTime}
                         condition='entropy'
                         />

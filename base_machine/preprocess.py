@@ -172,6 +172,10 @@ def sampleSpecifics(processed_dict):
 def preprocess_dataset():
     df1=pd.read_csv('movies_metadata.csv')
     df2=pd.read_csv('credits.csv')
+    df1 = df1[df1.imdb_id != '0']
+
+    df1['id'] = df1['id'].astype(int)
+    # df2['id'] = df2['id'].astype(int)
     df=pd.merge(df1,df2,on='id',sort=False)
 
     # process data into a dictionary of many lists

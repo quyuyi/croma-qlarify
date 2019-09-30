@@ -45,6 +45,7 @@ class Enduser2 extends React.Component {
             'https://www.themoviedb.org/movie/9487-a-bug-s-life?language=en-US'
         ],
         movieChosen: -1, //movie that chosen to be answered questions about
+        numShowed: 0
     };
   }
 
@@ -58,8 +59,9 @@ class Enduser2 extends React.Component {
 
   handleShowMore() {
       this.setState({
-          showItems: this.state.showItems >= this.state.movies.length ?
-            this.state.showItems : this.state.showItems+5
+        showItems: this.state.showItems >= this.state.movies.length ?
+            this.state.showItems : this.state.showItems+5,
+        numShowed: this.state.numShowed+1
       })
   }
 
@@ -75,7 +77,11 @@ class Enduser2 extends React.Component {
       if (trueArr.length>5) {
           alert('You selected more than 5 movies, please only select 5.')
       } else if (trueArr.length<5) {
-          console.log('submit the hit')
+          if (this.state.numShowed < 3) {
+              alert('please go through all movies')
+          } else {
+              alert('submitting the hit')
+          }
       } else {
         console.log('render the links to the 5 movies')
         this.setState({
@@ -167,8 +173,8 @@ class Enduser2 extends React.Component {
           return(
               <div>
                 <Questions 
-				    movieIndex={this.state.chosenMovie}
-				/>
+                    movieIndex={this.state.chosenMovie}
+                />
               </div>
           );
       }

@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Rules from './rules.jsx';
+import Ask from './ask.jsx';
+
 
 class Hybrid extends React.Component {
 
@@ -70,7 +72,7 @@ class Hybrid extends React.Component {
                         checkFinishLoading={this.props.checkFinishLoading} />
                     </Col>
                     <Col sm md={3}>
-                        <History
+                        <Ask
                         startTime={this.props.startTime}
                         condition='rank' />
                     </Col>

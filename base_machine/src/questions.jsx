@@ -102,7 +102,7 @@ class Questions extends React.Component {
       return (
         <div className='questions'>
           {this.renderInstruction()}
-          {(this.state.questionId==13/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+          {(this.state.questionId==22/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
         </div>
       );
     }

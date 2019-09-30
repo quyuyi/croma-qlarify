@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Split from './split.jsx';
+import Ask from './ask.jsx';
 
 class Condition4 extends React.Component {
 
@@ -67,7 +68,7 @@ class Condition4 extends React.Component {
                         />
                     </Col>
                     <Col sm md={3}>
-                        <History
+                        <Ask
                         startTime={this.props.startTime} 
                         condition='split' 
                         />
