@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import NumberFormat from 'react-number-format';
 
 class Entropy extends React.Component {
 
@@ -17,7 +18,7 @@ class Entropy extends React.Component {
         const columns=[
             {
                 Header: 'Rank',
-                accessor: 'id',
+                accessor: 'rank',
             },
             {
                 Header: 'Feature',
@@ -26,6 +27,9 @@ class Entropy extends React.Component {
             {
                 Header: 'Score',
                 accessor: 'entropy',
+                Cell: row => (
+                    <NumberFormat value={row.value} displayType={'text'} decimalScale={2} />
+                ),
             }
         ];
 

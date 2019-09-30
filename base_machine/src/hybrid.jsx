@@ -6,6 +6,7 @@ import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Rules from './rules.jsx';
 import Ask from './ask.jsx';
+import TableNoFilter from "./tablenofilter.jsx";
 
 
 class Hybrid extends React.Component {
@@ -67,7 +68,7 @@ class Hybrid extends React.Component {
                         loading={this.state.loading}/>
                     </Col>
                     <Col sm md={6}>
-                        <DataTable 
+                        <TableNoFilter 
                         callbackFromParent={this.myCallback}
                         checkFinishLoading={this.props.checkFinishLoading} />
                     </Col>

@@ -20,8 +20,10 @@ class Enduser2 extends React.Component {
         showItems:5,
         checks: new Array(20).fill(false),
         trueArr: [],
-        renderMovieLinks: false,
-        renderQuestions: false,
+        renderPage2: false,
+        renderPage3: false,
+        renderPage0: true,
+        renderPage1: false,
         links: [
             'https://www.themoviedb.org/movie/36668-x-men-the-last-stand?language=en-US',
             'https://www.themoviedb.org/movie/76170-the-wolverine?language=en-US',
@@ -85,10 +87,62 @@ class Enduser2 extends React.Component {
       } else {
         console.log('render the links to the 5 movies')
         this.setState({
-            renderMovieLinks: true,
+            renderPage1: false,
+            renderPage2: true,
             trueArr: trueArr,
         })
       }
+  }
+
+  handleStart() {
+      this.setState({
+          renderPage0: false,
+          renderPage1: true,
+      });
+  }
+
+  renderPage0Instruction(){
+      return (
+        <div>
+        <div className='questions-header'>
+            <h2>
+            In this HIT, you will be asked to first select 5 movies that you have not seen before. Then you will be directed to a page on The Movie Database for each movie. After viewing some information about these movies, you will be asked to answer some questions. A bonus of $XX will be awarded based on the quality of your performance. 
+            <br></br>
+            Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
+            </h2>
+        </div>
+        
+        <Button variant="dark" onClick={this.handleStart.bind(this)} block>Start</Button>
+        </div>
+      );
+  }
+
+  renderPage1Instruction(){
+    return (
+        <div>
+        <div className='questions-header'>
+            <h2>
+            Please select 5 movies you have never watched before. Click show more if the movies shown are not enough for you to select 5. 
+            <br></br>
+            Click next if you have select 5 movies. 
+            <br></br>
+            If you have gone through the entire list, and still don't have a list of 5 movies, you can also click next to proceed. 
+            </h2>
+        </div>
+        </div>
+      );
+  }
+
+  renderPage2Instruction(){
+    return (
+        <div>
+        <div className='questions-header'>
+            <h2>
+            Please click on the link to find out more about the movie. Pretend you are looking for a movie to watch and need to decide whether or not you will watch this movie later. 
+            </h2>
+        </div>
+        </div>
+      );
   }
 
   renderMovieCheckboxes() {
@@ -142,7 +196,8 @@ class Enduser2 extends React.Component {
         let chosenMovie=this.state.movies[chosenMovieIndex];
         this.setState({
             chosenMovie: chosenMovie,
-            renderQuestions: true,
+            renderPage3: true,
+            renderPage2: false,
         });
         console.log("chosen movie is ",chosenMovie);
     }
@@ -150,6 +205,8 @@ class Enduser2 extends React.Component {
     renderPage1() {
         return(
             <div>
+                {this.renderPage1Instruction()}
+                <br></br>
                 {this.renderMovieCheckboxes()}
                 <Button variant="dark" onClick={this.handleShowMore.bind(this)}>Show More</Button>
                 <Button variant="dark" onClick={this.handleNext.bind(this)}>Next</Button>
@@ -158,9 +215,10 @@ class Enduser2 extends React.Component {
     }
 
     renderPage2() {
-        if(this.state.renderMovieLinks) {
+        if(this.state.renderPage2) {
             return(
                 <div>
+                    {this.renderPage2Instruction()}
                     {this.renderMovieLinks()}
                     <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button>
                 </div>
@@ -169,28 +227,15 @@ class Enduser2 extends React.Component {
     }
 
   render(){
-      if (this.state.renderQuestions){
-          return(
+      if (this.state.renderPage0){
+          return (
               <div>
-                <Questions 
-                    movieIndex={this.state.chosenMovie}
-                />
+                  {this.renderPage0Instruction()}
               </div>
           );
       }
-      if (this.state.renderMovieLinks){
-          return (
-            <div>
-            <Container>
-                <Row>
-                    {this.renderPage2()}
 
-                </Row>
-            </Container>
-        </div>
-          )
-      }
-      else {
+      if (this.state.renderPage1) {
         return (
             <div>
                 <Container>
@@ -199,6 +244,36 @@ class Enduser2 extends React.Component {
                     </Row>
                 </Container>
             </div>
+          );
+      }
+
+      if (this.state.renderPage2){
+        return (
+          <div>
+          <Container>
+              <Row>
+                  {this.renderPage2()}
+              </Row>
+          </Container>
+      </div>
+        )
+    }
+
+      if (this.state.renderPage3){
+        return(
+            <div>
+              <Questions 
+                  movieIndex={this.state.chosenMovie}
+              />
+            </div>
+        );
+    }
+
+      else {
+          return (
+              <div>
+
+              </div>
           );
       }
   }

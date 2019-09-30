@@ -172,6 +172,15 @@ def compute_rules():
     # filtered_ranked=[item[0] for item in ranked_indices if item[0] not in selected_features ]
     filtered_entropy=[item for item in ranked_indices if item[0] not in selected_features]
 
+
+    # TODO
+    # Normalize the scores to the scale of [0,10] 
+    # using min-max feature scaling 
+    # scaled=(x-min(x))/max(x)-min(x) in range [0,1]
+    # with precision of 2 decimal digits
+    min_entropy=filtered_entropy[len(filtered_entropy)-1][1]
+    max_entropy=filtered_entropy[0][1]
+
     rules=[]
     # check if condition in index.jsx
     # split.jsx
@@ -189,12 +198,26 @@ def compute_rules():
     #         }]
 
     # rules.jsx or entropy.jsx
+    rank=1
+    equal=1
+    prev=0
     for index,ele in enumerate(filtered_entropy):
+        # calculated rank
+        if (index>=1):
+            if (prev==ele[1]):
+                equal+=1
+            else:
+                rank+=equal
+                equal=1
+        # calculate scaled entropy
+        scaled=10*(ele[1]-min_entropy)/(max_entropy-min_entropy)
         rules+=[{
             'id': index+1,
             'feature': ele[0],
-            'entropy': ele[1],
+            'entropy': scaled,
+            'rank': rank
         }]
+        prev=ele[1]
 
 
     dat = {
@@ -286,6 +309,28 @@ simulated_answers = json.load(open("answers.json"))
 
 # from time import gmtime, strftime
 # logCrowd='logCrowd_'+strftime("%m%d_%H%M", gmtime())
+
+
+def rank_simple(vector):
+    return sorted(range(len(vector)), key=vector.__getitem__)
+
+def rankdata(a):
+    n = len(a)
+    ivec=rank_simple(a)
+    svec=[a[rank] for rank in ivec]
+    sumranks = 0
+    dupcount = 0
+    newarray = [0]*n
+    for i in xrange(n):
+        sumranks += i
+        dupcount += 1
+        if i==n-1 or svec[i] != svec[i+1]:
+            averank = sumranks / float(dupcount) + 1
+            for j in xrange(i-dupcount+1,i+1):
+                newarray[ivec[j]] = averank
+            sumranks = 0
+            dupcount = 0
+    return newarray
 
 
 if __name__ == "__main__":

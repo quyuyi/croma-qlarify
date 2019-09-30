@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 // import History from "./history.jsx";
 import Ask from './ask.jsx';
 import DataTable from './table.jsx';
+import TableNoFilter from "./tablenofilter.jsx";
 
 class Baseline extends React.Component {
 
@@ -19,7 +20,7 @@ class Baseline extends React.Component {
             <Container>
                 <Row>
                     <Col md={9}>
-                        <DataTable
+                        <TableNoFilter
                         checkFinishLoading={this.props.checkFinishLoading} />
                     </Col>
                     <Col md={3}>

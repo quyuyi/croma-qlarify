@@ -80,14 +80,18 @@ class Questions extends React.Component {
 
   renderInstruction(){
     return (
+      <div>
       <div className='questions-header'>
-      <h2>
-      Please Answer questions about <strong>{this.props.movieIndex}</strong>
-      <br></br>
-      For part 2, please provide what you remember about the movie for each metadata. If you don’t remember exactly, you can provide a range. (an example answer to movie runtime could be: more than 100 minutes, or in the range of 80 - 120 minutes. But please don’t answer around "100 minutes", because then we don’t know what the range is.)
-      <br></br>
-      It is fine that if you don’t know the information about a metadata, or if you don't understand what a metadata means. Please write “I don’t know” if you don’t know.
-      </h2>
+          <h2>
+          In this part, we will ask you some questions about <strong>{this.props.movieIndex}</strong>, which is a movie you just viewed on TMDB. 
+          <br></br>
+          If you don't remember the answer exactly, you can provide a range. (An example answer to movie runtime could be: more than 100 minutes, or in the range of 80-120 minutes. But please don’t answer "around 100 minutes," as that won't tell us the precise range.)
+          <br></br>
+          If you don’t know remember at all, you can answer "I don’t know."
+          <br></br>
+          Please try not to copy answers from the site. We will review your answers and award you a bonus if you answer from memory. Thank you! 
+          </h2>
+      </div>
       </div>
     );
   }

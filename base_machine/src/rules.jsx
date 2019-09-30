@@ -17,7 +17,7 @@ class Rules extends React.Component {
         const columns=[
             {
                 Header: 'Rank',
-                accessor: 'id',
+                accessor: 'rank',
             },
             {
                 Header: 'Feature',

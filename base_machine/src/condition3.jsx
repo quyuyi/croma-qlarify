@@ -6,6 +6,7 @@ import History from "./history.jsx";
 import DataTable from './table.jsx';
 import Entropy from './entropy.jsx';
 import Ask from './ask.jsx';
+import TableNoFilter from './tablenofilter.jsx';
 
 class Condition3 extends React.Component {
 
@@ -64,7 +65,7 @@ class Condition3 extends React.Component {
                         />
                     </Col>
                     <Col sm md={6}>
-                        <DataTable 
+                        <TableNoFilter 
                         callbackFromParent={this.myCallback} 
                         checkFinishLoading={this.props.checkFinishLoading}
                         />
