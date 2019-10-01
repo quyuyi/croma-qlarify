@@ -18,6 +18,7 @@ class Enduser2 extends React.Component {
         'Madagascar', 'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life"
         ],
         showItems:5,
+        showLinks:1,
         checks: new Array(20).fill(false),
         trueArr: [],
         renderPage2: false,
@@ -101,6 +102,12 @@ class Enduser2 extends React.Component {
       });
   }
 
+  handleBrowseNext() {
+      this.setState({
+          showLinks: this.state.showLinks >= 5 ? this.state.showLinks : this.state.showLinks+1,
+      })
+  }
+
   renderPage0Instruction(){
       return (
         <div>
@@ -161,16 +168,8 @@ class Enduser2 extends React.Component {
   }
 
     renderMovieLinks() {
-        
-        let trueArr = []
-        this.state.checks.forEach((s,idx) => {
-            if (s == true) {
-                trueArr.push(idx)
-            }
-        })
-
         return (
-            trueArr.map((elem,idx) => {
+            this.state.trueArr.slice(0,this.state.showLinks).map((elem,idx) => {
                 return (
                     <div key={idx}>
                         {/* <iframe
@@ -185,7 +184,7 @@ class Enduser2 extends React.Component {
                     </div>
                 )
             })
-        )
+        );
     }
 
     handleNext2() {
@@ -220,7 +219,10 @@ class Enduser2 extends React.Component {
                 <div>
                     {this.renderPage2Instruction()}
                     {this.renderMovieLinks()}
-                    <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button>
+                    {this.state.showLinks==5 ? 
+                    <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button> :
+                    <Button variant="dark" onClick={this.handleBrowseNext.bind(this)}>Browse Next Movie</Button>
+                    }
                 </div>
             )
         }

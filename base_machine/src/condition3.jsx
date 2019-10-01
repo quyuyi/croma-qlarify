@@ -7,6 +7,7 @@ import DataTable from './table.jsx';
 import Entropy from './entropy.jsx';
 import Ask from './ask.jsx';
 import TableNoFilter from './tablenofilter.jsx';
+import ChatHistory from "./chathistory.jsx";
 
 class Condition3 extends React.Component {
 
@@ -71,6 +72,9 @@ class Condition3 extends React.Component {
                         />
                     </Col>
                     <Col sm md={3}>
+                        <ChatHistory
+                        />
+                        <br></br>
                         <Ask
                         startTime={this.props.startTime}
                         condition='entropy'
