@@ -48,7 +48,7 @@ class Ask extends React.Component {
             { value: 'status', label: 'status' },
             { value: 'tagline', label: 'tagline' },
             { value: 'video', label: 'video' },
-            { value: 'vote_average', label: 'user score' },
+            { value: 'vote_average', label: 'vote average' },
             { value: 'vote_count', label: 'vote count' },
             { value: 'adult', label: 'adult' },
             // { value: 'characters', label: 'characters' },

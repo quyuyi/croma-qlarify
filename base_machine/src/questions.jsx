@@ -87,7 +87,7 @@ class Questions extends React.Component {
           <br></br>
           If you don't remember the answer exactly, you can provide a range. (An example answer to movie runtime could be: more than 100 minutes, or in the range of 80-120 minutes. But please don’t answer "around 100 minutes," as that won't tell us the precise range.)
           <br></br>
-          If you don’t know remember at all, you can answer "I don’t know."
+          If you don’t know what a question means or don't remember at all, you can answer "I don’t know."
           <br></br>
           Please try not to copy answers from the site. We will review your answers and award you a bonus if you answer from memory. Thank you! 
           </h2>

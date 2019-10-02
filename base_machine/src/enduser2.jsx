@@ -113,7 +113,7 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h2>
-            In this HIT, you will be asked to first select 5 movies that you have not seen before. Then you will be directed to a page on The Movie Database for each movie. After viewing some information about these movies, you will be asked to answer some questions. A bonus of $XX will be awarded based on the quality of your performance. 
+            In this HIT, you will be asked to first select 5 movies that you have not seen before. Then you will be directed to a page on The Movie Database for each movie. After viewing some information about these movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance. 
             <br></br>
             Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
             </h2>
