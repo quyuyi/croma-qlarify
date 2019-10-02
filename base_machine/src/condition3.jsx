@@ -9,6 +9,8 @@ import Ask from './ask.jsx';
 import TableNoFilter from './tablenofilter.jsx';
 import ChatHistory from "./chathistory.jsx";
 
+const round=3;
+
 class Condition3 extends React.Component {
 
     constructor(props) {
@@ -75,6 +77,9 @@ class Condition3 extends React.Component {
                         <ChatHistory
                         />
                         <br></br>
+                        <header>
+                            <p className='head'>Select Next Question to Ask</p>
+                        </header>
                         <Ask
                         startTime={this.props.startTime}
                         condition='entropy'
