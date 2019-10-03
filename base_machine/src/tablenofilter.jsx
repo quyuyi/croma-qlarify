@@ -181,64 +181,34 @@ class TableNoFilter extends React.Component {
                 Header: 'adult',
                 accessor: 'adult',           
             }, 
-            // {
-            //     Header: 'characters',
-            //     accessor: 'characters',
-            //     width: width,
-            //     style: textStyle,
-            //     Cell: row => (
-            //         <div className='verticalScroll'>{row.value}</div>
-            //     ),
-            //     filterMethod: (filter, rows) =>
-            //     matchSorter(rows, filter.value, { keys: ["tagline"] }),
-            //     Filter: ({filter,onChange}) => {
-            //         return (
-            //             <TextFilter
-            //             accessor='tagline'
-            //             value={filter ? filter.value : ''}
-            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
-            //             />
-            //         );
-            //     },
-            //     filterAll: true,
-            // }, 
-            // {
-            //     Header: 'cast',
-            //     accessor: 'cast',
-            //     width: width,
-            //     style: textStyle,
-            //     Cell: row => (
-            //         <div className='verticalScroll'>{row.value}</div>
-            //     ),
-            //     filterMethod: (filter, rows) =>
-            //     matchSorter(rows, filter.value, { keys: ["director"] }),
-            //     Filter: ({filter,onChange}) => {
-            //         return (
-            //             <TextFilter
-            //             accessor='cast'
-            //             value={filter ? filter.value : ''}
-            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
-            //             />
-            //         );
-            //     },
-            //     filterAll: true,
-            // }, 
-            // {
-            //     Header: 'director',
-            //     accessor: 'director',
-            //     filterMethod: (filter, rows) =>
-            //     matchSorter(rows, filter.value, { keys: ["director"] }),
-            //     Filter: ({filter,onChange}) => {
-            //         return (
-            //             <TextFilter
-            //             accessor='director'
-            //             value={filter ? filter.value : ''}
-            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
-            //             />
-            //         );
-            //     },
-            //     filterAll: true,
-            // }
+            {
+                Header: 'main characters',
+                accessor: 'characters',
+                width: width,
+                style: textStyle,
+                Cell: row => (
+                    <div className='verticalScroll'>{row.value}</div>
+                ),
+            }, 
+            {
+                Header: 'main cast',
+                accessor: 'cast',
+                width: width,
+                style: textStyle,
+                Cell: row => (
+                    <div className='verticalScroll'>{row.value}</div>
+                ),
+            }, 
+            {
+                Header: 'director',
+                accessor: 'director',
+                style: textStyle,
+            },
+            {
+                Header: 'screenplay',
+                accessor: 'screenplay',
+                style: textStyle,
+            }
         ]
        
         return( <div>

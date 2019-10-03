@@ -525,7 +525,11 @@ const questions = [
     "video",
     "vote_average",
     "vote_count",
-    "adult"
+    "adult",
+    "main characters",
+    "main cast",
+    "director",
+    "screenplay",
 ];
 
 // const questions = [
@@ -563,6 +567,11 @@ class Question extends React.Component {
         || q=='production_countries' || q=='adult' || q=='video'){
             answer=document.getElementsByName(q)[0].value;
         }
+        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime'){
+            const leftID='left'+q;
+            const rightID='right'+q;
+            answer=[document.getElementById(leftID).value,document.getElementById(rightID).value]
+        }
         else{
             answer=document.getElementById(q).value;
         }
@@ -594,6 +603,17 @@ class Question extends React.Component {
               <Select name={q} options={options} />
             </h2>
           );
+        }
+        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime' ){
+            const leftID='left'+q;
+            const rightID='right'+q;
+            return (
+                <h2 key={this.props.questionId} className='question'>
+                    {content} 
+                    <br></br>
+                    <input autoFocus id={leftID} type="text" /> - <input id={rightID} type="text" />
+                </h2>
+            )
         }
         else {
           return (

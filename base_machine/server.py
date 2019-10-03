@@ -98,7 +98,7 @@ def suggest_rules():
     # don't do this globally
     current_indices=[i for i in range(0,len(processed_dict['adult']))]
     global selected_features
-    selected_features=['title', 'original_title', 'cast', 'director', 'characters']
+    selected_features=['title', 'original_title']
 
     print('original dataset size: ')
     print(len(current_indices))
