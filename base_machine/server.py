@@ -263,6 +263,26 @@ def get_entropy(feature_name):
             p=counts[idx]/len(labels)
             sum+=-membership*p*math.log(p,2)
         entropyy=sum
+    # entropy for range
+    elif (feature_name=='budget' or feature_name=='release_date' or feature_name=='revenue' or feature_name=='runtime'):
+        value,counts=np.unique(feature_list,return_counts=True)
+        entropyy=entropy(counts,base=2)
+        ranges=range_dict[feature_name]
+        range_counts=[0]*len(ranges)
+        for idx,v in enumerate(value):
+            for index,point in enumerate(ranges):
+                if (v>point or v==point):
+                    range_counts[index]+=counts[idx]
+                    break
+        print('*******************************************************************************')
+        print(feature_name)
+        print(value)
+        print(counts)
+        print(ranges) # print the ranges hard coded by ourselves
+        print(range_counts) # print the distribution in terms of the ranges
+        print("******************************************************************************")
+        entropyy=entropy(range_counts,base=2)
+    # entropy for discrete values
     else:
         value,counts=np.unique(feature_list,return_counts=True)
         entropyy=entropy(counts,base=2)
@@ -306,6 +326,16 @@ current_indices=[]
 selected_features=[]
 
 simulated_answers = json.load(open("answers.json"))
+
+budgetRange=[250000000,200000000,150000000,100000000,50000000,0]
+release_dateRange=['2010-12-31','2000-12-31','1990-12-31','1980-12-31']
+revenueRange=[1000000000,800000000,600000000,400000000,200000000,0]
+runtimeRange=[150,130,110,90,0]
+range_dict={}
+range_dict['budget']=budgetRange
+range_dict['release_date']=release_dateRange
+range_dict['revenue']=revenueRange
+range_dict['runtime']=runtimeRange
 
 # from time import gmtime, strftime
 # logCrowd='logCrowd_'+strftime("%m%d_%H%M", gmtime())
