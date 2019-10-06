@@ -208,6 +208,15 @@ class TableNoFilter extends React.Component {
                 Header: 'screenplay',
                 accessor: 'screenplay',
                 style: textStyle,
+            },
+            {
+                Header: 'keywords',
+                accessor: 'keywords',
+                width: width,
+                style: textStyle,
+                Cell: row => (
+                    <div className='verticalScroll'>{row.value}</div>
+                ),
             }
         ]
        

@@ -241,7 +241,8 @@ def get_entropy(feature_name):
     labels=[]
     # fuzzy entropy for multi-label case, e.g., genres
     entropyy=0
-    if isinstance(feature_list[0],list):
+    if isinstance(feature_list[0],list): # if feature_name in fuzzy_entropy:
+        # print("fuzzy entropy for %s" % feature_name)
         clean_feature_list=[]
         for i in feature_list:
             # l=[j for j in i]
@@ -264,7 +265,7 @@ def get_entropy(feature_name):
             sum+=-membership*p*math.log(p,2)
         entropyy=sum
     # entropy for range
-    elif (feature_name=='budget' or feature_name=='release_date' or feature_name=='revenue' or feature_name=='runtime'):
+    elif (feature_name in range_entropy):
         value,counts=np.unique(feature_list,return_counts=True)
         entropyy=entropy(counts,base=2)
         ranges=range_dict[feature_name]
@@ -331,11 +332,20 @@ budgetRange=[250000000,200000000,150000000,100000000,50000000,0]
 release_dateRange=['2010-12-31','2000-12-31','1990-12-31','1980-12-31']
 revenueRange=[1000000000,800000000,600000000,400000000,200000000,0]
 runtimeRange=[150,130,110,90,0]
+popularityRange=[50,40,30,20,10,0]
+vote_averageRange=[8,6,4,2,0]
+vote_countRange=[8000,6000,4000,2000,0]
+range_entropy=['budget','release_date','revenue','runtime','popularity','vote_average','vote_count']
+fuzzy_entropy=['genres','production_companies','production_countries','spoken_languages','characters','cast','keywords']
 range_dict={}
 range_dict['budget']=budgetRange
 range_dict['release_date']=release_dateRange
 range_dict['revenue']=revenueRange
 range_dict['runtime']=runtimeRange
+range_dict['popularity']=popularityRange
+range_dict['vote_average']=vote_averageRange
+range_dict['vote_count']=vote_countRange
+
 
 # from time import gmtime, strftime
 # logCrowd='logCrowd_'+strftime("%m%d_%H%M", gmtime())

@@ -153,6 +153,21 @@ def process_crew(processed_dict):
         screenplay_col+=[screenplay]
     return director_col, screenplay_col
 
+def process_keywords(processed_dict):
+    col=[]
+    for i in processed_dict['keywords']:
+        if (i!=i or i=='[]'):
+            i="[{'name':'null'}]"
+        list_i=ast.literal_eval(i)
+        keywords=[]
+        for j in list_i:
+            if (len(keywords)==0):
+                keywords+=[j['name']]
+            else:
+                keywords+=[', '+j['name']]
+        col+=[keywords]
+    return col
+
     
 def sampleSpecifics(processed_dict):
     imdb_ids=['tt3659388', 'tt1454468', 'tt1631867', 'tt0470752', 'tt2562232', 'tt0482571', 'tt2872718', 'tt0209144', 'tt1663202', 'tt2379713', 'tt0816711', 
@@ -186,11 +201,13 @@ def sampleSpecifics(processed_dict):
 def preprocess_dataset():
     df1=pd.read_csv('movies_metadata.csv')
     df2=pd.read_csv('credits.csv')
+    df3=pd.read_csv('keywords.csv')
     df1 = df1[df1.imdb_id != '0']
 
     df1['id'] = df1['id'].astype(int)
     # df2['id'] = df2['id'].astype(int)
-    df=pd.merge(df1,df2,on='id',sort=False)
+    df_temp=pd.merge(df1,df2,on='id',sort=False)
+    df=pd.merge(df_temp,df3,on='id',sort=False)
 
     # process data into a dictionary of many lists
     all_col=[]
@@ -213,7 +230,7 @@ def preprocess_dataset():
     #         f.write('\n\n')
         
 
-    multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection','cast','crew']
+    multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection','cast','crew','keywords']
     single_col=[col for col in all_col if col not in multi_col]
 
     processed_dict={}
@@ -234,6 +251,8 @@ def preprocess_dataset():
     # columns: characters, cast, crew
     processed_dict['characters'], processed_dict['cast']=process_cast(sampled_dict)
     processed_dict['director'], processed_dict['screenplay']=process_crew(sampled_dict)
+
+    processed_dict['keywords']=process_keywords(sampled_dict)
 
     # update df
     processed_df=pd.DataFrame()

@@ -458,7 +458,8 @@ const budgetOptions=[
     {value: '100 - 150 million', label:'100 - 150 million'},
     {value: '150 - 200 million', label:'150 - 200 million'},
     {value: '200 - 250 millon', label:'200 - 250 millon'},
-    {value: 'more than 250 million', label: 'more than 250 million'}
+    {value: 'more than 250 million', label: 'more than 250 million'},
+    notKnow,
 ];
 
 const release_dateDomain=['1987-07-17', '2017-10-25'];
@@ -468,6 +469,7 @@ const release_dateOptions=[
     {value: '1990 - 2000', label:'1990 - 2000'},
     {value: '2000 - 2010', label:'2000 - 2010'},
     {value: 'after 2010', label:'after 2010'},
+    notKnow,
 ];
 
 const revenueDomain=[0,1405403694];
@@ -478,6 +480,7 @@ const revenueOptions=[
     {value: '600 - 800 million', label:'600 - 800 million'},
     {value: '800 - 1000 million', label:'800 - 1000 million'},
     {value: 'more than 1000 million', label:'more than 1000 million'},
+    notKnow,
 ];
 
 const runtimeDomain=[0,165];
@@ -487,6 +490,35 @@ const runtimeOptions=[
     {value: '110 - 130 min', label:'110 - 130 min'},
     {value: '130 - 150 min', label:'130 - 150 min'},
     {value: 'more than 150 min', label:'more than 150 min'},
+    notKnow,
+];
+
+const popularityOptions=[
+    {value: '0 - 10', label: '0 - 10'},
+    {value: '10 - 20', label: '10 - 20'},
+    {value: '20 - 30', label: '20 - 30'},
+    {value: '30 - 40', label: '30 - 40'},
+    {value: '40 - 50', label: '40 - 50'},
+    {value: 'more than 50', label: 'more than 50'},
+    notKnow,
+];
+
+const vote_averageOptions=[
+    {value: '0 - 2', label: '0 - 2'},
+    {value: '2 - 4', label: '2 - 4'},
+    {value: '4 - 6', label: '4 - 6'},
+    {value: '6 - 8', label: '6 - 8'},
+    {value: '8 - 10', label: '8 - 10'},
+    notKnow,
+];
+
+const vote_countOptions=[
+    {value: '0 - 2000', label: '0 - 2000'},
+    {value: '2000 - 4000', label: '2000 - 4000'},
+    {value: '4000 - 6000', label: '4000 - 6000'},
+    {value: '6000 - 8000', label: '6000 - 8000'},
+    {value: 'more than 8000', label: 'more than 8000'},
+    notKnow,
 ];
     
 const allOptions={
@@ -501,30 +533,33 @@ const allOptions={
     'release_date': release_dateOptions,
     'revenue': revenueOptions,
     'runtime': runtimeOptions,
+    'popularity': popularityOptions,
+    'vote_average': vote_averageOptions,
+    'vote_count': vote_countOptions,
     };
     
 const questionsContent = [
         "id",
         "imdb_id",
         "belongs to collection",
-        "budget (For example, greater than $5,000,000)",
+        "budget range",
         "genres",
         "homepage",
         "original_language",
         "overview",
-        "popularity",
+        "popularity range",
         "poster_path",
         "production companies",
         "production countries",
-        "release_date (For example, 2015-2016)",
-        "revenue (For example, $1,000,000 - $2,000,000)",
-        "runtime (For example, 100 minutes - 120 minutes)",
+        "release_date range",
+        "revenue range",
+        "runtime range",
         "spoken_languages",
         "status",
         "tagline",
         "video",
-        "vote average",
-        "vote count",
+        "vote average range",
+        "vote count range",
         "adult (Is this movie R rated?)",
         "main characters",
         "main cast",
@@ -613,7 +648,8 @@ class Question extends React.Component {
         || q=='production_countries' || q=='adult' || q=='video'){
             answer=document.getElementsByName(q)[0].value;
         }
-        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime'){
+        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime'
+        || q=='popularity' || q=='vote_average' || q=='vote_count'){
             // const leftID='left'+q;
             // const rightID='right'+q;
             // answer=[document.getElementById(leftID).value,document.getElementById(rightID).value]
@@ -651,7 +687,8 @@ class Question extends React.Component {
             </h2>
           );
         }
-        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime' ){
+        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime'
+        || q=='popularity' || q=='vote_average' || q=='vote_count' ){
             const options=allOptions[q];
             return (
               <h2 key={this.props.questionId} className='question'>
