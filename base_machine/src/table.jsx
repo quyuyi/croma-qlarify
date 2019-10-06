@@ -622,43 +622,43 @@ class DataTable extends React.Component {
             //     },
             //     filterAll: true,
             // }, 
-            // {
-            //     Header: 'cast',
-            //     accessor: 'cast',
-            //     width: width,
-            //     style: textStyle,
-            //     Cell: row => (
-            //         <div className='verticalScroll'>{row.value}</div>
-            //     ),
-            //     filterMethod: (filter, rows) =>
-            //     matchSorter(rows, filter.value, { keys: ["director"] }),
-            //     Filter: ({filter,onChange}) => {
-            //         return (
-            //             <TextFilter
-            //             accessor='cast'
-            //             value={filter ? filter.value : ''}
-            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
-            //             />
-            //         );
-            //     },
-            //     filterAll: true,
-            // }, 
-            // {
-            //     Header: 'director',
-            //     accessor: 'director',
-            //     filterMethod: (filter, rows) =>
-            //     matchSorter(rows, filter.value, { keys: ["director"] }),
-            //     Filter: ({filter,onChange}) => {
-            //         return (
-            //             <TextFilter
-            //             accessor='director'
-            //             value={filter ? filter.value : ''}
-            //             onFilteredChangeCustom={this.onFilteredChangeCustom}
-            //             />
-            //         );
-            //     },
-            //     filterAll: true,
-            // }
+            {
+                Header: 'cast',
+                accessor: 'cast',
+                width: width,
+                style: textStyle,
+                Cell: row => (
+                    <div className='verticalScroll'>{row.value}</div>
+                ),
+                filterMethod: (filter, rows) =>
+                matchSorter(rows, filter.value, { keys: ["director"] }),
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <TextFilter
+                        accessor='cast'
+                        value={filter ? filter.value : ''}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        />
+                    );
+                },
+                filterAll: true,
+            }, 
+            {
+                Header: 'director',
+                accessor: 'director',
+                filterMethod: (filter, rows) =>
+                matchSorter(rows, filter.value, { keys: ["director"] }),
+                Filter: ({filter,onChange}) => {
+                    return (
+                        <TextFilter
+                        accessor='director'
+                        value={filter ? filter.value : ''}
+                        onFilteredChangeCustom={this.onFilteredChangeCustom}
+                        />
+                    );
+                },
+                filterAll: true,
+            }
         ]
        
         return( <div>

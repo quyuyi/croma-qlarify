@@ -98,7 +98,7 @@ def suggest_rules():
     # don't do this globally
     current_indices=[i for i in range(0,len(processed_dict['adult']))]
     global selected_features
-    selected_features=['title', 'original_title']
+    selected_features=['title', 'original_title', 'overview']
 
     print('original dataset size: ')
     print(len(current_indices))
@@ -270,6 +270,11 @@ def get_entropy(feature_name):
         entropyy=entropy(counts,base=2)
         ranges=range_dict[feature_name]
         range_counts=[0]*len(ranges)
+
+        if (feature_name=='budget' or feature_name=='revenue' or feature_name=='runtime' 
+        or feature_name=='popularity' or feature_name=='vote_average' or feature_name=='vote_count'):
+           value = [float(i) for i in value]
+
         for idx,v in enumerate(value):
             for index,point in enumerate(ranges):
                 if (v>point or v==point):

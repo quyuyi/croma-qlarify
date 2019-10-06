@@ -546,7 +546,7 @@ const questionsContent = [
         "genres",
         "homepage",
         "original_language",
-        "overview",
+        "overview (Briefly describe it with a sentence)",
         "popularity range",
         "poster_path",
         "production companies",
@@ -561,10 +561,11 @@ const questionsContent = [
         "vote average range",
         "vote count range",
         "adult (Is this movie R rated?)",
-        "main characters",
-        "main cast",
+        "main characters (list whomever you remember)",
+        "main cast (list whomever you remember)",
         "director",
         "screenplay",
+        "keywords (list whichever you remember)"
 ];
 
 // const questionsContent = [
@@ -611,6 +612,7 @@ const questions = [
     "main cast",
     "director",
     "screenplay",
+    "keywords"
 ];
 
 // const questions = [
