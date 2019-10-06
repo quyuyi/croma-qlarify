@@ -228,44 +228,32 @@ def compute_rules():
 
 from scipy.stats import entropy
 import math
-# TODO need change?
 # condition3 - compute entropy for each feature
 def get_entropy(feature_name):
-    # calculate entropy only based on the filtered dataset
     global current_indices
     feature_list=[processed_dict[feature_name][i] for i in current_indices]
-
-    # if (feature_name=='id'):
-    #     print(feature_list)
-
+    total=len(feature_list)
     labels=[]
-    # fuzzy entropy for multi-label case, e.g., genres
     entropyy=0
-    if isinstance(feature_list[0],list): # if feature_name in fuzzy_entropy:
-        # print("fuzzy entropy for %s" % feature_name)
+
+    # entropy for multi-label features
+    if isinstance(feature_list[0],list):
         clean_feature_list=[]
         for i in feature_list:
-            # l=[j for j in i]
-            # labels+=l
             clean_feature=[j[2:] if j[0]==',' else j for j in i]
             labels+=clean_feature
             clean_feature_list.append(clean_feature)
-            
         value,counts=np.unique(labels,return_counts=True)
-        # calculate fuzzy entropy
-        # H(A)=-sum(membership_A(x_i))P(x_i)logP(x_i)
-        sum=0
-        for idx,feature in enumerate(value):
-            total=0
-            for item in clean_feature_list:
-                if feature in item:
-                    total+=len(item)
-            membership=counts[idx]/total
-            p=counts[idx]/len(labels)
-            sum+=-membership*p*math.log(p,2)
-        entropyy=sum
-    # entropy for range
-    elif (feature_name in range_entropy):
+        print('**************************************')
+        print(feature_name)
+        print(value)
+        print(counts)
+        print('**************************************')
+        for idx,y in enumerate(value):
+            entropyy+=-counts[idx]/total*math.log(1/counts[idx],2)        
+
+    # entropy for range features
+    elif feature_name in range_entropy:
         value,counts=np.unique(feature_list,return_counts=True)
         entropyy=entropy(counts,base=2)
         ranges=range_dict[feature_name]
@@ -280,23 +268,29 @@ def get_entropy(feature_name):
                 if (v>point or v==point):
                     range_counts[index]+=counts[idx]
                     break
-        print('*******************************************************************************')
+        print('--------------------------------------')
         print(feature_name)
-        print(value)
-        print(counts)
-        print(ranges) # print the ranges hard coded by ourselves
-        print(range_counts) # print the distribution in terms of the ranges
-        print("******************************************************************************")
-        entropyy=entropy(range_counts,base=2)
-    # entropy for discrete values
+        print(ranges)
+        print(range_counts)
+        print('--------------------------------------')
+
+        for idx in range(0,len(ranges)):
+            if range_counts[idx]!=0:
+                entropyy+=-range_counts[idx]/total*math.log(1/range_counts[idx],2) 
+
+    # basic conditional entropy for single-label case
+    # H(X|Y)=sum(P[Y=y_i])H(X|Y=y_i), where
+    # H(X|Y=y)=-sum(P[X=x_i|Y=y]log(P)), since each movie is unique
+    # H(X|Y=y)=-log(P)=-log(1/(# of movies where Y=y))=-log(1/counts[y])
+    # so H(X|Y)=sum(counts[y_i]/total * -log(1/counts[y_i]))
     else:
         value,counts=np.unique(feature_list,return_counts=True)
-        entropyy=entropy(counts,base=2)
+        for idx,y in enumerate(value):
+            entropyy+=-counts[idx]/total*math.log(1/counts[idx],2)
 
     split=get_split(value,counts)
 
     return entropyy,split
-
 
 def get_split(value,counts):
     # only show the distribution of the top 5 frequent values
