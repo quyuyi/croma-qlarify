@@ -7,6 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
 import Submit from './submit.jsx';
 
+const testMovies=3;
+
 class Enduser2 extends React.Component {
 
   constructor(props) {
@@ -18,7 +20,7 @@ class Enduser2 extends React.Component {
         'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
         'Madagascar', 'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life"
         ],
-        showItems:5,
+        showItems:testMovies,
         showLinks:1,
         checks: new Array(20).fill(false),
         trueArr: [],
@@ -63,12 +65,12 @@ class Enduser2 extends React.Component {
   }
 
   handleShowMore() {
-      if (this.state.showItems >= this.state.movies.length-5){
+      if (this.state.showItems >= this.state.movies.length-testMovies){
           document.getElementById("show_more").style.display='none';
       }
       this.setState({
         showItems: this.state.showItems >= this.state.movies.length ?
-            this.state.showItems : this.state.showItems+5,
+            this.state.showItems : this.state.showItems+testMovies,
         numShowed: this.state.numShowed+1
       })
   }
@@ -82,11 +84,11 @@ class Enduser2 extends React.Component {
           }
       })
       console.log(trueArr)
-      if (trueArr.length>5) {
-          alert('You selected more than 5 movies, please only select 5.')
+      if (trueArr.length>testMovies) {
+          alert('You selected more than ',testMovies,' movies, please only select ', testMovies,'.');
       } 
-      else if (trueArr.length<5) {
-          if (this.state.numShowed < 3) {
+      else if (trueArr.length<testMovies) {
+          if (this.state.numShowed < testMovies) {
               alert('please go through all movies')
           } 
           else {
@@ -98,7 +100,7 @@ class Enduser2 extends React.Component {
           }
       } 
       else {
-        console.log('render the links to the 5 movies')
+        console.log('render the links to the ', testMovies ,' movies');
         this.setState({
             renderPage1: false,
             renderPage2: true,
@@ -116,7 +118,7 @@ class Enduser2 extends React.Component {
 
   handleBrowseNext() {
       this.setState({
-          showLinks: this.state.showLinks >= 5 ? this.state.showLinks : this.state.showLinks+1,
+          showLinks: this.state.showLinks >= testMovies ? this.state.showLinks : this.state.showLinks+1,
       })
   }
 
@@ -125,7 +127,7 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h2>
-            In this HIT, you will be asked to first select 5 movies that you have not seen before. Then you will be directed to a page on The Movie Database for each movie. After viewing some information about these movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance. 
+            In this HIT, you will be asked to first select {testMovies} movies that you have not seen before. Then you will be directed to a page on The Movie Database for each movie. After viewing some information about these movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance. 
             <br></br>
             Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
             </h2>
@@ -140,11 +142,11 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h2>
-            Please select 5 movies you have never watched before. Click show more if the movies shown are not enough for you to select 5. 
+            Please select {testMovies} movies you have never watched before. Click show more if the movies shown are not enough for you to select {testMovies}. 
             <br></br>
-            Click next if you have selected 5 movies. 
+            Click next if you have selected {testMovies} movies. 
             <br></br>
-            If you have gone through the entire list, and still don't have a list of 5 movies, you can also click next to proceed. 
+            If you have gone through the entire list, and still don't have a list of {testMovies} movies, you can also click next to proceed. 
             </h2>
         </div>
         </div>
@@ -230,7 +232,7 @@ class Enduser2 extends React.Component {
                 <div>
                     {this.renderPage2Instruction()}
                     {this.renderMovieLinks()}
-                    {this.state.showLinks==5 ? 
+                    {this.state.showLinks==testMovies ? 
                     <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button> :
                     <Button variant="dark" onClick={this.handleBrowseNext.bind(this)}>Browse Next Movie</Button>
                     }
@@ -244,12 +246,12 @@ class Enduser2 extends React.Component {
             <div>
                 <div className='questions-header'>
                     <h2>
-                        You have gone through all the movies and have a list of unwatched movies less than 5. Click Submit HIT to submit HIT.
+                        You have gone through all the movies and have a list of unwatched movies less than {testMovies}. Click Submit HIT to submit HIT.
                     </h2>
                 </div>
               <Submit
               movieIndex={-1}
-              result='cannot find a list of 5 unwatched movies after going through all the movies'
+              result='cannot find a list of enough unwatched movies after going through all the movies'
               condition='end_user'
               />
             </div>

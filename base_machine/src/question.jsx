@@ -450,6 +450,44 @@ const videoOptions=[
     {value: 'False', label: 'False'},  
     notKnow,    
     ];
+
+const budgetDomain=[0,280000000];
+const budgetOptions=[
+    {value: '0 - 50 million', label:'0 - 50 million'},
+    {value: '50 - 100 million', label:'50 - 100 million'},
+    {value: '100 - 150 million', label:'100 - 150 million'},
+    {value: '150 - 200 million', label:'150 - 200 million'},
+    {value: '200 - 250 millon', label:'200 - 250 millon'},
+    {value: 'more than 250 million', label: 'more than 250 million'}
+];
+
+const release_dateDomain=['1987-07-17', '2017-10-25'];
+const release_dateOptions=[
+    {value: 'before 1980', label:'before 1980'},
+    {value: '1980 - 1990', label:'1980 - 1990'},
+    {value: '1990 - 2000', label:'1990 - 2000'},
+    {value: '2000 - 2010', label:'2000 - 2010'},
+    {value: 'after 2010', label:'after 2010'},
+];
+
+const revenueDomain=[0,1405403694];
+const revenueOptions=[
+    {value: '0 - 200 million', label:'0 - 200 million'},
+    {value: '200 - 400 million', label:'200 - 400 million'},
+    {value: '400 - 600 million', label:'400 - 600 million'},
+    {value: '600 - 800 million', label:'600 - 800 million'},
+    {value: '800 - 1000 million', label:'800 - 1000 million'},
+    {value: 'more than 1000 million', label:'more than 1000 million'},
+];
+
+const runtimeDomain=[0,165];
+const runtimeOptions=[
+    {value: '0 - 90 min', label:'0 - 90 min'},
+    {value: '90 - 110 min', label:'90 - 110 min'},
+    {value: '110 - 130 min', label:'110 - 130 min'},
+    {value: '130 - 150 min', label:'130 - 150 min'},
+    {value: 'more than 150 min', label:'more than 150 min'},
+];
     
 const allOptions={
     'genres': genresOptions,
@@ -459,6 +497,10 @@ const allOptions={
     'production_countries': production_countriesOptions,
     'adult': adultOptions,
     'video': videoOptions,
+    'budget': budgetOptions,
+    'release_date': release_dateOptions,
+    'revenue': revenueOptions,
+    'runtime': runtimeOptions,
     };
     
 const questionsContent = [
@@ -483,7 +525,11 @@ const questionsContent = [
         "video",
         "vote average",
         "vote count",
-        "adult (Is this movie R rated?)"
+        "adult (Is this movie R rated?)",
+        "main characters",
+        "main cast",
+        "director",
+        "screenplay",
 ];
 
 // const questionsContent = [
@@ -525,7 +571,11 @@ const questions = [
     "video",
     "vote_average",
     "vote_count",
-    "adult"
+    "adult",
+    "main characters",
+    "main cast",
+    "director",
+    "screenplay",
 ];
 
 // const questions = [
@@ -563,6 +613,12 @@ class Question extends React.Component {
         || q=='production_countries' || q=='adult' || q=='video'){
             answer=document.getElementsByName(q)[0].value;
         }
+        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime'){
+            // const leftID='left'+q;
+            // const rightID='right'+q;
+            // answer=[document.getElementById(leftID).value,document.getElementById(rightID).value]
+            answer=document.getElementsByName(q)[0].value;
+        }
         else{
             answer=document.getElementById(q).value;
         }
@@ -595,6 +651,24 @@ class Question extends React.Component {
             </h2>
           );
         }
+        else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime' ){
+            const options=allOptions[q];
+            return (
+              <h2 key={this.props.questionId} className='question'>
+                {content}
+                <Select name={q} options={options} />
+              </h2>
+            );
+            // const leftID='left'+q;
+            // const rightID='right'+q;
+            // return (
+            //     <h2 key={this.props.questionId} className='question'>
+            //         {content} 
+            //         <br></br>
+            //         <input autoFocus id={leftID} type="text" /> - <input id={rightID} type="text" />
+            //     </h2>
+            // )
+        }
         else {
           return (
             <h2 key={this.props.questionId} className='question'>
@@ -609,23 +683,41 @@ class Question extends React.Component {
 
     render () {
         return (
-            <CSSTransition
-            className="container"
-            component="div"
-            timeout={200}
-            // transitionName="fade"
-            // transitionEnterTimeout={800}
-            // transitionLeaveTimeout={500}
-            // transitionAppear
-            // transitionAppearTimeout={500}
-            >
+            // <CSSTransition
+            // className="container"
+            // component="div"
+            // timeout={200}
+            // // transitionName="fade"
+            // // transitionEnterTimeout={800}
+            // // transitionLeaveTimeout={500}
+            // // transitionAppear
+            // // transitionAppearTimeout={500}
+            // >
 
+            // <div key={this.props.questionId}>
+            //     <QuestionCount counter={this.props.questionId+1}/>
+            //     {this.renderQuestion()}
+            //     <Button size='lg' variant="secondary" onClick={()=>this.onClickNext()} block>Next</Button>
+            // </div>
+            // </CSSTransition>
+            <div>
             <div key={this.props.questionId}>
                 <QuestionCount counter={this.props.questionId+1}/>
                 {this.renderQuestion()}
                 <Button size='lg' variant="secondary" onClick={()=>this.onClickNext()} block>Next</Button>
             </div>
-            </CSSTransition>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            </div>
         );
         
     }

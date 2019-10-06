@@ -106,7 +106,12 @@ def process_cast(processed_dict):
             i="[{'character':'null', 'name':'null'}]"
         list_i=ast.literal_eval(i)
 
-        for j in list_i:
+        l=len(list_i)
+        if (5<l):
+            l=5
+        for k in range(0,l):
+            j= list_i[k]
+        # for j in list_i:
             if (j['character']=='Himself' or j['character']=='Herself'):
                 if (len(characters)==0):
                     characters+=[j['name']]
@@ -127,17 +132,26 @@ def process_cast(processed_dict):
 
 def process_crew(processed_dict):
     director_col=[]
+    screenplay_col=[]
     for i in processed_dict['crew']:
         if (i!=i or i=='[]'):
-            i="[{'job':'Director', 'name':'null'}]"
+            # i="[{'job':'Director', 'name':'null'}]"
+            i="[{'name':'null'}]"
         list_i=ast.literal_eval(i)
         director='null'
+        screenplay='null'
+        checkDir=True
+        checkScr=True
         for j in list_i:
-            if (j['job']=='Director'):
+            if (j['job']=='Director') and checkDir:
                 director=j['name']
-                break
+                checkDir=False
+            if (j['job']=='Screenplay') and checkScr:
+                screenplay=j['name']
+                checkScr=False
         director_col+=[director]
-    return director_col
+        screenplay_col+=[screenplay]
+    return director_col, screenplay_col
 
     
 def sampleSpecifics(processed_dict):
@@ -188,6 +202,17 @@ def preprocess_dataset():
     # sampled_dict=sample99(raw_dict)
     sampled_dict=sampleSpecifics(raw_dict)
 
+    # with open('crew_instances.txt','a', encoding='utf-8') as f:
+    #     for i in range(0,5):
+    #         b=sampled_dict['crew'][i]
+    #         bb=ast.literal_eval(b)
+    #         for item in bb:
+    #             f.write(str(item))
+    #             f.write('\n')
+    #         f.write("*********************************")
+    #         f.write('\n\n')
+        
+
     multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection','cast','crew']
     single_col=[col for col in all_col if col not in multi_col]
 
@@ -208,7 +233,7 @@ def preprocess_dataset():
 
     # columns: characters, cast, crew
     processed_dict['characters'], processed_dict['cast']=process_cast(sampled_dict)
-    processed_dict['director']=process_crew(sampled_dict)
+    processed_dict['director'], processed_dict['screenplay']=process_crew(sampled_dict)
 
     # update df
     processed_df=pd.DataFrame()

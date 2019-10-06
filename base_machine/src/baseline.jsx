@@ -13,6 +13,10 @@ class Baseline extends React.Component {
     super(props);
   }
 
+  renderInstruction() {
+    
+  }
+
   render(){
 
       return (
