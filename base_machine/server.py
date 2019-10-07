@@ -210,7 +210,8 @@ def compute_rules():
                 rank+=equal
                 equal=1
         # calculate scaled entropy
-        scaled=10-10*(ele[1]-min_entropy)/(max_entropy-min_entropy)
+        scaled=10*(ele[1]-min_entropy)/(max_entropy-min_entropy)
+        print(scaled)
         rules+=[{
             'id': index+1,
             'feature': ele[0],
