@@ -166,7 +166,7 @@ def compute_rules():
     for item in processed_dict:
         entropies[item],split[item] = get_entropy(item)
 
-    ranked_indices=sorted(entropies.items(),key=lambda kv:kv[1],reverse=True)
+    ranked_indices=sorted(entropies.items(),key=lambda kv:kv[1],reverse=False)
 
     # not show the previously selected features as options
     # filtered_ranked=[item[0] for item in ranked_indices if item[0] not in selected_features ]
@@ -210,7 +210,7 @@ def compute_rules():
                 rank+=equal
                 equal=1
         # calculate scaled entropy
-        scaled=10*(ele[1]-min_entropy)/(max_entropy-min_entropy)
+        scaled=10-10*(ele[1]-min_entropy)/(max_entropy-min_entropy)
         rules+=[{
             'id': index+1,
             'feature': ele[0],
@@ -233,6 +233,10 @@ def get_entropy(feature_name):
     global current_indices
     feature_list=[processed_dict[feature_name][i] for i in current_indices]
     total=len(feature_list)
+    if isinstance(feature_list[0], list):
+        total=0
+        for feature in feature_list:
+            total+=len(feature)
     labels=[]
     entropyy=0
 
@@ -255,7 +259,7 @@ def get_entropy(feature_name):
     # entropy for range features
     elif feature_name in range_entropy:
         value,counts=np.unique(feature_list,return_counts=True)
-        entropyy=entropy(counts,base=2)
+        # entropyy=entropy(counts,base=2)
         ranges=range_dict[feature_name]
         range_counts=[0]*len(ranges)
 
