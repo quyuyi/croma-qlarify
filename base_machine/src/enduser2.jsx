@@ -8,6 +8,7 @@ import Questions from './questions.jsx';
 import Submit from './submit.jsx';
 
 const testMovies=3;
+const showMovies=10;
 
 class Enduser2 extends React.Component {
 
@@ -24,7 +25,7 @@ class Enduser2 extends React.Component {
         'World War Z', 'The Amazing Spider-Man 2', 'Monsters, Inc.', 'Ant-Man', 'X-Men: Apocalypse', 'Thor', 
         'Batman v Superman: Dawn of Justice', 'Shrek Forever After', 'Madagascar',
         ],
-        showItems:testMovies,
+        showItems:showMovies,
         showLinks:1,
         checks: new Array(40).fill(false),
         trueArr: [],
@@ -89,12 +90,12 @@ class Enduser2 extends React.Component {
   }
 
   handleShowMore() {
-      if (this.state.showItems >= this.state.movies.length-testMovies){
+      if (this.state.showItems >= this.state.movies.length-showMovies){
           document.getElementById("show_more").style.display='none';
       }
       this.setState({
         showItems: this.state.showItems >= this.state.movies.length ?
-            this.state.showItems : this.state.showItems+testMovies,
+            this.state.showItems : this.state.showItems+showMovies,
         numShowed: this.state.numShowed+1
       })
   }
@@ -112,7 +113,7 @@ class Enduser2 extends React.Component {
           alert('You selected more than ',testMovies,' movies, please only select ', testMovies,'.');
       } 
       else if (trueArr.length<testMovies) {
-          if (this.state.numShowed < testMovies) {
+          if (this.state.numShowed < 3) {
               alert('please go through all movies')
           } 
           else {
