@@ -21,7 +21,7 @@ class Entropy extends React.Component {
                 accessor: 'rank',
             },
             {
-                Header: 'Feature',
+                Header: 'Question',
                 accessor: 'feature',
             },
             {
