@@ -16,7 +16,8 @@ class Enduser2 extends React.Component {
     super(props);
     this.state = {
         movies: [
-        'X-Men: The Last Stand', 'The Wolverine', 'Kung Fu Panda 2', 
+        'X-Men: The Last Stand', 'The Wolverine', 
+        // 'Kung Fu Panda 2', 
         'District 9', "Ender's Game", 'RoboCop', 'Captain Phillips',
         'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
         'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life", 
@@ -27,7 +28,7 @@ class Enduser2 extends React.Component {
         ],
         showItems:showMovies,
         showLinks:1,
-        checks: new Array(40).fill(false),
+        checks: new Array(39).fill(false),
         trueArr: [],
         renderPage2: false,
         renderPage3: false,
@@ -37,7 +38,7 @@ class Enduser2 extends React.Component {
         links: [
             'https://www.themoviedb.org/movie/36668-x-men-the-last-stand?language=en-US',
             'https://www.themoviedb.org/movie/76170-the-wolverine?language=en-US',
-            'https://www.themoviedb.org/movie/49444-kung-fu-panda-2?language=en-US',
+            // 'https://www.themoviedb.org/movie/49444-kung-fu-panda-2?language=en-US',
             'https://www.themoviedb.org/movie/17654-district-9?language=en-US',
             'https://www.themoviedb.org/movie/80274-ender-s-game?language=en-US',
             'https://www.themoviedb.org/movie/97020-robocop?language=en-US',

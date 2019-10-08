@@ -31,7 +31,7 @@ class Baseline extends React.Component {
               Can you make the trade-off and select a question that is easy to answer, but also provides the most information to narrow down the possible movies? 
             </p>
             <p>
-              We will review your response, and will give a bonus of $0.3 if you asked an easy to answer yet useful question that largely reduces the number of movies.
+              We will review your response, and will give a bonus of $0.2 if you asked an easy to answer yet useful question that largely reduces the number of movies.
             </p>
           </h2>
       </div>

@@ -50,7 +50,7 @@ class Condition3 extends React.Component {
                 To help you, we ranked the questions by how useful the expected answers are. We attached a score for each question, the higher the score, the more useful. Please go down the ranking and choose one that is most useful but also easy to answer.
                 </p>
                 <p>
-                  We will review your response, and will give a bonus of $0.3 if you asked an easy to answer yet useful question that largely narrows down the number of movies.
+                  We will review your response, and will give a bonus of $0.2 if you asked an easy to answer yet useful question that largely narrows down the number of movies.
                 </p>
               </h2>
           </div>
@@ -91,16 +91,16 @@ class Condition3 extends React.Component {
             <Container>
                 {this.renderInstruction()}
                 <Row>
-                    <Col sm md={3}>
-                        <Entropy 
-                        rules={this.state.rules} 
-                        loading={this.state.loading}
-                        />
-                    </Col>
                     <Col sm md={6}>
                         <TableNoFilter 
                         callbackFromParent={this.myCallback} 
                         checkFinishLoading={this.props.checkFinishLoading}
+                        />
+                    </Col>
+                    <Col sm md={3}>
+                        <Entropy 
+                        rules={this.state.rules} 
+                        loading={this.state.loading}
                         />
                     </Col>
                     <Col sm md={3}>

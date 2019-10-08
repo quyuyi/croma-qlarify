@@ -1,6 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import Submit from './submit.jsx';
+import Button from 'react-bootstrap/Button';
 
 
 class Ask extends React.Component {
@@ -11,8 +12,13 @@ class Ask extends React.Component {
 
             selectedOption: null,
             startTime: null,
+            endTime: null,
             first: true,
             loading: false,
+            showTest: true,
+            showReal: false,
+            showSubmit: false,
+            testAnswer: ''
         };
     }
 
@@ -24,8 +30,59 @@ class Ask extends React.Component {
         this.setState({ selectedOption : e.value });
       };
 
-    render(){
+    onClickNext() {
+        let answer = document.getElementById('testQuestion').value
+        if(answer == ''){
+            alert('Please input an answer to proceed')
+        } else {
+            this.setState({ showTest : false, showReal: true, testAnswer:answer, startTime: new Date() });
+        }
+    }
 
+    renderTestQuestion() {
+        if(this.state.showTest){
+            return(
+                <div>
+                    <p>
+                        To test your understanding, please list the 3 most useful questions based on the ranking. 
+                    </p>
+                    <input autoFocus id='testQuestion' type="text" />
+                    <Button variant="secondary" onClick={()=>this.onClickNext()} >Next</Button>
+    
+                </div>
+            )
+        }
+    }
+
+    renderSubmit(){
+
+        let finalResult = {
+            testAnswer: this.state.testAnswer,
+            selected: this.state.selectedOption,
+            timeTaken: (this.state.endTime - this.state.startTime)/1000
+        }
+
+        if(this.state.showSubmit) {
+            return (
+                <div>
+                    <p>
+                        You have completed the task. Thank you!
+                    </p>
+                    <Submit
+                movieIndex="where to get movie index?"
+                result={finalResult}
+                condition={this.props.condition}
+                /> 
+                </div>
+            )
+        }
+    }
+
+    showSubmit() {
+        this.setState({ showReal : false, showSubmit: true, endTime: new Date });
+    }
+
+    renderRealQuestion() {
         const options = [
             { value: 'id', label: 'what is the id' },
             { value: 'imdb_id', label: 'what is the imdb id' },
@@ -57,20 +114,32 @@ class Ask extends React.Component {
             { value: 'screenplay', label: 'who is the screenplay' },
             { value: 'keywords', label: 'name a keyword listed on TMDB' },
         ]
+        if(this.state.showReal){
+            return(
+                <div>
+                    <p>
+                    Click on the dropdown to select a question. (Hint: Go down the ranking and choose one that's useful but also easy to answer)
+                    </p>
+                    <Select
+                        onChange={this.handleChange.bind(this)}
+                        options={options}
+                    />
+
+                    <Button variant="secondary" onClick={()=>this.showSubmit()} >Next</Button>
+
+                </div>
+            )
+        }
+    }
+
+    render(){
 
         return (
             <div>
-                <Select
-                    onChange={this.handleChange.bind(this)}
-                    options={options}
-                />
 
-                <Submit
-                movieIndex="where to get movie index?"
-                result={this.state.selectedOption}
-                condition={this.props.condition}
-                />
-
+                {this.renderTestQuestion()}
+                {this.renderRealQuestion()}
+                {this.renderSubmit()}
             </div>
         );
     }
