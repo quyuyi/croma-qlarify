@@ -143,9 +143,9 @@ class Ask extends React.Component {
                     <p>
                     Based on the ranking, please select a helpful yet easy to answer question.
                     </p>
-                    {/* <p>
+                    <p>
                     We will review your question and award you a bonus of $0.2 if your question is helpful and also easy to answer.
-                    </p> */}
+                    </p>
                     <Select
                         onChange={this.handleChange.bind(this)}
                         options={options}

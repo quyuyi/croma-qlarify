@@ -47,12 +47,6 @@ class Condition3 extends React.Component {
                 <p>
                     You will be asked to go through a short tutorial first.
                 </p>
-                {/* <p>
-                To help you, we ranked the questions by how useful the expected answers are. We attached a score for each question, the higher the score, the more useful. Please go down the ranking and choose one that is most useful but also easy to answer.
-                </p>
-                <p>
-                  We will review your response, and will give a bonus of $0.2 if you asked an easy to answer yet useful question that largely narrows down the number of movies.
-                </p> */}
               </h5>
           </div>
           </div>
