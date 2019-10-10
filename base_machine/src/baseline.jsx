@@ -17,7 +17,6 @@ class Baseline extends React.Component {
     return (
       <div>
       <div className='questions-header'>
-          <h2>
             <p>
               Imagine a scenario when a person is looking for a movie that he browsed on TMDB(The Movie DataBase) a week ago, but no longer remembers the title. You are given 60 possible movies and a list of questions based on the metadata of the movies (click dropdown to see the questions.)
             </p>
@@ -33,7 +32,6 @@ class Baseline extends React.Component {
             <p>
               We will review your response, and will give a bonus of $0.2 if you asked an easy to answer yet useful question that largely reduces the number of movies.
             </p>
-          </h2>
       </div>
       </div>
     );

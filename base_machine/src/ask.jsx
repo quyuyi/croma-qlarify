@@ -44,7 +44,7 @@ class Ask extends React.Component {
             return(
                 <div>
                     <p>
-                        To test your understanding, please list the 3 most useful questions based on the ranking. 
+                        To test your understanding, please tell us the most useful question among 1) What is the original language, 2) What is the tagline , and 3) What is the genre, based on the ranking.
                     </p>
                     <input autoFocus id='testQuestion' type="text" />
                     <Button variant="secondary" onClick={()=>this.onClickNext()} >Next</Button>

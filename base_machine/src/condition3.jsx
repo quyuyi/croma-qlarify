@@ -33,14 +33,12 @@ class Condition3 extends React.Component {
         return (
           <div>
           <div className='questions-header'>
-              <h2>
+              <h5>
                 <p>
-                  Imagine a scenario when a person is looking for a movie that he browsed on TMDB(The Movie DataBase) a week ago, but no longer remembers the title. You are given 60 possible movies and a list of questions based on the metadata of the movies (click dropdown to see the questions.)
+                  Imagine a scenario when a person is looking for a movie that he browsed on TMDB(The Movie DataBase) a week ago, but no longer remembers the title. You are given 2 possible movies and a list of questions based on the metadata of the movies (click dropdown to see the questions.)
                 </p>
                 <p>
                   Some of the questions give useful answers, but may require knowledge that is hard to recall or not possessed by the end user. (ex. if we find out the serial number of a computer, we know exactly what the computer is.)
-                </p>
-                <p>
                 Some of the questions are easy to answer but not so useful. (ex. whether or not the computer has a screen)
                 </p>
                 <p>
@@ -52,7 +50,7 @@ class Condition3 extends React.Component {
                 <p>
                   We will review your response, and will give a bonus of $0.2 if you asked an easy to answer yet useful question that largely narrows down the number of movies.
                 </p>
-              </h2>
+              </h5>
           </div>
           </div>
         );
