@@ -18,7 +18,8 @@ class Ask extends React.Component {
             showTest: true,
             showReal: false,
             showSubmit: false,
-            testAnswer: ''
+            tutorialAnsHelp: '',
+            tutorialAnsEasy: ''
         };
     }
 
@@ -31,11 +32,13 @@ class Ask extends React.Component {
       };
 
     onClickNext() {
-        let answer = document.getElementById('testQuestion').value
-        if(answer == ''){
+        let answerHelp = document.getElementById('testQuestionHelp').value;
+        let answerEasy = document.getElementById('testQuestionEasy').value;
+
+        if(answerHelp == '' || answerEasy == ''){
             alert('Please input an answer to proceed')
         } else {
-            this.setState({ showTest : false, showReal: true, testAnswer:answer, startTime: new Date() });
+            this.setState({ showTest : false, showReal: true, tutorialAnsHelp:answerHelp, tutorialAnsEasy:answerEasy, startTime: new Date() });
         }
     }
 
@@ -44,9 +47,27 @@ class Ask extends React.Component {
             return(
                 <div>
                     <p>
-                        To test your understanding, please tell us the most useful question among 1) What is the original language, 2) What is the tagline , and 3) What is the genre, based on the ranking.
+                        Tutorial
                     </p>
-                    <input autoFocus id='testQuestion' type="text" />
+                    <p>
+                        The ranking in the middle ranks the questions by how helpful the answer is. The questions with a higher score give you a more helpful answer.
+                    </p>
+                    <p>
+                        But a helpful question may not be easy to answer.
+                    </p>
+                    <p>
+                        Among the questions below: 
+                    </p>
+                    <p>
+                        <ul>
+                            <li>A.What is the id of the movie</li>
+                            <li>B.What is the spoken language of the movie</li>
+                        </ul>
+                    </p>
+                    <p>Enter the more helpful question</p>
+                    <input autoFocus id='testQuestionHelp' type="text" />
+                    <p>Enter the easier to answer question</p>
+                    <input autoFocus id='testQuestionEasy' type="text" />
                     <Button variant="secondary" onClick={()=>this.onClickNext()} >Next</Button>
     
                 </div>
@@ -57,7 +78,8 @@ class Ask extends React.Component {
     renderSubmit(){
 
         let finalResult = {
-            testAnswer: this.state.testAnswer,
+            tutorialAnsEasy: this.state.tutorialAnsEasy,
+            tutorialAnsHelp: this.state.tutorialAnsHelp,
             selected: this.state.selectedOption,
             timeTaken: (this.state.endTime - this.state.startTime)/1000
         }
@@ -117,9 +139,13 @@ class Ask extends React.Component {
         if(this.state.showReal){
             return(
                 <div>
+                    <p>Task</p>
                     <p>
-                    Click on the dropdown to select a question. (Hint: Go down the ranking and choose one that's useful but also easy to answer)
+                    Based on the ranking, please select a helpful yet easy to answer question.
                     </p>
+                    {/* <p>
+                    We will review your question and award you a bonus of $0.2 if your question is helpful and also easy to answer.
+                    </p> */}
                     <Select
                         onChange={this.handleChange.bind(this)}
                         options={options}
