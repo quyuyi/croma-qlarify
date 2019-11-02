@@ -15,6 +15,19 @@ class Enduser2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+        // movies to update
+        // the thin red line
+        // the other guys
+        // 21 jump street
+        // gravity
+        // payment on demand
+        // Race the Sun
+        // reality bites
+        // the revenant
+        // prometheus
+        // the prestige
+        // nemesis
+
         movies: [
         'X-Men: The Last Stand', 'The Wolverine', 
         // 'Kung Fu Panda 2', 
@@ -152,11 +165,11 @@ class Enduser2 extends React.Component {
       return (
         <div>
         <div className='questions-header'>
-            <h2>
-            In this HIT, you will be asked to first select {testMovies} movies that you have not seen before. Then you will be directed to a page on The Movie Database for each movie. After viewing some information about these movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance. 
+            <h4>
+            In this HIT, you will be asked to first select a movie that you have not seen before. Then you will be directed to a page on The Movie Database for the movie. After viewing some information about the movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance. 
             <br></br>
             Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
-            </h2>
+            </h4>
         </div>
         <Button variant="dark" onClick={this.handleStart.bind(this)} block>Start</Button>
         </div>
@@ -167,13 +180,13 @@ class Enduser2 extends React.Component {
     return (
         <div>
         <div className='questions-header'>
-            <h2>
+            <h4>
             Please select {testMovies} movies you have never watched before. Click show more if the movies shown are not enough for you to select {testMovies}. 
             <br></br>
             Click next if you have selected {testMovies} movies. 
             <br></br>
             If you have gone through the entire list, and still don't have a list of {testMovies} movies, you can also click next to proceed. 
-            </h2>
+            </h4>
         </div>
         </div>
       );
@@ -183,9 +196,9 @@ class Enduser2 extends React.Component {
     return (
         <div>
         <div className='questions-header'>
-            <h2>
+            <h4>
             Please click on the link to find out more about the movie. Pretend you are looking for a movie to watch and need to decide whether or not you will watch this movie later. 
-            </h2>
+            </h4>
         </div>
         </div>
       );

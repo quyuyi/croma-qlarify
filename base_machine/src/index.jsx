@@ -94,7 +94,7 @@ class App extends React.Component {
           // submitHIT= {this.submitHIT}
           />
         </div>
-      )   
+      )
     }
     if (condition == "condition3") {
       return (
@@ -138,7 +138,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'condition3';
+    const condition = 'end-user2';
       return (
         <div>
           {this.handleConditions(condition)}
