@@ -36,7 +36,7 @@ class Ask extends React.Component {
         let answerEasy = document.getElementById('testQuestionEasy').value;
 
         if(answerHelp == '' || answerEasy == ''){
-            alert('Please input an answer to proceed')
+            alert('Please answer the tutorial questions.')
         } else {
             this.setState({ showTest : false, showReal: true, tutorialAnsHelp:answerHelp, tutorialAnsEasy:answerEasy, startTime: new Date() });
         }
@@ -66,6 +66,13 @@ class Ask extends React.Component {
                     <input autoFocus id='testQuestionHelp' type="text" />
                     <p>Enter the easier to answer question</p>
                     <input id='testQuestionEasy' type="text" />
+                    </p>
+
+                    // <p>Enter the more helpful question (A helpful question narrows down the 60 movies to a smaller list)</p>
+                    // <input autoFocus id='testQuestionHelp' type="text" />
+                    // <p>Enter the easier to answer question (Imagine you browsed the movie on TMDB last week)</p>
+                    // <input autoFocus id='testQuestionEasy' type="text" />
+                    
                     <Button variant="secondary" onClick={()=>this.onClickNext()} >Next</Button>
     
                 </div>

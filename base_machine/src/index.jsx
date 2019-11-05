@@ -89,7 +89,7 @@ class App extends React.Component {
           <Enduser
           />
         </div>
-      )   
+      )
     }
 
     if (condition == "condition3") {
@@ -131,7 +131,7 @@ class App extends React.Component {
 
   render(){
 
-    const condition = 'condition3';
+    const condition = 'end-user2';
       return (
         <div>
           {this.handleConditions(condition)}

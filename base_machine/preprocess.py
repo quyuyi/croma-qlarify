@@ -135,8 +135,8 @@ def process_crew(processed_dict):
     screenplay_col=[]
     for i in processed_dict['crew']:
         if (i!=i or i=='[]'):
-            # i="[{'job':'Director', 'name':'null'}]"
-            i="[{'name':'null'}]"
+            i="[{'job':'null', 'name':'null'}]"
+            # i="[{'name':'null'}]"
         list_i=ast.literal_eval(i)
         director='null'
         screenplay='null'
@@ -216,19 +216,10 @@ def preprocess_dataset():
         all_col+=[col]
         raw_dict[col]=list(df[col])
 
-    # sampled_dict=sample99(raw_dict)
-    sampled_dict=sampleSpecifics(raw_dict)
-
-    # with open('crew_instances.txt','a', encoding='utf-8') as f:
-    #     for i in range(0,5):
-    #         b=sampled_dict['crew'][i]
-    #         bb=ast.literal_eval(b)
-    #         for item in bb:
-    #             f.write(str(item))
-    #             f.write('\n')
-    #         f.write("*********************************")
-    #         f.write('\n\n')
-        
+    # # sample from the whole dataset
+    # # sampled_dict=sample99(raw_dict)
+    # sampled_dict=sampleSpecifics(raw_dict)
+    sampled_dict = raw_dict   
 
     multi_col=['genres','production_companies','production_countries','spoken_languages','belongs_to_collection','cast','crew','keywords']
     single_col=[col for col in all_col if col not in multi_col]
@@ -281,3 +272,13 @@ def preprocess_dataset():
 #     for item in bb:
 #         f.write(str(item))
 #         f.write('\n')
+
+# with open('crew_instances.txt','a', encoding='utf-8') as f:
+#     for i in range(0,5):
+#         b=sampled_dict['crew'][i]
+#         bb=ast.literal_eval(b)
+#         for item in bb:
+#             f.write(str(item))
+#             f.write('\n')
+#         f.write("*********************************")
+#         f.write('\n\n')

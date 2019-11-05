@@ -8,6 +8,7 @@ import Entropy from './entropy.jsx';
 import Ask from './ask.jsx';
 import TableNoFilter from './tablenofilter.jsx';
 import ChatHistory from "./chathistory.jsx";
+import Button from 'react-bootstrap/Button';
 
 const round=3;
 
@@ -18,6 +19,7 @@ class Condition3 extends React.Component {
         this.state = {
             rules: [],
             loading: true,
+            showTutorial: false
         };
     
         this.myCallback = this.myCallback.bind(this);
@@ -39,7 +41,7 @@ class Condition3 extends React.Component {
                   Imagine a scenario when a person is looking for a movie that he browsed on TMDB(The Movie DataBase) a week ago, but no longer remembers the title. 
                 </p>
                 <p>
-                    The movie is one of the 60 movies on the left. 
+                    The movie is one of the 60 movies that will be shown when you start the tutorial. 
                 </p>
                 <p>
                     Your task is to ask a question that is easy for the person to answer, but also gives you a helpful answer to find the movie.
@@ -79,13 +81,17 @@ class Condition3 extends React.Component {
         });
     }
 
+    startTutorial() {
+        this.setState({
+            showTutorial: true,
+        });
+    }
 
-  render(){
-      return (
-        <div>
-            <Container>
-                {this.renderInstruction()}
-                <Row>
+    renderTutorial(){
+        if(this.state.showTutorial) {
+            return(
+                <div>
+                    <Row>
                     <Col sm md={6}>
                         <TableNoFilter 
                         callbackFromParent={this.myCallback} 
@@ -111,6 +117,26 @@ class Condition3 extends React.Component {
                         />
                     </Col>
                 </Row>
+                </div>
+
+            )
+        } else {
+            return(
+                <div>
+                    <Button variant="secondary" onClick={()=>this.startTutorial()} block>Start Tutorial</Button>
+                </div>
+            )
+        }
+    }
+    
+
+
+  render(){
+      return (
+        <div>
+            <Container>
+                {this.renderInstruction()}
+                {this.renderTutorial()}
             </Container>
             
             
