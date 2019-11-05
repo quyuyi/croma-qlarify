@@ -15,17 +15,17 @@ class Enduser2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        movies: [
-        'X-Men: The Last Stand', 'The Wolverine', 
-        // 'Kung Fu Panda 2', 
-        'District 9', "Ender's Game", 'RoboCop', 'Captain Phillips',
-        'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
-        'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life", 
-        'Kung Fu Panda', 'The Prestige', 'Toy Story 3', 'Ice Age', 'Gravity', 'Captain America: The Winter Soldier', 
-        'Cars', 'The Revenant', 'Iron Man 3', 'Spectre', 'Finding Nemo', 'The Martian', 'X-Men: Days of Future Past', 
-        'World War Z', 'The Amazing Spider-Man 2', 'Monsters, Inc.', 'Ant-Man', 'X-Men: Apocalypse', 'Thor', 
-        'Batman v Superman: Dawn of Justice', 'Shrek Forever After', 'Madagascar',
-        ],
+        // movies: [
+        // 'X-Men: The Last Stand', 'The Wolverine', 
+        // // 'Kung Fu Panda 2', 
+        // 'District 9', "Ender's Game", 'RoboCop', 'Captain Phillips',
+        // 'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
+        // 'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life", 
+        // 'Kung Fu Panda', 'The Prestige', 'Toy Story 3', 'Ice Age', 'Gravity', 'Captain America: The Winter Soldier', 
+        // 'Cars', 'The Revenant', 'Iron Man 3', 'Spectre', 'Finding Nemo', 'The Martian', 'X-Men: Days of Future Past', 
+        // 'World War Z', 'The Amazing Spider-Man 2', 'Monsters, Inc.', 'Ant-Man', 'X-Men: Apocalypse', 'Thor', 
+        // 'Batman v Superman: Dawn of Justice', 'Shrek Forever After', 'Madagascar',
+        // ],
         showItems:showMovies,
         showLinks:1,
         checks: new Array(39).fill(false),

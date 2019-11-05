@@ -225,7 +225,7 @@ class TableNoFilter extends React.Component {
                         data={data}
                         columns={columns}
                         loading={loading}
-                        defaultPageSize={10}
+                        defaultPageSize={5}
                         className="-striped -highlight"
                         ref={(r) => {this.reactTable = r;}}
                     />

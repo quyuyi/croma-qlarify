@@ -245,7 +245,7 @@ def get_entropy(feature_name):
     if isinstance(feature_list[0],list):
         clean_feature_list=[]
         for i in feature_list:
-            clean_feature=[j[2:] if j[0]==',' else j for j in i]
+            clean_feature=[j[2:] if len(j)>=2 and j[0]==',' else j for j in i]
             labels+=clean_feature
             clean_feature_list.append(clean_feature)
         value,counts=np.unique(labels,return_counts=True)
@@ -266,7 +266,12 @@ def get_entropy(feature_name):
 
         if (feature_name=='budget' or feature_name=='revenue' or feature_name=='runtime' 
         or feature_name=='popularity' or feature_name=='vote_average' or feature_name=='vote_count'):
-           value = [float(i) for i in value]
+            float_value = []
+            for i in value:
+                if i != "null":
+                    float_value += [float(i)]
+            # value = [float(i) for i in value]
+            value = float_value
 
         for idx,v in enumerate(value):
             for index,point in enumerate(ranges):
@@ -358,23 +363,23 @@ range_dict['vote_count']=vote_countRange
 def rank_simple(vector):
     return sorted(range(len(vector)), key=vector.__getitem__)
 
-def rankdata(a):
-    n = len(a)
-    ivec=rank_simple(a)
-    svec=[a[rank] for rank in ivec]
-    sumranks = 0
-    dupcount = 0
-    newarray = [0]*n
-    for i in xrange(n):
-        sumranks += i
-        dupcount += 1
-        if i==n-1 or svec[i] != svec[i+1]:
-            averank = sumranks / float(dupcount) + 1
-            for j in xrange(i-dupcount+1,i+1):
-                newarray[ivec[j]] = averank
-            sumranks = 0
-            dupcount = 0
-    return newarray
+# def rankdata(a):
+#     n = len(a)
+#     ivec=rank_simple(a)
+#     svec=[a[rank] for rank in ivec]
+#     sumranks = 0
+#     dupcount = 0
+#     newarray = [0]*n
+#     for i in xrange(n):
+#         sumranks += i
+#         dupcount += 1
+#         if i==n-1 or svec[i] != svec[i+1]:
+#             averank = sumranks / float(dupcount) + 1
+#             for j in xrange(i-dupcount+1,i+1):
+#                 newarray[ivec[j]] = averank
+#             sumranks = 0
+#             dupcount = 0
+#     return newarray
 
 
 if __name__ == "__main__":

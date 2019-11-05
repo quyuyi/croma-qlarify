@@ -61,10 +61,9 @@ class App extends React.Component {
 		// console.log("workerId is ", workerId);
 
     if (condition == "human") {
+      // only show the table of movies
       return (
           <Baseline
-          // workerId= {workerId}
-          // submitHIT= {this.submitHIT}
           checkFinishLoading={this.checkFinishLoading}
           startTime={this.state.startTime}
           />
@@ -72,12 +71,10 @@ class App extends React.Component {
     }
 
     if (condition == "hybrid") {
-      console.log("this is condition: hybrid");
+      // show table + rank
       return (
         <div>
           <Hybrid
-          // workerId= {workerId}
-          // submitHIT= {this.submitHIT}
           checkFinishLoading={this.checkFinishLoading}
           startTime={this.state.startTime}
           />
@@ -86,22 +83,20 @@ class App extends React.Component {
     }
 
     if (condition == "end-user") {
-      console.log("condition is end-user");
+      // show instruction -> movie clip -> ask questions
       return (
         <div>
           <Enduser
-          // workerId= {workerId}
-          // submitHIT= {this.submitHIT}
           />
         </div>
       )   
     }
+
     if (condition == "condition3") {
+      // show table + entropy score
       return (
         <div>
           <Condition3 
-          // workerId= {workerId}
-          // submitHIT= {this.submitHIT}
           checkFinishLoading={this.checkFinishLoading}
           startTime={this.state.startTime}
           />
@@ -110,11 +105,10 @@ class App extends React.Component {
     }
 
     if (condition == "condition4") {
+      // show table + distribution
       return (
         <div>
-          <Condition4 
-          // workerId= {workerId}
-          // submitHIT= {this.submitHIT}
+          <Condition4
           checkFinishLoading={this.checkFinishLoading}
           startTime={this.state.startTime}
           />
@@ -123,11 +117,10 @@ class App extends React.Component {
     }
 
     if (condition == "end-user2") {
+      // show instruction -> choose 3 movies -> read tmdb or poster -> ask questions
       return (
         <div>
-          <Enduser2 
-          // workerId= {workerId}
-          // submitHIT= {this.submitHIT}
+          <Enduser2
           checkFinishLoading={this.checkFinishLoading}
           startTime={this.state.startTime}
           />

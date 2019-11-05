@@ -58,16 +58,14 @@ class Ask extends React.Component {
                     <p>
                         Among the questions below: 
                     </p>
-                    <p>
                         <ul>
                             <li>A.What is the id of the movie</li>
                             <li>B.What is the spoken language of the movie</li>
                         </ul>
-                    </p>
                     <p>Enter the more helpful question</p>
                     <input autoFocus id='testQuestionHelp' type="text" />
                     <p>Enter the easier to answer question</p>
-                    <input autoFocus id='testQuestionEasy' type="text" />
+                    <input id='testQuestionEasy' type="text" />
                     <Button variant="secondary" onClick={()=>this.onClickNext()} >Next</Button>
     
                 </div>
