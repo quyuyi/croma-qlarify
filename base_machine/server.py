@@ -61,6 +61,55 @@ def get_movie8():
     filename = 'uploads/movie8.mp4'
     return send_file(filename, mimetype='video/mp4')
 
+@app.route('/get_thinreadline')
+def get_thinreadline():
+    filename = 'posters/thinreadline.jpeg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_21jumpstreet')
+def get_21jumpstreet():
+    filename = 'posters/21jumpstreet.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_gravity')
+def get_gravity():
+    filename = 'posters/gravity.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_paymentondemand')
+def get_paymentondemand():
+    filename = 'posters/paymentondemand.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_racethesun')
+def get_racethesun():
+    filename = 'posters/racethesun.jpeg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_realitybites')
+def get_realitybites():
+    filename = 'posters/realitybites.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_revenant')
+def get_revenant():
+    filename = 'posters/revenant.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_prometheus')
+def get_prometheus():
+    filename = 'posters/prometheus.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_prestige')
+def get_prestige():
+    filename = 'posters/prestige.jpg'
+    return send_file(filename, mimetype='jpg')
+
+@app.route('/get_nemesis')
+def get_nemesis():
+    filename = 'posters/nemesis.jpg'
+    return send_file(filename, mimetype='jpg')
 
 @app.route('/write_database/', methods=["GET","POST"])
 def  write_database():

@@ -6,7 +6,7 @@ import Select from 'react-select';
 import Button from 'react-bootstrap/Button';
 import Question from './question.jsx';
 import Submit from './submit.jsx';
-
+ 
 
 class Questions extends React.Component {
 
@@ -106,7 +106,7 @@ class Questions extends React.Component {
       return (
         <div className='questions'>
           {this.renderInstruction()}
-          {(this.state.questionId==27/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+          {(this.state.questionId==16/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
         </div>
       );
     }

@@ -58,6 +58,13 @@ span.reset {
     font: 1px;
 }
 
+.nonePoster {
+  display: none;
+}
+
+.showPoster {
+  display: block;
+}
 
 
 .questions-header {

@@ -6,90 +6,105 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
 import Submit from './submit.jsx';
+// import gravity from '../posters/gravity.jpg';
 
 const testMovies=3;
 const showMovies=10;
+const movies = [
+    'the thin red line',
+    '21 jump street',
+    'gravity',
+    'payment on demand',
+    'Race the Sun',
+    'reality bites',
+    'the revenant',
+    'prometheus',
+    'the prestige',
+    'nemesis',
+];
+const sources = [
+    'thinreadline',
+    '21jumpstreet',
+    'gravity',
+    'paymentondemand',
+    'racethesun',
+    'realitybites',
+    'revenant',
+    'prometheus',
+    'prestige',
+    'nemesis',
+]
 
 class Enduser2 extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        // movies to update
-        // the thin red line
-        // the other guys
-        // 21 jump street
-        // gravity
-        // payment on demand
-        // Race the Sun
-        // reality bites
-        // the revenant
-        // prometheus
-        // the prestige
-        // nemesis
 
-        movies: [
-        'X-Men: The Last Stand', 'The Wolverine', 
-        // 'Kung Fu Panda 2', 
-        'District 9', "Ender's Game", 'RoboCop', 'Captain Phillips',
-        'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
-        'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life", 
-        'Kung Fu Panda', 'The Prestige', 'Toy Story 3', 'Ice Age', 'Gravity', 'Captain America: The Winter Soldier', 
-        'Cars', 'The Revenant', 'Iron Man 3', 'Spectre', 'Finding Nemo', 'The Martian', 'X-Men: Days of Future Past', 
-        'World War Z', 'The Amazing Spider-Man 2', 'Monsters, Inc.', 'Ant-Man', 'X-Men: Apocalypse', 'Thor', 
-        'Batman v Superman: Dawn of Justice', 'Shrek Forever After', 'Madagascar',
-        ],
+        // movies: [
+        // 'X-Men: The Last Stand', 'The Wolverine', 
+        // // 'Kung Fu Panda 2', 
+        // 'District 9', "Ender's Game", 'RoboCop', 'Captain Phillips',
+        // 'Godzilla', 'Shrek the Third', 'Ex Machina', 'Oblivion', 'Elysium', 'Memento', 'WALL·E', 
+        // 'Shrek 2', 'Monsters University', 'Ice Age: The Meltdown', "A Bug's Life", 
+        // 'Kung Fu Panda', 'The Prestige', 'Toy Story 3', 'Ice Age', 'Gravity', 'Captain America: The Winter Soldier', 
+        // 'Cars', 'The Revenant', 'Iron Man 3', 'Spectre', 'Finding Nemo', 'The Martian', 'X-Men: Days of Future Past', 
+        // 'World War Z', 'The Amazing Spider-Man 2', 'Monsters, Inc.', 'Ant-Man', 'X-Men: Apocalypse', 'Thor', 
+        // 'Batman v Superman: Dawn of Justice', 'Shrek Forever After', 'Madagascar',
+        // ],
+        movies: movies,
         showItems:showMovies,
         showLinks:1,
-        checks: new Array(39).fill(false),
+        checks: new Array(movies.length).fill(false),
         trueArr: [],
         renderPage2: false,
         renderPage3: false,
         renderPage0: true,
         renderPage1: false,
         renderEnd1: false,
-        links: [
-            'https://www.themoviedb.org/movie/36668-x-men-the-last-stand?language=en-US',
-            'https://www.themoviedb.org/movie/76170-the-wolverine?language=en-US',
-            // 'https://www.themoviedb.org/movie/49444-kung-fu-panda-2?language=en-US',
-            'https://www.themoviedb.org/movie/17654-district-9?language=en-US',
-            'https://www.themoviedb.org/movie/80274-ender-s-game?language=en-US',
-            'https://www.themoviedb.org/movie/97020-robocop?language=en-US',
-            'https://www.themoviedb.org/movie/109424-captain-phillips?language=en-US',
-            'https://www.themoviedb.org/movie/124905-godzilla?language=en-US',
-            'https://www.themoviedb.org/movie/810-shrek-the-third?language=en-US',
-            'https://www.themoviedb.org/movie/264660-ex-machina?language=en-US',
-            'https://www.themoviedb.org/movie/75612-oblivion?language=en-US',
-            'https://www.themoviedb.org/movie/68724-elysium?language=en-US',
-            'https://www.themoviedb.org/movie/77-memento?language=en-US',
-            'https://www.themoviedb.org/movie/10681-wall-e?language=en-US',
-            'https://www.themoviedb.org/movie/809-shrek-2?language=en-US',
-            'https://www.themoviedb.org/movie/62211-monsters-university?language=en-US',
-            'https://www.themoviedb.org/movie/950-ice-age-the-meltdown?language=en-US',
-            'https://www.themoviedb.org/movie/9487-a-bug-s-life?language=en-US',
-            'https://www.themoviedb.org/movie/9502-kung-fu-panda?language=en-US',
-            'https://www.themoviedb.org/movie/1124-the-prestige?language=en-US',
-            'https://www.themoviedb.org/movie/10193-toy-story-3?language=en-US',
-            'https://www.themoviedb.org/movie/425-ice-age?language=en-US',
-            'https://www.themoviedb.org/movie/49047-gravity?language=en-US',
-            'https://www.themoviedb.org/movie/100402-captain-america-the-winter-soldier?language=en-US',
-            'https://www.themoviedb.org/movie/920-cars?language=en-US',
-            'https://www.themoviedb.org/movie/281957-the-revenant?language=en-US',
-            'https://www.themoviedb.org/movie/68721-iron-man-3?language=en-US',
-            'https://www.themoviedb.org/movie/206647-spectre?language=en-US',
-            'https://www.themoviedb.org/movie/12-finding-nemo?language=en-US',
-            'https://www.themoviedb.org/movie/286217-the-martian?language=en-US',
-            'https://www.themoviedb.org/movie/127585-x-men-days-of-future-past?language=en-US',
-            'https://www.themoviedb.org/movie/72190-world-war-z?language=en-US',
-            'https://www.themoviedb.org/movie/102382-the-amazing-spider-man-2?language=en-US',
-            'https://www.themoviedb.org/movie/585-monsters-inc?language=en-US',
-            'https://www.themoviedb.org/movie/102899-ant-man?language=en-US',
-            'https://www.themoviedb.org/movie/246655-x-men-apocalypse?language=en-US',
-            'https://www.themoviedb.org/movie/10195-thor?language=en-US',
-            'https://www.themoviedb.org/movie/209112-batman-v-superman-dawn-of-justice?language=en-US',
-            'https://www.themoviedb.org/movie/10192-shrek-forever-after?language=en-US',
-            'https://www.themoviedb.org/movie/953-madagascar?language=en-US',
-        ],
+        sources: sources,
+        // links: [
+        //     'https://www.themoviedb.org/movie/36668-x-men-the-last-stand?language=en-US',
+        //     'https://www.themoviedb.org/movie/76170-the-wolverine?language=en-US',
+        //     // 'https://www.themoviedb.org/movie/49444-kung-fu-panda-2?language=en-US',
+        //     'https://www.themoviedb.org/movie/17654-district-9?language=en-US',
+        //     'https://www.themoviedb.org/movie/80274-ender-s-game?language=en-US',
+        //     'https://www.themoviedb.org/movie/97020-robocop?language=en-US',
+        //     'https://www.themoviedb.org/movie/109424-captain-phillips?language=en-US',
+        //     'https://www.themoviedb.org/movie/124905-godzilla?language=en-US',
+        //     'https://www.themoviedb.org/movie/810-shrek-the-third?language=en-US',
+        //     'https://www.themoviedb.org/movie/264660-ex-machina?language=en-US',
+        //     'https://www.themoviedb.org/movie/75612-oblivion?language=en-US',
+        //     'https://www.themoviedb.org/movie/68724-elysium?language=en-US',
+        //     'https://www.themoviedb.org/movie/77-memento?language=en-US',
+        //     'https://www.themoviedb.org/movie/10681-wall-e?language=en-US',
+        //     'https://www.themoviedb.org/movie/809-shrek-2?language=en-US',
+        //     'https://www.themoviedb.org/movie/62211-monsters-university?language=en-US',
+        //     'https://www.themoviedb.org/movie/950-ice-age-the-meltdown?language=en-US',
+        //     'https://www.themoviedb.org/movie/9487-a-bug-s-life?language=en-US',
+        //     'https://www.themoviedb.org/movie/9502-kung-fu-panda?language=en-US',
+        //     'https://www.themoviedb.org/movie/1124-the-prestige?language=en-US',
+        //     'https://www.themoviedb.org/movie/10193-toy-story-3?language=en-US',
+        //     'https://www.themoviedb.org/movie/425-ice-age?language=en-US',
+        //     'https://www.themoviedb.org/movie/49047-gravity?language=en-US',
+        //     'https://www.themoviedb.org/movie/100402-captain-america-the-winter-soldier?language=en-US',
+        //     'https://www.themoviedb.org/movie/920-cars?language=en-US',
+        //     'https://www.themoviedb.org/movie/281957-the-revenant?language=en-US',
+        //     'https://www.themoviedb.org/movie/68721-iron-man-3?language=en-US',
+        //     'https://www.themoviedb.org/movie/206647-spectre?language=en-US',
+        //     'https://www.themoviedb.org/movie/12-finding-nemo?language=en-US',
+        //     'https://www.themoviedb.org/movie/286217-the-martian?language=en-US',
+        //     'https://www.themoviedb.org/movie/127585-x-men-days-of-future-past?language=en-US',
+        //     'https://www.themoviedb.org/movie/72190-world-war-z?language=en-US',
+        //     'https://www.themoviedb.org/movie/102382-the-amazing-spider-man-2?language=en-US',
+        //     'https://www.themoviedb.org/movie/585-monsters-inc?language=en-US',
+        //     'https://www.themoviedb.org/movie/102899-ant-man?language=en-US',
+        //     'https://www.themoviedb.org/movie/246655-x-men-apocalypse?language=en-US',
+        //     'https://www.themoviedb.org/movie/10195-thor?language=en-US',
+        //     'https://www.themoviedb.org/movie/209112-batman-v-superman-dawn-of-justice?language=en-US',
+        //     'https://www.themoviedb.org/movie/10192-shrek-forever-after?language=en-US',
+        //     'https://www.themoviedb.org/movie/953-madagascar?language=en-US',
+        // ],
         chosenMovie: -1, //movie that chosen to be answered questions about
         numShowed: 0
     };
@@ -161,6 +176,12 @@ class Enduser2 extends React.Component {
       })
   }
 
+  showPoster(source) {
+      document.getElementById('posterImg').src=source;
+      document.getElementById('posterImg').className='showPoster';
+      console.log("enter show poster, change the src of the image...");
+  }
+
   renderPage0Instruction(){
       return (
         <div>
@@ -228,11 +249,15 @@ class Enduser2 extends React.Component {
                         src={this.state.links[elem]}>
                             <p>Your browser does not support iframes.</p>
                         </iframe> */}
-                        <a 
-                        href={this.state.links[elem]} 
+                        {/* <a 
+                        href="#"
+                        data-url={this.state.sources[elem]} 
                         target="_blank">
                             {this.state.movies[elem]}
-                        </a>
+                        </a> */}
+                        <button type="button" class="btn btn-link" onClick={(()=>this.showPoster('/get_'+this.state.sources[elem]))}>
+                        {this.state.movies[elem]}
+                        </button>
                     </div>
                 )
             })
@@ -259,7 +284,7 @@ class Enduser2 extends React.Component {
                 {this.renderPage1Instruction()}
                 <br></br>
                 {this.renderMovieCheckboxes()}
-                <Button variant="dark" id="show_more" onClick={this.handleShowMore.bind(this)}>Show More</Button>
+                {/* <Button variant="dark" id="show_more" onClick={this.handleShowMore.bind(this)}>Show More</Button> */}
                 <Button variant="dark" onClick={this.handleNext.bind(this)}>Next</Button>
             </div>
         )
@@ -269,12 +294,23 @@ class Enduser2 extends React.Component {
         if(this.state.renderPage2) {
             return(
                 <div>
+                    <Container>
+                    <Row>
                     {this.renderPage2Instruction()}
+                    </Row>
+                    <Row>
+                    <Col>
                     {this.renderMovieLinks()}
                     {this.state.showLinks==testMovies ? 
                     <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button> :
                     <Button variant="dark" onClick={this.handleBrowseNext.bind(this)}>Browse Next Movie</Button>
                     }
+                    </Col>
+                    <Col>
+                    <img id='posterImg' alt="Poster" className='nonePoster' height="600"/>
+                    </Col>
+                    </Row>
+                    </Container>
                 </div>
             )
         }
