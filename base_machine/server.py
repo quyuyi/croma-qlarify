@@ -21,49 +21,49 @@ app.secret_key='some random string'
 def index():
     return render_template('index.html')
 
-@app.route('/get_movie1')
-def get_movie1():
-    filename = 'uploads/movie1.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie1')
+# def get_movie1():
+#     filename = 'uploads/movie1.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie2')
-def get_movie2():
-    filename = 'uploads/movie2.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie2')
+# def get_movie2():
+#     filename = 'uploads/movie2.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie3')
-def get_movie3():
-    filename = 'uploads/movie3.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie3')
+# def get_movie3():
+#     filename = 'uploads/movie3.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie4')
-def get_movie4():
-    filename = 'uploads/movie4.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie4')
+# def get_movie4():
+#     filename = 'uploads/movie4.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie5')
-def get_movie5():
-    filename = 'uploads/movie5.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie5')
+# def get_movie5():
+#     filename = 'uploads/movie5.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie6')
-def get_movie6():
-    filename = 'uploads/movie6.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie6')
+# def get_movie6():
+#     filename = 'uploads/movie6.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie7')
-def get_movie7():
-    filename = 'uploads/movie7.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie7')
+# def get_movie7():
+#     filename = 'uploads/movie7.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie8')
-def get_movie8():
-    filename = 'uploads/movie8.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie8')
+# def get_movie8():
+#     filename = 'uploads/movie8.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_thinreadline')
-def get_thinreadline():
-    filename = 'posters/thinreadline.jpeg'
+@app.route('/get_traffic')
+def get_traffic():
+    filename = 'posters/traffic.jpg'
     return send_file(filename, mimetype='jpg')
 
 @app.route('/get_21jumpstreet')

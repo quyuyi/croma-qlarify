@@ -12,7 +12,7 @@ import ReactImageMagnify from 'react-image-magnify';
 const testMovies=1;
 const showMovies=10;
 const movies = [
-    'the thin red line',
+    'traffic',
     '21 jump street',
     'gravity',
     'payment on demand',
@@ -24,7 +24,7 @@ const movies = [
     'nemesis',
 ];
 const sources = [
-    'thinreadline',
+    'traffic',
     '21jumpstreet',
     'gravity',
     'paymentondemand',
