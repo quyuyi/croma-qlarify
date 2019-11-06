@@ -541,10 +541,10 @@ const allOptions={
 const questionsContent = [
         // "id",
         // "imdb_id",
-        "belongs to collection",
+        // "belongs to collection",
         // "budget range",
         "genres",
-        "homepage",
+        // "homepage",
         "original_language",
         // "overview (briefly describe it with a sentence)",
         // "popularity range",
@@ -565,7 +565,8 @@ const questionsContent = [
         "main cast (name one)",
         "director",
         "screenplay",
-        "keywords (name one)"
+        "title"
+        // "keywords (name one)"
 ];
 
 // const questionsContent = [
@@ -588,10 +589,10 @@ const questionsContent = [
 const questions = [
     // "id",
     // "imdb_id",
-    "belongs_to_collection",
+    // "belongs_to_collection",
     // "budget",
     "genres",
-    "homepage",
+    // "homepage",
     "original_language",
     // "overview",
     // "popularity",
@@ -612,7 +613,8 @@ const questions = [
     "main cast",
     "director",
     "screenplay",
-    "keywords"
+    "title"
+    // "keywords"
 ];
 
 // const questions = [

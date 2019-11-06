@@ -6,9 +6,10 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
 import Submit from './submit.jsx';
+import ReactImageMagnify from 'react-image-magnify';
 // import gravity from '../posters/gravity.jpg';
 
-const testMovies=3;
+const testMovies=1;
 const showMovies=10;
 const movies = [
     'the thin red line',
@@ -139,7 +140,7 @@ class Enduser2 extends React.Component {
       })
       console.log(trueArr)
       if (trueArr.length>testMovies) {
-          alert('You selected more than ',testMovies,' movies, please only select ', testMovies,'.');
+          alert('You selected more than 1 movies, please only select 1.');
       } 
       else if (trueArr.length<testMovies) {
           if (this.state.numShowed < 3) {
@@ -177,9 +178,12 @@ class Enduser2 extends React.Component {
   }
 
   showPoster(source) {
-      document.getElementById('posterImg').src=source;
-      document.getElementById('posterImg').className='showPoster';
-      console.log("enter show poster, change the src of the image...");
+
+    setTimeout(() => {
+        document.getElementById('posterImg').src=source;
+        document.getElementById('posterImg').className='showPoster';
+        console.log("enter show poster, change the src of the image...");
+    }, 100);
   }
 
   renderPage0Instruction(){
@@ -187,7 +191,9 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h4>
-            In this HIT, you will be asked to first select a movie that you have not seen before. Then you will be directed to a page on The Movie Database for the movie. After viewing some information about the movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance. 
+            In this HIT, you will be asked to first select a movie that you have not seen before. 
+            Then you will be shown a poster of the movie. After reading the poster, you will be asked to answer some questions.
+            {/* Then you will be directed to a page on The Movie Database for the movie. After viewing some information about the movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance.  */}
             <br></br>
             Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
             </h4>
@@ -202,11 +208,12 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h4>
-            Please select {testMovies} movies you have never watched before. Click show more if the movies shown are not enough for you to select {testMovies}. 
+            Please select a movie you have never watched before. 
+            {/* Click show more if the movies shown are not enough for you to select {testMovies}.  */}
             <br></br>
-            Click next if you have selected {testMovies} movies. 
+            Click next after selecting a movie. 
             <br></br>
-            If you have gone through the entire list, and still don't have a list of {testMovies} movies, you can also click next to proceed. 
+            {/* If you have gone through the list and cannot find a movie you have never seen before, you can also click next to proceed.  */}
             </h4>
         </div>
         </div>
@@ -218,11 +225,13 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h4>
-            Please click on the link to find out more about the movie. Pretend you are looking for a movie to watch and need to decide whether or not you will watch this movie later. 
+            {/* Please click on the link to find out more about the movie.  */}
+            Pretend you are looking for a movie to watch and need to decide whether or not you will watch this movie after reading the poster. 
+            (Note: We will award you a bonus of $0.3 if you follow the direction.)
             </h4>
         </div>
         </div>
-      );
+    );
   }
 
   renderMovieCheckboxes() {
@@ -255,13 +264,36 @@ class Enduser2 extends React.Component {
                         target="_blank">
                             {this.state.movies[elem]}
                         </a> */}
-                        <button type="button" class="btn btn-link" onClick={(()=>this.showPoster('/get_'+this.state.sources[elem]))}>
+                        {/* <button type="button" class="btn btn-link" onClick={(()=>this.showPoster('/get_'+this.state.sources[elem]))}>
                         {this.state.movies[elem]}
-                        </button>
+                        </button> */}
+                        {this.showPoster('/get_'+this.state.sources[elem])}
                     </div>
                 )
             })
         );
+    }
+
+    renderMovie() {
+        return (
+            <div>
+                <ReactImageMagnify {...{
+                    smallImage: {
+                        alt: 'Wristwatch by Ted Baker London',
+                        isFluidWidth: true,
+                        src: '/get_'+this.state.sources[this.state.trueArr[0]]
+                    },
+                    largeImage: {
+                        src: '/get_'+this.state.sources[this.state.trueArr[0]],
+                        width: 1200,
+                        height: 1800
+                    },
+                    isHintEnabled: true,
+                    shouldHideHintAfterFirstActivation: false
+                }} />
+
+            </div>
+        )
     }
 
     handleNext2() {
@@ -299,16 +331,17 @@ class Enduser2 extends React.Component {
                     {this.renderPage2Instruction()}
                     </Row>
                     <Row>
-                    <Col>
-                    {this.renderMovieLinks()}
+                    <Col sm md={6}>
+                    {/* <img id='posterImg' alt="Poster" className='nonePoster' height="800"/> */}
+                    {this.renderMovie()}
+                    </Col>
+                    </Row>
+                    <Row>
+                    {/* {this.renderMovieLinks()} */}
                     {this.state.showLinks==testMovies ? 
                     <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button> :
                     <Button variant="dark" onClick={this.handleBrowseNext.bind(this)}>Browse Next Movie</Button>
                     }
-                    </Col>
-                    <Col>
-                    <img id='posterImg' alt="Poster" className='nonePoster' height="600"/>
-                    </Col>
                     </Row>
                     </Container>
                 </div>
