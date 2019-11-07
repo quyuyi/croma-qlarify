@@ -303,7 +303,8 @@ class Enduser2 extends React.Component {
         console.log('next 2 ')
         const length=this.state.trueArr.length;
         const trueArr=this.state.trueArr;
-        let chosenMovieIndex=trueArr.slice(0,length-1)[Math.floor(Math.random() * (length-1))];
+        // let chosenMovieIndex=trueArr.slice(0,length-1)[Math.floor(Math.random() * (length-1))];
+        let chosenMovieIndex=trueArr[0]
         let chosenMovie=this.state.movies[chosenMovieIndex];
         this.setState({
             chosenMovie: chosenMovie,
@@ -327,7 +328,7 @@ class Enduser2 extends React.Component {
 
     renderCountdown() {
         return(
-            <Countdown date={Date.now() + 60000}>
+            <Countdown date={Date.now() + 1000}>
                 <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button>
             </Countdown>
         )
