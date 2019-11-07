@@ -65,6 +65,8 @@ def index():
 def get_traffic():
     filename = 'posters/traffic.jpg'
     return send_file(filename, mimetype='jpg')
+    # filename = 'posters/traffic_tmdb.png'
+    # return send_file(filename, mimetype='png')
 
 @app.route('/get_21jumpstreet')
 def get_21jumpstreet():
@@ -81,9 +83,9 @@ def get_paymentondemand():
     filename = 'posters/paymentondemand.jpg'
     return send_file(filename, mimetype='jpg')
 
-@app.route('/get_racethesun')
-def get_racethesun():
-    filename = 'posters/racethesun.jpeg'
+@app.route('/get_exmachina')
+def get_exmachina():
+    filename = 'posters/exmachina.jpg'
     return send_file(filename, mimetype='jpg')
 
 @app.route('/get_realitybites')
@@ -372,7 +374,7 @@ def get_split(value,counts):
 global variables
 '''
 # preprocess only once
-processed_dict,df=preprocess_dataset()
+# processed_dict,df=preprocess_dataset()
 
 # current_indices is the indices of the 'alive' data points
 # data points that have not been filtered out

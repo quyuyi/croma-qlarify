@@ -34,6 +34,7 @@
     "react-bootstrap-table2-filter": "^1.1.11",
     "react-bootstrap-table2-paginator": "^2.0.8",
     "react-compound-slider": "^2.2.0",
+    "react-countdown-now": "^2.1.2",
     "react-delay-input": "^4.1.0",
     "react-dom": "^16.9.0",
     "react-image-magnify": "^2.7.4",

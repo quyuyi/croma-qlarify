@@ -7,28 +7,29 @@ import Button from 'react-bootstrap/Button';
 import Questions from './questions.jsx';
 import Submit from './submit.jsx';
 import ReactImageMagnify from 'react-image-magnify';
+import Countdown from 'react-countdown-now';
 // import gravity from '../posters/gravity.jpg';
 
 const testMovies=1;
 const showMovies=10;
 const movies = [
-    'traffic',
-    '21 jump street',
-    'gravity',
-    'payment on demand',
-    'Race the Sun',
-    'reality bites',
-    'the revenant',
-    'prometheus',
-    'the prestige',
-    'nemesis',
+    'Traffic',
+    '21 Jump Street',
+    'Gravity',
+    'Payment on Demand',
+    'Ex Machina',
+    'Reality Bites',
+    'The Revenant',
+    'Prometheus',
+    'The Prestige',
+    'Nemesis',
 ];
 const sources = [
     'traffic',
     '21jumpstreet',
     'gravity',
     'paymentondemand',
-    'racethesun',
+    'exmachina',
     'realitybites',
     'revenant',
     'prometheus',
@@ -144,7 +145,7 @@ class Enduser2 extends React.Component {
       } 
       else if (trueArr.length<testMovies) {
           if (this.state.numShowed < 3) {
-              alert('please go through all movies')
+              alert('Please select a movie')
           } 
           else {
               console.log('submitting the hit');
@@ -192,7 +193,7 @@ class Enduser2 extends React.Component {
         <div className='questions-header'>
             <h4>
             In this HIT, you will be asked to first select a movie that you have not seen before. 
-            Then you will be shown a poster of the movie. After reading the poster, you will be asked to answer some questions.
+            Then you will be shown a poster of the movie. After reading the poster, you will be asked to answer some questions. 
             {/* Then you will be directed to a page on The Movie Database for the movie. After viewing some information about the movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance.  */}
             <br></br>
             Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
@@ -226,8 +227,9 @@ class Enduser2 extends React.Component {
         <div className='questions-header'>
             <h4>
             {/* Please click on the link to find out more about the movie.  */}
-            Pretend you are looking for a movie to watch and need to decide whether or not you will watch this movie after reading the poster. 
-            (Note: We will award you a bonus of $0.3 if you follow the direction.)
+            Pretend you are reading the poster to decide whether to watch the movie later. 
+            <br/>
+            (Note: We will award you a bonus of $0.3 if you follow the direction. You can move on to next step after 60 seconds, tho feel free to spend longer time reading.)
             </h4>
         </div>
         </div>
@@ -292,6 +294,7 @@ class Enduser2 extends React.Component {
                     shouldHideHintAfterFirstActivation: false
                 }} />
 
+                {/* <img id='posterImg' alt="Poster" src={'/get_'+this.state.sources[this.state.trueArr[0]]}/> */}
             </div>
         )
     }
@@ -322,6 +325,14 @@ class Enduser2 extends React.Component {
         )
     }
 
+    renderCountdown() {
+        return(
+            <Countdown date={Date.now() + 60000}>
+                <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button>
+            </Countdown>
+        )
+    }
+
     renderPage2() {
         if(this.state.renderPage2) {
             return(
@@ -338,10 +349,13 @@ class Enduser2 extends React.Component {
                     </Row>
                     <Row>
                     {/* {this.renderMovieLinks()} */}
-                    {this.state.showLinks==testMovies ? 
+
+                    {this.renderCountdown()}
+
+                    {/* {this.state.showLinks==testMovies ? 
                     <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button> :
                     <Button variant="dark" onClick={this.handleBrowseNext.bind(this)}>Browse Next Movie</Button>
-                    }
+                    } */}
                     </Row>
                     </Container>
                 </div>
