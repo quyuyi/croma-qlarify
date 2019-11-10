@@ -1,0 +1,966 @@
+[{
+    "workerId": "A2XFO0X6RCS98M",
+    "assignmentId": "3DIP6YHAPDL2IAA15J330HGAWXP8EU",
+    "movieIndex": "Traffic",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "0 - 50 million",
+            "time": 12786
+        },
+        {
+            "question": "title",
+            "answer": "traffic",
+            "time": 7016
+        },
+        {
+            "question": "genres",
+            "answer": "thriller",
+            "time": 11656
+        },
+        {
+            "question": "original_language",
+            "answer": "english",
+            "time": 7885
+        },
+        {
+            "question": "overview",
+            "answer": "cops daughter addicted to cocaine",
+            "time": 36875
+        },
+        {
+            "question": "production_companies",
+            "answer": "don\u2019t know",
+            "time": 5056
+        },
+        {
+            "question": "production_countries",
+            "answer": "don\u2019t know",
+            "time": 1426
+        },
+        {
+            "question": "release_date",
+            "answer": "2000 - 2010",
+            "time": 5611
+        },
+        {
+            "question": "revenue",
+            "answer": "0 - 200 million",
+            "time": 5988
+        },
+        {
+            "question": "runtime",
+            "answer": "Don't know",
+            "time": 4597
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "english",
+            "time": 6025
+        },
+        {
+            "question": "status",
+            "answer": "Don't know",
+            "time": 7668
+        },
+        {
+            "question": "tagline",
+            "answer": "don\u2019t know",
+            "time": 3624
+        },
+        {
+            "question": "adult",
+            "answer": "True",
+            "time": 2747
+        },
+        {
+            "question": "main characters",
+            "answer": "robert wakefield",
+            "time": 26491
+        },
+        {
+            "question": "main cast",
+            "answer": "michael douglas",
+            "time": 7261
+        },
+        {
+            "question": "director",
+            "answer": "steven soderbergh",
+            "time": 11467
+        },
+        {
+            "question": "screenplay",
+            "answer": "don\u2019t know",
+            "time": 2473
+        },
+        {
+            "question": "keywords",
+            "answer": "drug traffic",
+            "time": 9545
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "no because it sounds somewhat generic",
+            "time": 26595
+        }
+    ]
+},
+{
+    "workerId": "A1F2VHKMDWEA2X",
+    "assignmentId": "3W2LOLRXLC8BMFH70EK6PTOK6L6RK4",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "Don't know",
+            "time": 4285
+        },
+        {
+            "question": "title",
+            "answer": "dont know",
+            "time": 117007
+        },
+        {
+            "question": "genres",
+            "answer": "drama",
+            "time": 3999
+        },
+        {
+            "question": "original_language",
+            "answer": "english",
+            "time": 3869
+        },
+        {
+            "question": "overview",
+            "answer": "About a marriage that drifts apart",
+            "time": 20927
+        },
+        {
+            "question": "production_companies",
+            "answer": "dont know",
+            "time": 5940
+        },
+        {
+            "question": "production_countries",
+            "answer": "dont know",
+            "time": 4796
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 8273
+        },
+        {
+            "question": "revenue",
+            "answer": "Don't know",
+            "time": 5216
+        },
+        {
+            "question": "runtime",
+            "answer": "Don't know",
+            "time": 4112
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "english",
+            "time": 6804
+        },
+        {
+            "question": "status",
+            "answer": "Don't know",
+            "time": 4678
+        },
+        {
+            "question": "tagline",
+            "answer": "don't know",
+            "time": 4586
+        },
+        {
+            "question": "adult",
+            "answer": "Don't know",
+            "time": 3164
+        },
+        {
+            "question": "main characters",
+            "answer": "bette davis",
+            "time": 5427
+        },
+        {
+            "question": "main cast",
+            "answer": "bette davis",
+            "time": 7324
+        },
+        {
+            "question": "director",
+            "answer": "dont know",
+            "time": 4422
+        },
+        {
+            "question": "screenplay",
+            "answer": "dont know",
+            "time": 5070
+        },
+        {
+            "question": "keywords",
+            "answer": "dont know",
+            "time": 18612
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "I would watch this with my mom as she is a bette davis fan.",
+            "time": 19027
+        }
+    ]
+},
+{
+    "workerId": "A27W025UEXS1G0",
+    "assignmentId": "32Z9ZLUT1MDHNCOJ2105I63N3IRHOS",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "0 - 50 million",
+            "time": 6097
+        },
+        {
+            "question": "title",
+            "answer": "Payment on Demand",
+            "time": 15588
+        },
+        {
+            "question": "genres",
+            "answer": "Drama",
+            "time": 5014
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 5020
+        },
+        {
+            "question": "overview",
+            "answer": "A couple gets a divorce and drama occurs.",
+            "time": 24957
+        },
+        {
+            "question": "production_companies",
+            "answer": "Don't know",
+            "time": 9424
+        },
+        {
+            "question": "production_countries",
+            "answer": "United States",
+            "time": 9586
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 4485
+        },
+        {
+            "question": "revenue",
+            "answer": "0 - 200 million",
+            "time": 3957
+        },
+        {
+            "question": "runtime",
+            "answer": "Don't know",
+            "time": 3351
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 5103
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 4466
+        },
+        {
+            "question": "tagline",
+            "answer": "Don't know",
+            "time": 3983
+        },
+        {
+            "question": "adult",
+            "answer": "False",
+            "time": 7753
+        },
+        {
+            "question": "main characters",
+            "answer": "Don't know",
+            "time": 3384
+        },
+        {
+            "question": "main cast",
+            "answer": "Don't know",
+            "time": 3153
+        },
+        {
+            "question": "director",
+            "answer": "Don't know",
+            "time": 2169
+        },
+        {
+            "question": "screenplay",
+            "answer": "Don't know",
+            "time": 1867
+        },
+        {
+            "question": "keywords",
+            "answer": "Divorce",
+            "time": 10108
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "I won't watch because it is too old, not in color, and I don't like drama.",
+            "time": 54227
+        }
+    ]
+},
+{
+    "workerId": "A6HDSE80LQPR8",
+    "assignmentId": "30LB5CDZND3IBGWU6241SCBA14OZ04",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "Don't know",
+            "time": 9378
+        },
+        {
+            "question": "title",
+            "answer": "Payment on Demand",
+            "time": 8226
+        },
+        {
+            "question": "genres",
+            "answer": "drama",
+            "time": 3480
+        },
+        {
+            "question": "original_language",
+            "answer": "english",
+            "time": 3825
+        },
+        {
+            "question": "overview",
+            "answer": "why people drift apart in marriage and seek divorse, with all the consequences.",
+            "time": 28852
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't know",
+            "time": 22755
+        },
+        {
+            "question": "production_countries",
+            "answer": "usa",
+            "time": 3391
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 2434
+        },
+        {
+            "question": "revenue",
+            "answer": "Don't know",
+            "time": 3370
+        },
+        {
+            "question": "runtime",
+            "answer": "0 - 90 min",
+            "time": 2527
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "english",
+            "time": 3221
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 5809
+        },
+        {
+            "question": "tagline",
+            "answer": "divorce",
+            "time": 16812
+        },
+        {
+            "question": "adult",
+            "answer": "False",
+            "time": 15159
+        },
+        {
+            "question": "main characters",
+            "answer": "Bette Davis",
+            "time": 12209
+        },
+        {
+            "question": "main cast",
+            "answer": "Barry Sullivan ",
+            "time": 14903
+        },
+        {
+            "question": "director",
+            "answer": "Curtis Bernhardt",
+            "time": 23670
+        },
+        {
+            "question": "screenplay",
+            "answer": "Bruce Manning",
+            "time": 62557
+        },
+        {
+            "question": "keywords",
+            "answer": "divorce",
+            "time": 5439
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "I would not watch this movie. Not my cup of tea, a very old movie and way beyond my time. I probably won't get what they movie will try to portray and probably the movie aged pretty bad.",
+            "time": 88263
+        }
+    ]
+},
+{
+    "workerId": "A2XXIMYOWPM5T5",
+    "assignmentId": "3TE22NPXPC5J77Q64A1DAJOEHLT445",
+    "movieIndex": "Reality Bites",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "more than 250 million",
+            "time": 351340
+        },
+        {
+            "question": "title",
+            "answer": "Reality Bites",
+            "time": 28062
+        },
+        {
+            "question": "genres",
+            "answer": "don\u2019t know",
+            "time": 45689
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 15469
+        },
+        {
+            "question": "overview",
+            "answer": "Nice",
+            "time": 32628
+        },
+        {
+            "question": "production_companies",
+            "answer": "Jersey Films", // seem to have searched, since no such information is provided by us
+            "time": 128916
+        },
+        {
+            "question": "production_countries",
+            "answer": "United States",
+            "time": 19530
+        },
+        {
+            "question": "release_date",
+            "answer": "1990 - 2000",
+            "time": 16822
+        },
+        {
+            "question": "revenue",
+            "answer": "0 - 200 million",
+            "time": 34600
+        },
+        {
+            "question": "runtime",
+            "answer": "90 - 110 min",
+            "time": 22673
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 9135
+        },
+        {
+            "question": "status",
+            "answer": "Post Production",
+            "time": 45978
+        },
+        {
+            "question": "tagline",
+            "answer": "Reality Bites (1994)",
+            "time": 83782
+        },
+        {
+            "question": "adult",
+            "answer": "False",
+            "time": 39089
+        },
+        {
+            "question": "main characters",
+            "answer": "Winona Ryder",
+            "time": 151493
+        },
+        {
+            "question": "main cast",
+            "answer": "don\u2019t know",
+            "time": 9535
+        },
+        {
+            "question": "director",
+            "answer": "Ben Stiller",
+            "time": 25320
+        },
+        {
+            "question": "screenplay",
+            "answer": "Helen childress",
+            "time": 23672
+        },
+        {
+            "question": "keywords",
+            "answer": "unemployed",
+            "time": 28264
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "No i didn't watch ",
+            "time": 20352
+        }
+    ]
+},
+{
+    "workerId": "A3N0QZ9ZKUCTCQ",
+    "assignmentId": "3YWRV122CTSJ767NVJI84Z2DIK88UY",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "0 - 50 million",
+            "time": 12631
+        },
+        {
+            "question": "title",
+            "answer": "Payment on Demand",
+            "time": 9112
+        },
+        {
+            "question": "genres",
+            "answer": "don\u2019t know",
+            "time": 8552
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 3464
+        },
+        {
+            "question": "overview",
+            "answer": "The movie examines why married couple drift apart during their marriage into divorce.",
+            "time": 54785
+        },
+        {
+            "question": "production_companies",
+            "answer": "don\u2019t know",
+            "time": 3847
+        },
+        {
+            "question": "production_countries",
+            "answer": "USA",
+            "time": 5585
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 6384
+        },
+        {
+            "question": "revenue",
+            "answer": "Don't know",
+            "time": 6007
+        },
+        {
+            "question": "runtime",
+            "answer": "Don't know",
+            "time": 2465
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 6984
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 6783
+        },
+        {
+            "question": "tagline",
+            "answer": "don\u2019t know",
+            "time": 2328
+        },
+        {
+            "question": "adult",
+            "answer": "False",
+            "time": 7152
+        },
+        {
+            "question": "main characters",
+            "answer": "don\u2019t know",
+            "time": 17152
+        },
+        {
+            "question": "main cast",
+            "answer": "don\u2019t know",
+            "time": 6560
+        },
+        {
+            "question": "director",
+            "answer": "don\u2019t know",
+            "time": 1544
+        },
+        {
+            "question": "screenplay",
+            "answer": "don\u2019t know",
+            "time": 1424
+        },
+        {
+            "question": "keywords",
+            "answer": "marriage",
+            "time": 11240
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "I will not watch the movie as it's about a topic and in a genre that I'm in not interested in.",
+            "time": 50176
+        }
+    ]
+},
+{
+    "workerId": "A250FES5PFCGK9",
+    "assignmentId": "3CTOC39K38J6TCRA9FMOJXX7QK4J7Q",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "0 - 50 million",
+            "time": 23711
+        },
+        {
+            "question": "title",
+            "answer": "Payment on Demand",
+            "time": 7033
+        },
+        {
+            "question": "genres",
+            "answer": "drama",
+            "time": 16281
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 6526
+        },
+        {
+            "question": "overview",
+            "answer": "divorce and consequences",
+            "time": 17943
+        },
+        {
+            "question": "production_companies",
+            "answer": "rko", // seem to have searched, since no such information is provided by us
+            "time": 94005
+        },
+        {
+            "question": "production_countries",
+            "answer": "usa",
+            "time": 4740
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 6876
+        },
+        {
+            "question": "revenue",
+            "answer": "0 - 200 million",
+            "time": 11690
+        },
+        {
+            "question": "runtime",
+            "answer": "0 - 90 min",
+            "time": 5339
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 8028
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 20441
+        },
+        {
+            "question": "tagline",
+            "answer": "I made him now I'll break him",
+            "time": 17712
+        },
+        {
+            "question": "adult",
+            "answer": "Don't know",
+            "time": 28475
+        },
+        {
+            "question": "main characters",
+            "answer": "Ramsey",
+            "time": 23238
+        },
+        {
+            "question": "main cast",
+            "answer": "Bette Davis",
+            "time": 10390
+        },
+        {
+            "question": "director",
+            "answer": "Curtis Bernhardt",
+            "time": 8242
+        },
+        {
+            "question": "screenplay",
+            "answer": "Curtis Bernhardt ",
+            "time": 10030
+        },
+        {
+            "question": "keywords",
+            "answer": "classic",
+            "time": 11418
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "maybe; dated but intriguing",
+            "time": 20443
+        }
+    ]
+},
+{
+    "workerId": "A2V891K6X2055Y",
+    "assignmentId": "3OHYZ19UGDY2DPG5WVQD1KGJQMKOA5",
+    "movieIndex": "Gravity",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "50 - 100 million",
+            "time": 4333
+        },
+        {
+            "question": "title",
+            "answer": "Gravity",
+            "time": 4431
+        },
+        {
+            "question": "genres",
+            "answer": "sci fi",
+            "time": 4060
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 4901
+        },
+        {
+            "question": "overview",
+            "answer": "Its a space sci fi movie",
+            "time": 17692
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't remember",
+            "time": 6024
+        },
+        {
+            "question": "production_countries",
+            "answer": "United States",
+            "time": 4945
+        },
+        {
+            "question": "release_date",
+            "answer": "after 2010",
+            "time": 5503
+        },
+        {
+            "question": "revenue",
+            "answer": "200 - 400 million",
+            "time": 3298
+        },
+        {
+            "question": "runtime",
+            "answer": "110 - 130 min",
+            "time": 4039
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 4306
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 6428
+        },
+        {
+            "question": "tagline",
+            "answer": "don't know",
+            "time": 17880
+        },
+        {
+            "question": "adult",
+            "answer": "False",
+            "time": 2434
+        },
+        {
+            "question": "main characters",
+            "answer": "Sandra Bullok",
+            "time": 5743
+        },
+        {
+            "question": "main cast",
+            "answer": "George Kluney",
+            "time": 11091
+        },
+        {
+            "question": "director",
+            "answer": "don't know",
+            "time": 3571
+        },
+        {
+            "question": "screenplay",
+            "answer": "don't know",
+            "time": 5184
+        },
+        {
+            "question": "keywords",
+            "answer": "sci fi",
+            "time": 4882
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "Yes i wouldn't mind watching this movie, i don't care for George Kluny much but i like Sandra Bullok.",
+            "time": 28223
+        }
+    ]
+},
+{
+    "workerId": "A1L3937MY09J3I",
+    "assignmentId": "3VAR3R6G1QUOU1NQZX6Z5TAO0YKO81",
+    "movieIndex": "Nemesis",
+    "result": [
+        {
+            "question": "budget",
+            "answer": "Don't know",
+            "time": 17652
+        },
+        {
+            "question": "title",
+            "answer": "Nemesis",
+            "time": 7232
+        },
+        {
+            "question": "genres",
+            "answer": "sci-fi action",
+            "time": 7066
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 3134
+        },
+        {
+            "question": "overview",
+            "answer": "A half man half robot cop questions his humanity.",
+            "time": 17129
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't know",
+            "time": 8368
+        },
+        {
+            "question": "production_countries",
+            "answer": "don't know",
+            "time": 2455
+        },
+        {
+            "question": "release_date",
+            "answer": "1990 - 2000",
+            "time": 4076
+        },
+        {
+            "question": "revenue",
+            "answer": "0 - 200 million",
+            "time": 2388
+        },
+        {
+            "question": "runtime",
+            "answer": "90 - 110 min",
+            "time": 9006
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "don't know",
+            "time": 4684
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 4268
+        },
+        {
+            "question": "tagline",
+            "answer": "don't know",
+            "time": 3539
+        },
+        {
+            "question": "adult",
+            "answer": "Don't know",
+            "time": 15364
+        },
+        {
+            "question": "main characters",
+            "answer": "alex",
+            "time": 7203
+        },
+        {
+            "question": "main cast",
+            "answer": "don't know",
+            "time": 6729
+        },
+        {
+            "question": "director",
+            "answer": "don't know",
+            "time": 2620
+        },
+        {
+            "question": "screenplay",
+            "answer": "don't know",
+            "time": 1907
+        },
+        {
+            "question": "keywords",
+            "answer": "cyborg",
+            "time": 8911
+        },
+        {
+            "question": "watch_or_not",
+            "answer": "I wouldn't. It looks low quality, has basically no one I've heard of and was made over 25 years ago which means it won't have aged well.",
+            "time": 32018
+        }
+    ]
+}
+
+
+]

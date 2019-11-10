@@ -197,6 +197,29 @@ def sampleSpecifics(processed_dict):
     return sampled_dict # ,sampled_df
 
 
+def sample999():
+    processed_dict, _ = use_processed()
+    # random sample 1000 movies
+    all = [i for i in range(0,len(processed_dict['adult']))]
+    sampled=sample(all,999)
+
+    sampled_dict={}
+    for col in processed_dict:
+        new_col = [processed_dict[col][i] for i in sampled]
+        sampled_dict[col]=new_col
+
+    # update df
+    sampled_df=pd.DataFrame()
+    for col in sampled_dict:
+        new_column=pd.Series(sampled_dict[col],name=col)
+        sampled_df[col]=new_column
+    
+    sampled_df.to_csv('sample1000.csv', index=False)
+    print("created sample1000.csv")
+    
+    return sampled_dict, sampled_df
+
+
 
 def preprocess_dataset():
     df1=pd.read_csv('movies_metadata.csv')
@@ -252,11 +275,31 @@ def preprocess_dataset():
         # df.update(new_column)
         processed_df[col]=new_column
     
+    processed_df.to_csv('test99.csv', index=False)
+    print("created test99.csv")
     return processed_dict, processed_df
     # return processed_dict,df
     # return sampleSpecifics(processed_dict,df)
 
+def use_processed():
+    df = pd.read_csv('processed_dataset.csv')
 
+    # process data into a dictionary of many lists
+    processed_dict={}
+    for col in df:
+        processed_dict[col]=list(df[col])
+
+    return processed_dict, df
+
+
+def use_sampled():
+    df = pd.read_csv('sample1000.csv')
+
+    processed_dict={}
+    for col in df:
+        processed_dict[col]=list(df[col])
+
+    return processed_dict, df
 
 
 # a=sampled_dict['cast'][0]

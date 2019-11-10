@@ -83,13 +83,11 @@ class Questions extends React.Component {
       <div>
       <div className='questions-header'>
           <h4>
-          In this part, we will ask you some questions about <strong>{this.props.movieIndex}</strong>, which is a movie you just viewed on TMDB. 
-          {/* <br></br>
-          If you don't remember the answer exactly, you can provide a range. (An example answer to movie runtime could be: more than 100 minutes, or in the range of 80-120 minutes. But please don’t answer "around 100 minutes," as that won't tell us the precise range.) */}
+          In this part, we will ask you some questions about the movie you just read. 
           <br></br>
-          If you don't remember or if the question asks something not on the TMDB site, you can answer "don’t know."
+          If you don't remember, you can answer "don’t know."
           <br></br>
-          Please try not to copy answers from the site. We will review your answers and award you a bonus if you answer from memory. Thank you! 
+          Please try not to copy answers from the internet. We will review your answers and award you a bonus of $0.3 if you answer from memory. Thank you! 
           </h4>
       </div>
       </div>
@@ -106,7 +104,7 @@ class Questions extends React.Component {
       return (
         <div className='questions'>
           {this.renderInstruction()}
-          {(this.state.questionId==16/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+          {(this.state.questionId==14/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
         </div>
       );
     }

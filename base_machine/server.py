@@ -21,50 +21,52 @@ app.secret_key='some random string'
 def index():
     return render_template('index.html')
 
-@app.route('/get_movie1')
-def get_movie1():
-    filename = 'uploads/movie1.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie1')
+# def get_movie1():
+#     filename = 'uploads/movie1.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie2')
-def get_movie2():
-    filename = 'uploads/movie2.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie2')
+# def get_movie2():
+#     filename = 'uploads/movie2.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie3')
-def get_movie3():
-    filename = 'uploads/movie3.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie3')
+# def get_movie3():
+#     filename = 'uploads/movie3.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie4')
-def get_movie4():
-    filename = 'uploads/movie4.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie4')
+# def get_movie4():
+#     filename = 'uploads/movie4.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie5')
-def get_movie5():
-    filename = 'uploads/movie5.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie5')
+# def get_movie5():
+#     filename = 'uploads/movie5.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie6')
-def get_movie6():
-    filename = 'uploads/movie6.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie6')
+# def get_movie6():
+#     filename = 'uploads/movie6.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie7')
-def get_movie7():
-    filename = 'uploads/movie7.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie7')
+# def get_movie7():
+#     filename = 'uploads/movie7.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_movie8')
-def get_movie8():
-    filename = 'uploads/movie8.mp4'
-    return send_file(filename, mimetype='video/mp4')
+# @app.route('/get_movie8')
+# def get_movie8():
+#     filename = 'uploads/movie8.mp4'
+#     return send_file(filename, mimetype='video/mp4')
 
-@app.route('/get_thinreadline')
-def get_thinreadline():
-    filename = 'posters/thinreadline.jpeg'
+@app.route('/get_traffic')
+def get_traffic():
+    filename = 'posters/traffic.jpg'
     return send_file(filename, mimetype='jpg')
+    # filename = 'posters/traffic_tmdb.png'
+    # return send_file(filename, mimetype='png')
 
 @app.route('/get_21jumpstreet')
 def get_21jumpstreet():
@@ -81,9 +83,9 @@ def get_paymentondemand():
     filename = 'posters/paymentondemand.jpg'
     return send_file(filename, mimetype='jpg')
 
-@app.route('/get_racethesun')
-def get_racethesun():
-    filename = 'posters/racethesun.jpeg'
+@app.route('/get_exmachina')
+def get_exmachina():
+    filename = 'posters/exmachina.jpg'
     return send_file(filename, mimetype='jpg')
 
 @app.route('/get_realitybites')
@@ -273,6 +275,10 @@ def compute_rules():
     dat = {
         'rules': rules,
     }
+
+    # store precomputed ranking
+    with open('rank0.json', 'w') as f:
+        json.dump(dat, f)
     return jsonify(**dat)
 
 
@@ -372,8 +378,13 @@ def get_split(value,counts):
 global variables
 '''
 # preprocess only once
-processed_dict,df=preprocess_dataset()
+# processed_dict,df=preprocess_dataset()
+<<<<<<< HEAD
+processed_dict, df = use_sampled()
+#
+=======
 
+>>>>>>> 777cf19c3e64d4cc98f87179deb3fe8c4da3f74c
 # current_indices is the indices of the 'alive' data points
 # data points that have not been filtered out
 current_indices=[]
