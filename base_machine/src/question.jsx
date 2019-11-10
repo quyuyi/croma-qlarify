@@ -541,10 +541,11 @@ const allOptions={
 const questionsContent = [
         // "id",
         // "imdb_id",
-        "belongs to collection",
+        // "belongs to collection",
         // "budget range",
+        "title",
         "genres",
-        "homepage",
+        // "homepage",
         "original_language",
         // "overview (briefly describe it with a sentence)",
         // "popularity range",
@@ -565,7 +566,8 @@ const questionsContent = [
         "main cast (name one)",
         "director",
         "screenplay",
-        "keywords (name one)"
+        
+        // "keywords (name one)"
 ];
 
 // const questionsContent = [
@@ -588,10 +590,11 @@ const questionsContent = [
 const questions = [
     // "id",
     // "imdb_id",
-    "belongs_to_collection",
+    // "belongs_to_collection",
     // "budget",
+    "title",
     "genres",
-    "homepage",
+    // "homepage",
     "original_language",
     // "overview",
     // "popularity",
@@ -612,7 +615,8 @@ const questions = [
     "main cast",
     "director",
     "screenplay",
-    "keywords"
+    
+    // "keywords"
 ];
 
 // const questions = [
@@ -646,8 +650,7 @@ class Question extends React.Component {
     onClickNext(){
         const q=questions[this.props.questionId];
         let answer;
-        if (q=='genres' || q=='status' || q=='original_language' || q=='spoken_languages'
-        || q=='production_countries' || q=='adult' || q=='video'){
+        if ( q=='status' || q=='adult' || q=='video'){
             answer=document.getElementsByName(q)[0].value;
         }
         else if (q=='budget' || q=='release_date' || q=='revenue' || q=='runtime'
@@ -679,8 +682,7 @@ class Question extends React.Component {
         const q=questions[this.props.questionId];
         const content=questionsContent[this.props.questionId];
 
-        if (q=='genres' || q=='status' || q=='original_language' || q=='spoken_languages'
-        || q=='production_countries' || q=='adult' || q=='video'){
+        if (q=='status' || q=='adult' || q=='video'){
           const options=allOptions[q];
           return (
             <h2 key={this.props.questionId} className='question'>
