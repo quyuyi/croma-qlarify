@@ -379,12 +379,8 @@ global variables
 '''
 # preprocess only once
 # processed_dict,df=preprocess_dataset()
-<<<<<<< HEAD
 processed_dict, df = use_sampled()
 #
-=======
-
->>>>>>> 777cf19c3e64d4cc98f87179deb3fe8c4da3f74c
 # current_indices is the indices of the 'alive' data points
 # data points that have not been filtered out
 current_indices=[]
