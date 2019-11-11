@@ -38,16 +38,10 @@ class Condition3 extends React.Component {
               <h5>
                   <p>Instruction</p>
                 <p>
-                  Imagine a scenario when a person is looking for a movie that he browsed on TMDB(The Movie DataBase) a week ago, but no longer remembers the title. 
+                    Your task is to select an easy-to-answer and informative question.
                 </p>
                 <p>
-                    The movie is one of the 60 movies that will be shown when you start the tutorial. 
-                </p>
-                <p>
-                    Your task is to ask a question that is easy for the person to answer, but also gives you a helpful answer to find the movie.
-                </p>
-                <p>
-                    You will be asked to go through a short tutorial first.
+                    You will go through a tutorial first to learn what easy-to-answer and informative mean.
                 </p>
               </h5>
           </div>
@@ -92,19 +86,7 @@ class Condition3 extends React.Component {
             return(
                 <div>
                     <Row>
-                    <Col sm md={6}>
-                        <TableNoFilter 
-                        callbackFromParent={this.myCallback} 
-                        checkFinishLoading={this.props.checkFinishLoading}
-                        />
-                    </Col>
-                    <Col sm md={3}>
-                        <Entropy 
-                        rules={this.state.rules} 
-                        loading={this.state.loading}
-                        />
-                    </Col>
-                    <Col sm md={3}>
+                    <Col>
                         {/* <ChatHistory
                         />
                         <br></br>
@@ -116,9 +98,22 @@ class Condition3 extends React.Component {
                         condition='entropy'
                         />
                     </Col>
-                </Row>
+                    </Row>
+                    <Row>
+                    {/* <Col sm md={6}>
+                        <TableNoFilter 
+                        callbackFromParent={this.myCallback} 
+                        checkFinishLoading={this.props.checkFinishLoading}
+                        />
+                    </Col> */}
+                    <Col>
+                        <Entropy 
+                        rules={this.state.rules} 
+                        loading={this.state.loading}
+                        />
+                    </Col>
+                    </Row>
                 </div>
-
             )
         } else {
             return(

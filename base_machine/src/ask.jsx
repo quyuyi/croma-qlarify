@@ -2,7 +2,8 @@ import React from 'react';
 import Select from 'react-select';
 import Submit from './submit.jsx';
 import Button from 'react-bootstrap/Button';
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 class Ask extends React.Component {
 
@@ -42,6 +43,39 @@ class Ask extends React.Component {
         }
     }
 
+    renderDefinitions() {
+        return (
+            <div>
+                <p>
+                    Each question is based on a metadata of a movie. Examples of metadata are id, overview, runtime, genre. Corresponding questions are: What is the id of the movie, what is the overview... etc.
+                </p>
+                <p>
+                    Imagine a person has just read about a movie from the TMDB (The Movie DataBase, an example screenshot of the site is shown below). A question is easy-to-answer if the metadata on TMDB is <b>easy for a person to remember and verbalize</b>. Please refer to the screenshot to determine whether or not a question is easy-to-answer.
+                </p>
+
+                <Row>
+                    <Col>
+                        {this.renderExperiences()}
+                    </Col>
+                </Row>
+
+                <p>
+                    In the table below, we provided a score measuring how informative each question is. The <b>higher the score</b>, the <b>more informative</b> the question.
+                </p>
+            </div>
+        )
+    }
+
+    renderExperiences() {
+
+        return (
+            <div>
+
+                <img id='posterImg' alt="Poster" src={'/get_gravity'} width='1000'/>
+            </div>
+        )
+    }
+
     renderTestQuestion() {
         if(this.state.showTest){
             return(
@@ -49,11 +83,9 @@ class Ask extends React.Component {
                     <p>
                         Tutorial
                     </p>
+                    {this.renderDefinitions()}
                     <p>
-                        The ranking in the middle ranks the questions by how helpful the answer is. The questions with a higher score give you a more helpful answer.
-                    </p>
-                    <p>
-                        But a helpful question may not be easy to answer.
+                        Please answer the following 2 questions to pass the tutorial.
                     </p>
                     <p>
                         Among the questions below: 
@@ -62,9 +94,9 @@ class Ask extends React.Component {
                             <li>A.What is the id of the movie</li>
                             <li>B.What is the spoken language of the movie</li>
                         </ul>
-                    <p>Enter the more helpful question</p>
+                    <p>Enter the more informative question (A or B)</p>
                     <input autoFocus id='testQuestionHelp' type="text" />
-                    <p>Enter the easier to answer question</p>
+                    <p>Enter the easier-to-answer question (A or B)</p>
                     <input id='testQuestionEasy' type="text" />
 
                     {/* <p>Enter the more helpful question (A helpful question narrows down the 60 movies to a smaller list)</p>
@@ -144,11 +176,9 @@ class Ask extends React.Component {
             return(
                 <div>
                     <p>Task</p>
+                    {this.renderDefinitions()}
                     <p>
-                    Based on the ranking, please select a helpful yet easy to answer question.
-                    </p>
-                    <p>
-                    We will review your question and award you a bonus of $0.2 if your question is helpful and also easy to answer.
+                    Please select an easy-to-answer and informative question. Your response will be reviewed.
                     </p>
                     <Select
                         onChange={this.handleChange.bind(this)}
