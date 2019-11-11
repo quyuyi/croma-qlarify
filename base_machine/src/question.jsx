@@ -542,19 +542,19 @@ const questionsContent = [
         // "id",
         // "imdb_id",
         // "belongs to collection",
-        // "budget range",
+        "budget range",
         "title",
-        "genres",
+        "genre",
         // "homepage",
         "original_language",
-        // "overview (briefly describe it with a sentence)",
+        "overview (briefly describe it with a sentence)",
         // "popularity range",
         // "poster_path",
         "production companies",
         "production countries",
         "release_date range",
-        // "revenue range",
-        // "runtime range",
+        "revenue range",
+        "runtime range",
         "spoken_languages",
         "status",
         "tagline",
@@ -566,8 +566,8 @@ const questionsContent = [
         "main cast (name one)",
         "director",
         "screenplay",
-        
-        // "keywords (name one)"
+        "keywords (name one)",
+        "Please tell us whether you will watch the movie or not, and briefly explain why."
 ];
 
 // const questionsContent = [
@@ -591,19 +591,19 @@ const questions = [
     // "id",
     // "imdb_id",
     // "belongs_to_collection",
-    // "budget",
+    "budget",
     "title",
     "genres",
     // "homepage",
     "original_language",
-    // "overview",
+    "overview",
     // "popularity",
     // "poster_path",
     "production_companies",
     "production_countries",
     "release_date",
-    // "revenue",
-    // "runtime",
+    "revenue",
+    "runtime",
     "spoken_languages",
     "status",
     "tagline",
@@ -616,7 +616,8 @@ const questions = [
     "director",
     "screenplay",
     
-    // "keywords"
+    "keywords",
+    "watch_or_not"
 ];
 
 // const questions = [

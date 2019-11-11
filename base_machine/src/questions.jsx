@@ -85,9 +85,10 @@ class Questions extends React.Component {
           <h4>
           In this part, we will ask you some questions about the movie you just read. 
           <br></br>
-          If you don't remember, you can answer "don’t know."
+          {/* (Please answer purely based on the poster. Thank you!) */}
+          (Please answer purely based on the metadata page. Thank you!)
           <br></br>
-          Please try not to copy answers from the internet. We will review your answers and award you a bonus of $0.3 if you answer from memory. Thank you! 
+          If you don't remember, you can answer "don’t know."
           </h4>
       </div>
       </div>
@@ -104,7 +105,7 @@ class Questions extends React.Component {
       return (
         <div className='questions'>
           {this.renderInstruction()}
-          {(this.state.questionId==14/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
+          {(this.state.questionId==20/*questions.length*/) ? this.renderEnd() : this.renderQuestion()}
         </div>
       );
     }

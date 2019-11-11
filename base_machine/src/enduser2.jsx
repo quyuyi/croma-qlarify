@@ -192,9 +192,9 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h4>
-            In this HIT, you will be asked to first select a movie that you have not seen before. 
-            Then you will be shown a poster of the movie. After reading the poster, you will be asked to answer some questions. 
-            {/* Then you will be directed to a page on The Movie Database for the movie. After viewing some information about the movies, you will be asked to answer some questions. A bonus of $0.5 will be awarded based on the quality of your performance.  */}
+            In this HIT, you will be asked to first select a movie that you have not heard of before. 
+            {/* Then you will be shown a poster of the movie. After reading the poster, you will be asked to answer some questions.  */}
+            Then you will be shown a metadata page of the movie. After reading the metadata, you will be asked to answer some questions. 
             <br></br>
             Your answers will be collected as part of a research study to simulate a hypothetical end user searching for a movie to watch. 
             </h4>
@@ -209,7 +209,7 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h4>
-            Please select a movie you have never watched before. 
+            Please select a movie you have never heard of before. 
             {/* Click show more if the movies shown are not enough for you to select {testMovies}.  */}
             <br></br>
             Click next after selecting a movie. 
@@ -226,10 +226,10 @@ class Enduser2 extends React.Component {
         <div>
         <div className='questions-header'>
             <h4>
-            {/* Please click on the link to find out more about the movie.  */}
-            Pretend you are reading the poster to decide whether to watch the movie later. 
+            {/* Pretend you are reading the poster to decide whether to watch the movie later. (Please don't look up the movie.) */}
+            You are reading the metadata to decide whether to watch the movie later. (Please don't look up the movie.)
             <br/>
-            (Note: We will award you a bonus of $0.3 if you follow the direction. You can move on to next step after 60 seconds, tho feel free to spend longer time reading.)
+            (Note: You can move on to the next step after 90 seconds, tho feel free to spend longer time reading.)
             </h4>
         </div>
         </div>
@@ -279,7 +279,7 @@ class Enduser2 extends React.Component {
     renderMovie() {
         return (
             <div>
-                <ReactImageMagnify {...{
+                {/* <ReactImageMagnify {...{
                     smallImage: {
                         alt: 'Wristwatch by Ted Baker London',
                         isFluidWidth: true,
@@ -292,9 +292,9 @@ class Enduser2 extends React.Component {
                     },
                     isHintEnabled: true,
                     shouldHideHintAfterFirstActivation: false
-                }} />
+                }} /> */}
 
-                {/* <img id='posterImg' alt="Poster" src={'/get_'+this.state.sources[this.state.trueArr[0]]}/> */}
+                <img id='posterImg' alt="Poster" src={'/get_'+this.state.sources[this.state.trueArr[0]]} width='1000'/>
             </div>
         )
     }
@@ -328,7 +328,7 @@ class Enduser2 extends React.Component {
 
     renderCountdown() {
         return(
-            <Countdown date={Date.now() + 1000}>
+            <Countdown date={Date.now() + 90000}>
                 <Button variant="dark" onClick={this.handleNext2.bind(this)}>Next</Button>
             </Countdown>
         )

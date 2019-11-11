@@ -1,158 +1,547 @@
-[{
-    "workerId": "AZ8JL3QNIPY4U",
-    "assignmentId": "3KRVW3HTZOEIDIHN0FXRUGLKG9HMSM",
-    "movieIndex": "21 Jump Street",
+[
+{
+    "workerId": "A270HX8LH9LJ8W",
+    "assignmentId": "30MVJZJNHN6A7VF3OCK8XTODKT2J9D",
+    "movieIndex": "Traffic",
     "result": [
         {
+            "question": "title",
+            "answer": "Traffic",
+            "time": 4583
+        },
+        {
             "question": "genres",
-            "answer": "Comedy",
-            "time": 4824
+            "answer": "action",
+            "time": 4996
         },
         {
             "question": "original_language",
-            "answer": "en",
-            "time": 4353
+            "answer": "English",
+            "time": 3328
         },
         {
             "question": "production_companies",
-            "answer": "columbia pictures",
-            "time": 27268
+            "answer": "don't know",
+            "time": 3680
         },
         {
             "question": "production_countries",
-            "answer": "United States of America",
-            "time": 20958
+            "answer": "United States",
+            "time": 5781
         },
         {
             "question": "release_date",
-            "answer": "after 2010",
-            "time": 13321
+            "answer": "2000 - 2010",
+            "time": 5228
         },
         {
             "question": "spoken_languages",
-            "answer": "en",
-            "time": 4911
+            "answer": "English",
+            "time": 3319
         },
         {
             "question": "status",
             "answer": "Released",
-            "time": 4068
+            "time": 4059
         },
         {
             "question": "tagline",
-            "answer": "the only thing getting blown is their cover",
-            "time": 9390
+            "answer": "No one gets away clean",
+            "time": 5565
         },
         {
             "question": "adult",
             "answer": "True",
-            "time": 1943
+            "time": 2750
         },
         {
             "question": "main characters",
-            "answer": "channing tatum",
-            "time": 4922
+            "answer": "Don Cheadle",
+            "time": 24649
         },
         {
             "question": "main cast",
-            "answer": "channing tatum",
-            "time": 5418
+            "answer": "Don Cheadle",
+            "time": 6682
         },
         {
             "question": "director",
-            "answer": "spielberg",
-            "time": 46923
+            "answer": "don't know",
+            "time": 3561
         },
         {
             "question": "screenplay",
-            "answer": "amanda senfried",
-            "time": 10224
-        },
-        {
-            "question": "title",
-            "answer": "21 Jump Street",
-            "time": 4506
+            "answer": "don't know",
+            "time": 6406
         }
     ]
 },
 {
-    "workerId": "A2EQI1DDWL8JMV",
-    "assignmentId": "3NKQQ8O39ZYVO13ECRTOQRGESSADUB",
-    "movieIndex": "Traffic",
+    "workerId": "A3VOJZ7SBSFI8",
+    "assignmentId": "3I02618YA1Z4DY64H0KJQLX36E1PUV",
+    "movieIndex": "The Revenant",
     "result": [
         {
+            "question": "title",
+            "answer": "the revenant",
+            "time": 7959
+        },
+        {
             "question": "genres",
-            "answer": "Action",
-            "time": 54070
+            "answer": "action, historical",
+            "time": 38151
         },
         {
             "question": "original_language",
-            "answer": "en",
-            "time": 8129
+            "answer": "english",
+            "time": 4095
         },
         {
             "question": "production_companies",
-            "answer": "Bedford Falls",
-            "time": 36512
+            "answer": "don't know",
+            "time": 16105
         },
         {
             "question": "production_countries",
-            "answer": "United States of America",
-            "time": 9016
+            "answer": "don't know",
+            "time": 9127
         },
         {
             "question": "release_date",
-            "answer": "Don't know",
-            "time": 11151
+            "answer": "after 2010",
+            "time": 8999
         },
         {
             "question": "spoken_languages",
-            "answer": "en",
-            "time": 9944
+            "answer": "english",
+            "time": 6072
         },
         {
             "question": "status",
             "answer": "Released",
-            "time": 21786
+            "time": 6215
         },
         {
             "question": "tagline",
-            "answer": "No One Gets Away Clean",
-            "time": 8758
+            "answer": "blood lost, life found",
+            "time": 21208
         },
         {
             "question": "adult",
             "answer": "True",
-            "time": 2392
+            "time": 6721
         },
         {
             "question": "main characters",
-            "answer": "Catherine Zeta-Jones",
-            "time": 15560
+            "answer": "don't know",
+            "time": 9047
         },
         {
             "question": "main cast",
-            "answer": "Catherine Zeta-Jones",
-            "time": 6184
+            "answer": "leonardo dicaprio",
+            "time": 9118
         },
         {
             "question": "director",
-            "answer": "Not sure",
-            "time": 27776
+            "answer": "alejandro inarotu",
+            "time": 24376
         },
         {
             "question": "screenplay",
-            "answer": "Not sure",
-            "time": 7168
-        },
+            "answer": "alejando inarotu and don't know",
+            "time": 17832
+        }
+    ]
+},
+// {
+//     "workerId": "ABX5OQLR6UNBC",
+//     "assignmentId": "36W0OB37HX7TMG2Q4ABMY4ARM56HZ7",
+//     "movieIndex": "Nemesis",
+//     "result": [
+//         {
+//             "question": "title",
+//             "answer": "Nemesis",
+//             "time": 9736
+//         },
+//         {
+//             "question": "genres",
+//             "answer": "futuristic thriller",
+//             "time": 11375
+//         },
+//         {
+//             "question": "original_language",
+//             "answer": "don't know",
+//             "time": 6592
+//         },
+//         {
+//             "question": "production_companies",
+//             "answer": "don't know",
+//             "time": 13232
+//         },
+//         {
+//             "question": "production_countries",
+//             "answer": "don't know",
+//             "time": 5664
+//         },
+//         {
+//             "question": "release_date",
+//             "answer": "1980 - 1990",
+//             "time": 11152
+//         },
+//         {
+//             "question": "spoken_languages",
+//             "answer": "don't know",
+//             "time": 5656
+//         },
+//         {
+//             "question": "status",
+//             "answer": "Released",
+//             "time": 12448
+//         },
+//         {
+//             "question": "tagline",
+//             "answer": "In the future, it pays to be more than human",
+//             "time": 19568
+//         },
+//         {
+//             "question": "adult",
+//             "answer": "Don't know",
+//             "time": 4143
+//         },
+//         {
+//             "question": "main characters",
+//             "answer": "don't know",
+//             "time": 9456
+//         },
+//         {
+//             "question": "main cast",
+//             "answer": "Grunier",
+//             "time": 7784
+//         },
+//         {
+//             "question": "director",
+//             "answer": "don't know",
+//             "time": 6264
+//         },
+//         {
+//             "question": "screenplay",
+//             "answer": "don't know",
+//             "time": 4984
+//         }
+//     ]
+// },
+
+{
+    "workerId": "A3U21PUMQ6NGT2",
+    "assignmentId": "3Z7EFSHGNA7D0DRVH090QSX01GTCXS",
+    "movieIndex": "Nemesis",
+    "result": [
         {
             "question": "title",
-            "answer": "Traffic",
-            "time": 3456
+            "answer": "Nemesis ",
+            "time": 8365
+        },
+        {
+            "question": "genres",
+            "answer": "action",
+            "time": 7330
+        },
+        {
+            "question": "original_language",
+            "answer": "don't know",
+            "time": 7285
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't know",
+            "time": 8017
+        },
+        {
+            "question": "production_countries",
+            "answer": "don't know",
+            "time": 8249
+        },
+        {
+            "question": "release_date",
+            "answer": "1990 - 2000",
+            "time": 4518
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "english",
+            "time": 10802
+        },
+        {
+            "question": "status",
+            "answer": "Don't know",
+            "time": 6049
+        },
+        {
+            "question": "tagline",
+            "answer": "In the future it pays to be more than human",
+            "time": 12435
+        },
+        {
+            "question": "adult",
+            "answer": "True",
+            "time": 5032
+        },
+        {
+            "question": "main characters",
+            "answer": "don't know",
+            "time": 6976
+        },
+        {
+            "question": "main cast",
+            "answer": "Olivier Grunner",
+            "time": 7851
+        },
+        {
+            "question": "director",
+            "answer": "don't know",
+            "time": 4647
+        },
+        {
+            "question": "screenplay",
+            "answer": "don't know",
+            "time": 4181
         }
     ]
 },
 
+{
+    "workerId": "A24LUXW1DB1QI5",
+    "assignmentId": "3X87C8JFV749YXFFS848BP5PQGVSQ8",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "title",
+            "answer": "payment on demand",
+            "time": 7423
+        },
+        {
+            "question": "genres",
+            "answer": "drama",
+            "time": 9768
+        },
+        {
+            "question": "original_language",
+            "answer": "english",
+            "time": 3440
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't know",
+            "time": 4664
+        },
+        {
+            "question": "production_countries",
+            "answer": "us",
+            "time": 8097
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 5287
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "english",
+            "time": 3536
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 6457
+        },
+        {
+            "question": "tagline",
+            "answer": "I made him... now I'll break him",
+            "time": 22287
+        },
+        {
+            "question": "adult",
+            "answer": "False",
+            "time": 4417
+        },
+        {
+            "question": "main characters",
+            "answer": "don't know",
+            "time": 6047
+        },
+        {
+            "question": "main cast",
+            "answer": "bette davis",
+            "time": 12768
+        },
+        {
+            "question": "director",
+            "answer": "don't know",
+            "time": 3888
+        },
+        {
+            "question": "screenplay",
+            "answer": "don't know",
+            "time": 3968
+        }
+    ]
+},
+
+{
+    "workerId": "A3APKUC67F9IMW",
+    "assignmentId": "33TIN5LC05302KA2ACLB7G31X1K9YE",
+    "movieIndex": "Payment on Demand",
+    "result": [
+        {
+            "question": "title",
+            "answer": "Payment on Demand",
+            "time": 6599
+        },
+        {
+            "question": "genres",
+            "answer": "Drama",
+            "time": 5482
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 4139
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't know.",
+            "time": 5712
+        },
+        {
+            "question": "production_countries",
+            "answer": "don't know.",
+            "time": 6452
+        },
+        {
+            "question": "release_date",
+            "answer": "before 1980",
+            "time": 6437
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 4251
+        },
+        {
+            "question": "status",
+            "answer": "Released",
+            "time": 4892
+        },
+        {
+            "question": "tagline",
+            "answer": "I made him and I'll break him",
+            "time": 11572
+        },
+        {
+            "question": "adult",
+            "answer": "Don't know",
+            "time": 3754
+        },
+        {
+            "question": "main characters",
+            "answer": "don't know",
+            "time": 9016
+        },
+        {
+            "question": "main cast",
+            "answer": "Bette Davis",
+            "time": 6815
+        },
+        {
+            "question": "director",
+            "answer": "don't know",
+            "time": 5768
+        },
+        {
+            "question": "screenplay",
+            "answer": "don't know",
+            "time": 5190
+        }
+    ]
+},
+
+{
+    "workerId": "AA9SBG7LNCG8Q",
+    "assignmentId": "3VZLGYJEYM3Q86259ET81QYLAYNZXM",
+    "movieIndex": "Gravity",
+    "result": [
+        {
+            "question": "title",
+            "answer": "Gravity",
+            "time": 3191
+        },
+        {
+            "question": "genres",
+            "answer": "don't know",
+            "time": 4307
+        },
+        {
+            "question": "original_language",
+            "answer": "English",
+            "time": 2683
+        },
+        {
+            "question": "production_companies",
+            "answer": "don't know",
+            "time": 3853
+        },
+        {
+            "question": "production_countries",
+            "answer": "USA",
+            "time": 3148
+        },
+        {
+            "question": "release_date",
+            "answer": "after 2010",
+            "time": 3389
+        },
+        {
+            "question": "spoken_languages",
+            "answer": "English",
+            "time": 3041
+        },
+        {
+            "question": "status",
+            "answer": "Don't know",
+            "time": 5613
+        },
+        {
+            "question": "tagline",
+            "answer": "Don't let go",
+            "time": 4446
+        },
+        {
+            "question": "adult",
+            "answer": "Don't know",
+            "time": 2724
+        },
+        {
+            "question": "main characters",
+            "answer": "don't know",
+            "time": 5635
+        },
+        {
+            "question": "main cast",
+            "answer": "Sandra Bullock",
+            "time": 7873
+        },
+        {
+            "question": "director",
+            "answer": "don't know",
+            "time": 7254
+        },
+        {
+            "question": "screenplay",
+            "answer": "don't know",
+            "time": 19157
+        }
+    ]
+},
 
 
 ]

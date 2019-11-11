@@ -63,55 +63,74 @@ def index():
 
 @app.route('/get_traffic')
 def get_traffic():
-    filename = 'posters/traffic.jpg'
-    return send_file(filename, mimetype='jpg')
-    # filename = 'posters/traffic_tmdb.png'
-    # return send_file(filename, mimetype='png')
+    # filename = 'posters/traffic.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/traffic_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_21jumpstreet')
 def get_21jumpstreet():
-    filename = 'posters/21jumpstreet.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/21jumpstreet.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/21jumpstreet_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_gravity')
 def get_gravity():
-    filename = 'posters/gravity.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/gravity.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/gravity_tmdb.png'
+    return send_file(filename, mimetype='png')
+    
 
 @app.route('/get_paymentondemand')
 def get_paymentondemand():
-    filename = 'posters/paymentondemand.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/paymentondemand.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/paymentondemand_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_exmachina')
 def get_exmachina():
-    filename = 'posters/exmachina.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/exmachina.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/exmachina_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_realitybites')
 def get_realitybites():
-    filename = 'posters/realitybites.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/realitybites.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/realitybites_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_revenant')
 def get_revenant():
-    filename = 'posters/revenant.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/revenant.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/revenant_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_prometheus')
 def get_prometheus():
-    filename = 'posters/prometheus.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/prometheus.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/prometheus_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_prestige')
 def get_prestige():
-    filename = 'posters/prestige.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/prestige.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/prestige_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/get_nemesis')
 def get_nemesis():
-    filename = 'posters/nemesis.jpg'
-    return send_file(filename, mimetype='jpg')
+    # filename = 'posters/nemesis.jpg'
+    # return send_file(filename, mimetype='jpg')
+    filename = 'posters/nemesis_tmdb.png'
+    return send_file(filename, mimetype='png')
 
 @app.route('/write_database/', methods=["GET","POST"])
 def  write_database():
