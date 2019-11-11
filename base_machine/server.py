@@ -294,6 +294,10 @@ def compute_rules():
     dat = {
         'rules': rules,
     }
+
+    # store precomputed ranking
+    with open('rank0.json', 'w') as f:
+        json.dump(dat, f)
     return jsonify(**dat)
 
 
@@ -394,7 +398,8 @@ global variables
 '''
 # preprocess only once
 # processed_dict,df=preprocess_dataset()
-
+processed_dict, df = use_sampled()
+#
 # current_indices is the indices of the 'alive' data points
 # data points that have not been filtered out
 current_indices=[]
