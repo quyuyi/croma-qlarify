@@ -40,12 +40,12 @@ def get_feature_list(col_name, processed_dict):
                     if (len(list_feature)==0):
                         list_feature+=[j['iso_639_1']]
                     else:
-                       list_feature+=[', '+ j['iso_639_1']]
+                       list_feature+=[j['iso_639_1']]
                 else:
                     if (len(list_feature)==0):
                         list_feature+=[j['name']]
                     else:
-                       list_feature+=[', '+ j['name']]
+                       list_feature+=[j['name']]
         else:
             list_feature+=['null']
         processed+=[list_feature]
@@ -116,16 +116,16 @@ def process_cast(processed_dict):
                 if (len(characters)==0):
                     characters+=[j['name']]
                 else:
-                    characters+=[', '+j['name']]
+                    characters+=[j['name']]
             else:
                 if (len(characters)==0):
                     characters+=[j['character']]
                 else:
-                    characters+=[', '+j['character']]
+                    characters+=[j['character']]
             if (len(casts)==0):
                 casts+=[j['name']]
             else:
-                casts+=[', '+j['name']]
+                casts+=[j['name']]
         character_col+=[characters]
         cast_col+=[casts]
     return character_col, cast_col
@@ -164,7 +164,7 @@ def process_keywords(processed_dict):
             if (len(keywords)==0):
                 keywords+=[j['name']]
             else:
-                keywords+=[', '+j['name']]
+                keywords+=[j['name']]
         col+=[keywords]
     return col
 
@@ -222,9 +222,9 @@ def sample999():
 
 
 def preprocess_dataset():
-    df1=pd.read_csv('movies_metadata.csv')
-    df2=pd.read_csv('credits.csv')
-    df3=pd.read_csv('keywords.csv')
+    df1=pd.read_csv('the-movies-dataset/movies_metadata.csv')
+    df2=pd.read_csv('the-movies-dataset/credits.csv')
+    df3=pd.read_csv('the-movies-dataset/keywords.csv')
     df1 = df1[df1.imdb_id != '0']
 
     df1['id'] = df1['id'].astype(int)
@@ -275,13 +275,15 @@ def preprocess_dataset():
         # df.update(new_column)
         processed_df[col]=new_column
     
-    processed_df.to_csv('test99.csv', index=False)
+    processed_df.to_csv('processed_dataset.csv', index=False)
     print("created test99.csv")
     return processed_dict, processed_df
     # return processed_dict,df
     # return sampleSpecifics(processed_dict,df)
 
 def use_processed():
+    # preprocess_dataset()
+
     df = pd.read_csv('processed_dataset.csv')
 
     # process data into a dictionary of many lists
@@ -293,6 +295,8 @@ def use_processed():
 
 
 def use_sampled():
+    # sample999()
+
     df = pd.read_csv('sample1000.csv')
 
     processed_dict={}

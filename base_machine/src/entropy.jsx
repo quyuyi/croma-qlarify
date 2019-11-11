@@ -14,7 +14,7 @@ class Entropy extends React.Component {
     }
 
     render() {
-        // const data=this.props.rules;
+        const data=this.props.rules;
         const loading=this.props.loading;
         
         const columns=[

@@ -277,8 +277,8 @@ def compute_rules():
     }
 
     # store precomputed ranking
-    with open('rank0.json', 'w') as f:
-        json.dump(dat, f)
+    # with open('rank0.json', 'w') as f:
+    #     json.dump(dat, f)
     return jsonify(**dat)
 
 
@@ -287,7 +287,14 @@ import math
 # condition3 - compute entropy for each feature
 def get_entropy(feature_name):
     global current_indices
-    feature_list=[processed_dict[feature_name][i] for i in current_indices]
+    feature_list = []
+    if feature_name in fuzzy_entropy:
+        for i in current_indices:
+            str_i = processed_dict[feature_name][i]
+            list_i = ast.literal_eval(str_i)
+            feature_list.append(list_i)
+    else:
+        feature_list=[processed_dict[feature_name][i] for i in current_indices]
     total=len(feature_list)
     if isinstance(feature_list[0], list):
         total=0
@@ -296,19 +303,27 @@ def get_entropy(feature_name):
     labels=[]
     entropyy=0
 
+    # test multi-label
+    # if (feature_name == 'genres'):
+    #     # print(feature_list)
+    #     print('-----------sample for genres------------------')
+    #     a = processed_dict[feature_name][0]
+    #     b = ast.literal_eval(a)
+    #     print(a)
+    #     print(type(a))
+    #     print(b)
+    #     print(type(b))
+
     # entropy for multi-label features
-    if isinstance(feature_list[0],list):
-        clean_feature_list=[]
+    if feature_name in fuzzy_entropy:
         for i in feature_list:
-            clean_feature=[j[2:] if len(j)>=2 and j[0]==',' else j for j in i]
-            labels+=clean_feature
-            clean_feature_list.append(clean_feature)
+            labels+=i
         value,counts=np.unique(labels,return_counts=True)
-        print('**************************************')
+        print('*****************multi-label features*********************')
         print(feature_name)
-        print(value)
-        print(counts)
-        print('**************************************')
+        # print(value)
+        # print(counts)
+        # print('**************************************')
         for idx,y in enumerate(value):
             entropyy+=-counts[idx]/total*math.log(1/counts[idx],2)        
 
@@ -333,11 +348,11 @@ def get_entropy(feature_name):
                 if (v>point or v==point):
                     range_counts[index]+=counts[idx]
                     break
-        print('--------------------------------------')
+        print('------------------range features--------------------')
         print(feature_name)
-        print(ranges)
-        print(range_counts)
-        print('--------------------------------------')
+        # print(ranges)
+        # print(range_counts)
+        # print('--------------------------------------')
 
         for idx in range(0,len(ranges)):
             if range_counts[idx]!=0:
@@ -350,6 +365,11 @@ def get_entropy(feature_name):
     # so H(X|Y)=sum(counts[y_i]/total * -log(1/counts[y_i]))
     else:
         value,counts=np.unique(feature_list,return_counts=True)
+        print('-------------------single-label case-------------------')
+        print(feature_name)
+        # print(value)
+        # print(counts)
+        # print('--------------------------------------')
         for idx,y in enumerate(value):
             entropyy+=-counts[idx]/total*math.log(1/counts[idx],2)
 
