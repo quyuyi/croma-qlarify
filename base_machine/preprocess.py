@@ -6,6 +6,8 @@ import numpy as np
 from random import sample
 
 def process_nan(feature_list):
+    print("processing nan...")
+    print(feature_list[:10])
     result=[]
     for item in feature_list:
         if item==item:
@@ -15,6 +17,8 @@ def process_nan(feature_list):
     return result
 
 def process_boolean(feature_list):
+    print("processing boolean...")
+    print(feature_list[:10])
     result=[]
     for item in feature_list:
         result+=[str(item)]
@@ -302,8 +306,16 @@ def use_sampled():
     processed_dict={}
     for col in df:
         processed_dict[col]=list(df[col])
+    processed_dict['adult']=process_boolean(processed_dict['adult'])
+    processed_dict['video']=process_boolean(processed_dict['video'])
 
-    return processed_dict, df
+    # update df
+    processed_df=pd.DataFrame()
+    for col in processed_dict:
+        new_column=pd.Series(processed_dict[col],name=col)
+        # df.update(new_column)
+        processed_df[col]=new_column
+    return processed_dict, processed_df
 
 
 # a=sampled_dict['cast'][0]
