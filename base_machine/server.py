@@ -277,8 +277,10 @@ def compute_rules():
     }
 
     # store precomputed ranking
-    # with open('rank0.json', 'w') as f:
-    #     json.dump(dat, f)
+    if (recompute_ranking == True):
+        with open('rank0.json', 'w') as f:
+            json.dump(dat, f)
+        print("regenrate ranking")
     return jsonify(**dat)
 
 
@@ -398,9 +400,13 @@ def get_split(value,counts):
 global variables
 '''
 # preprocess only once
-# processed_dict,df=preprocess_dataset()
-processed_dict, df = use_sampled()
-#
+recompute_ranking = False
+if (recompute_ranking == False):
+    processed_dict,df= use_sampled()
+else: 
+    processed_dict, df = use_processed()
+
+
 # current_indices is the indices of the 'alive' data points
 # data points that have not been filtered out
 current_indices=[]
