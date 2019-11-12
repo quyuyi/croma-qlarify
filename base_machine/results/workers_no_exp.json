@@ -1,0 +1,50 @@
+[
+{
+    "workerId": "API17TMVQ2J7Z",
+    "assignmentId": "3KMS4QQVK3JEJPCY9JKC84A13J1FKB",
+    "movieIndex": "where to get movie index?",
+    "result": {
+        "tutorialAnsEasy": "B",
+        "tutorialAnsHelp": "A",
+        "selected": {
+            "id": 13,
+            "feature": "name a spoken language",
+            "entropy": 1.886305873911186,
+            "rank": 13
+        },
+        "reasoning": "The name of the main character is one of the easiest things to remember about a movie as well as very informative.",
+        "timeTaken": 163.718
+    }
+},
+{
+    "workerId": "A2SYDWJ547MYAY",
+    "assignmentId": "3DR23U6WE67LGU2P8HEYRDCXAVHTEH",
+    "movieIndex": "where to get movie index?",
+    "result": {
+        "tutorialAnsEasy": "B",
+        "tutorialAnsHelp": "A",
+        "selected": {
+            "id": 5,
+            "feature": "who is the director",
+            "entropy": 8.538714850522197,
+            "rank": 5
+        },
+        "reasoning": "Naming the director is an easy-to-answer question because a person needs to only remember one name, but it is also informative as it offers information about the creator of a movie and where it fits in to a director's body of work.",
+        "timeTaken": 75.432
+    }
+},
+{
+    "workerId": "AR67RZM4TDX5M",
+    "assignmentId": "3NC5L260MPFX9GXD7BC5FLRANNIFO0",
+    "movieIndex": "where to get movie index?",
+    "result": {
+        "tutorialAnsEasy": "B",
+        "tutorialAnsHelp": "A",
+        "selected": "characters",
+        "reasoning": "This question is easy to answer since main characters are memorable. It is informative since it has a high score.",
+        "timeTaken": 92.436
+    }
+}
+]
+
+
