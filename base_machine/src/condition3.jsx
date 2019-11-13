@@ -19,11 +19,15 @@ class Condition3 extends React.Component {
         this.state = {
             rules: [],
             loading: true,
-            showTutorial: false
+            showTutorial: false,
+            next: 0,
+            showTable: false,
+            selectTable: false,
         };
     
         this.myCallback = this.myCallback.bind(this);
         this.fetchData = this.fetchData.bind(this);    
+        this.handleShowTable = this.handleShowTable.bind(this);
     }
     
       
@@ -34,16 +38,16 @@ class Condition3 extends React.Component {
     renderInstruction() {
         return (
           <div>
-          <div className='questions-header'>
+          <div id='instruction' className='questions-header'>
               <h5>
                   <p>Instruction</p>
+              </h5>
                 <p>
                     Your task is to select an easy-to-answer and informative question.
                 </p>
                 <p>
                     You will go through a tutorial first to learn what easy-to-answer and informative mean.
                 </p>
-              </h5>
           </div>
           </div>
         );
@@ -76,15 +80,17 @@ class Condition3 extends React.Component {
     }
 
     startTutorial() {
+        document.getElementById('instruction').className=''
         this.setState({
             showTutorial: true,
+            showTable: true,
         });
     }
 
     renderTutorial(){
         if(this.state.showTutorial) {
             return(
-                <div>
+                <div >
                     <Row>
                     <Col>
                         {/* <ChatHistory
@@ -96,23 +102,24 @@ class Condition3 extends React.Component {
                         <Ask
                         startTime={this.props.startTime}
                         condition='entropy'
+                        handleShowTable={this.handleShowTable}
                         />
                     </Col>
                     </Row>
-                    <Row>
+                    {/* <Row> */}
                     {/* <Col sm md={6}>
                         <TableNoFilter 
                         callbackFromParent={this.myCallback} 
                         checkFinishLoading={this.props.checkFinishLoading}
                         />
                     </Col> */}
-                    <Col>
+                    {/* <Col>
                         <Entropy 
                         rules={this.state.rules} 
                         loading={this.state.loading}
                         />
                     </Col>
-                    </Row>
+                    </Row> */}
                 </div>
             )
         } else {
@@ -123,20 +130,46 @@ class Condition3 extends React.Component {
             )
         }
     }
+
+    handleShowTable(show, select){
+        this.setState({
+            showTable: show,
+            selectTable: select,
+        });
+    }
     
 
 
   render(){
-      return (
-        <div>
-            <Container>
-                {this.renderInstruction()}
-                {this.renderTutorial()}
-            </Container>
-            
-            
-        </div>
-      );
+      if (this.state.showTable){
+        return (
+            <div>
+                <Container>
+                    {this.renderInstruction()}
+                    {this.renderTutorial()}
+                    <Row>
+                    <Col>
+                    <Entropy 
+                    rules={this.state.rules} 
+                    loading={this.state.loading}
+                    select={this.state.selectTable}
+                    />                   
+                    </Col>
+                    </Row>
+                </Container>
+            </div>
+          );
+      }
+      else {
+        return (
+            <div>
+                <Container>
+                    {this.renderInstruction()}
+                    {this.renderTutorial()}
+                </Container>
+            </div>
+        );
+      }
   }
 }
 

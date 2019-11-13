@@ -77,6 +77,15 @@ span.reset {
 .questions-intro {
     font-size: large;
 }
+
+.definition {
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.select {
+  color: black;
+}
   
 @keyframes spin {
 from {

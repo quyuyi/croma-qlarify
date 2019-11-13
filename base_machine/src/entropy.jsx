@@ -31,19 +31,22 @@ class Entropy extends React.Component {
     render() {
         // const data=this.props.rules;
         const loading=this.props.loading;
-        
-        const columns=[
+
+        if (this.props.select){
+            const columns=[
             {
                 Header: 'Rank',
                 accessor: 'rank',
+                width: 80,
             },
             {
                 Header: 'Question',
                 accessor: 'feature',
             },
             {
-                Header: 'Score',
+                Header: 'Informative Score',
                 accessor: 'entropy',
+                width: 150,
                 Cell: row => (
                     <NumberFormat value={row.value} displayType={'text'} decimalScale={2} />
                 ),
@@ -51,26 +54,62 @@ class Entropy extends React.Component {
             {
                 Header: 'Select',
                 accessor: 'id',
+                width: 80,
                 Cell: row => (
                     <div style={{textAlign: "center"}}>
                         <input type="checkbox" onClick={()=>this.updateChecked(row.value)}/>
                     </div>
                 )
-            },
-        ];
+            },];
+            return (
+                <div>
+                    <ReactTable
+                        data={data}
+                        columns={columns}
+                        loading={loading}
+                        defaultPageSize={30}
+                        className="-striped -highlight"
+                    />   
+                    <input type="text" id="checkList" style={{display: "none"}}/>
+                </div>
+            );
+        }
+        else {
+            const columns=[
+                {
+                    Header: 'Rank',
+                    accessor: 'rank',
+                    width: 80,
+                },
+                {
+                    Header: 'Question',
+                    accessor: 'feature',
+                },
+                {
+                    Header: 'Informative Score',
+                    accessor: 'entropy',
+                    width: 150,
+                    Cell: row => (
+                        <NumberFormat value={row.value} displayType={'text'} decimalScale={2} />
+                    ),
+                },];        
+            return (
+                <div>
+                    <ReactTable
+                        data={data}
+                        columns={columns}
+                        loading={loading}
+                        defaultPageSize={30}
+                        className="-striped -highlight"
+                    />   
+                    <input type="text" id="checkList" style={{display: "none"}}/>
+                </div>
+            );
+        }
+        
 
-        return (
-            <div>
-                <ReactTable
-                    data={data}
-                    columns={columns}
-                    loading={loading}
-                    defaultPageSize={30}
-                    className="-striped -highlight"
-                />   
-                <input type="text" id="checkList" style={{display: "none"}}/>
-            </div>
-        );
+
+
     }
 
 }
