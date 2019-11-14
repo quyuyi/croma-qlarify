@@ -58,6 +58,7 @@ class Ask extends React.Component {
             tutorialAnsEasy: '',
             reasoning: '',
             stage: 0,
+            tutorialTrial: 1,
         };
     }
 
@@ -76,13 +77,22 @@ class Ask extends React.Component {
         console.log(this.state.tutorialAnsHelp);
         if(this.state.tutorialAnsHelp != 'A' && this.state.tutorialAnsEasy != 'B'){
             // alert('Please answer the tutorial questions.');
-            alert("Wrong answer for both questions.\n\n'What is the id of the movie' is more informative because it has a higher informative score shown in the table.\n\n'What is the spoken language of the movie' is the easier-to-answer question, because the spoken language of the movie is easy to remember and say.");
+            alert("Wrong answer for both questions.\n\n'What is the id of the movie' is more informative because it has a higher informativeness score shown in the table.\n\n'What is the spoken language of the movie' is the easier-to-answer question, because the spoken language of the movie is easy to remember and say.");
+            this.setState({
+                tutorialTrial: this.state.tutorialTrial+1,
+            })
         } 
         else if (this.state.tutorialAnsHelp != 'A') {
-            alert("Wrong answer for the first question.\n\n'What is the id of the movie' is more informative because it has a higher informative score shown in the table.")
+            alert("Wrong answer for the first question.\n\n'What is the id of the movie' is more informative because it has a higher informativeness score shown in the table.");
+            this.setState({
+                tutorialTrial: this.state.tutorialTrial+1,
+            })
         }
         else if (this.state.tutorialAnsEasy != 'B') {
-            alert("Wrong answer for the second question.\n\n'What is the spoken language of the movie' is the easier-to-answer question, because the spoken language of the movie is easy to remember and say.")
+            alert("Wrong answer for the second question.\n\n'What is the spoken language of the movie' is the easier-to-answer question, because the spoken language of the movie is easy to remember and say.");
+            this.setState({
+                tutorialTrial: this.state.tutorialTrial+1,
+            })
         }
         else {
             this.props.handleShowTable(true, true)
@@ -126,7 +136,7 @@ class Ask extends React.Component {
                     {/* Please refer to the screenshot to determine whether or not a question is easy-to-answer. */}
                 </p>
                 <p>
-                    A question is more informative if it has a <b>higher informative score</b> as shown in the table below.
+                    A question is more informative if it has a <b>higher informativeness score</b> as shown in the table below.
                 {/* In the table below, we provided a score measuring how informative each question is. The <b>higher the score</b>, the <b>more informative</b> the question. */}
                 </p>
 
@@ -209,8 +219,10 @@ class Ask extends React.Component {
             tutorialAnsHelp: this.state.tutorialAnsHelp,
             selected: this.state.selectedOption,
             reasoning: this.state.reasoning,
-            timeTaken: (this.state.endTime - this.state.startTime)/1000
+            timeTaken: (this.state.endTime - this.state.startTime)/1000,
+            tutorialTrial: this.state.tutorialTrial,
         }
+        console.log(finalResult);
 
         if(this.state.showSubmit) {
             return (
@@ -247,7 +259,7 @@ class Ask extends React.Component {
         if(checked.length != 1) {
             alert("please choose one question by checking the box in the table.")
         } else if(reasoning == '') {
-            alert("Please explain why you chose this question.")
+            alert("Please explain why do you think it’s easy-to-answer and informative.")
         } else {
             this.props.handleShowTable(false);
             this.setState({ showReal : false, 
@@ -270,15 +282,16 @@ class Ask extends React.Component {
                     <p>Task</p>
                     </h5>
                     <p>
-                    Please select an <b>easy-to-answer</b> and <b>informative</b> question by <b>checking a box in the table below</b>. Also, explain your reasoning in the input box. We will review your response and approve the qualified responses.
+                    Please select an <b>easy-to-answer</b> and <b>informative</b> question by <b>checking a box in the table below</b>. Also, explain why think it’s easy-to-answer and informative in the input box. We will review your response and approve the qualified responses.
                     </p>
 
                     {/* <Select
                         onChange={this.handleChange.bind(this)}
                         options={options}
                     /> */}
-
-                    <input id='reasoning' type="text" placeholder="Explain your reasoning here"/>
+                    <textarea className="form-control" id="reasoning" rows="3"
+                    placeholder="Explain why you think it’s easy-to-answer and informative"></textarea>
+                    {/* <input id='reasoning' type="text" placeholder="Explain why you think it’s easy-to-answer and informative"/> */}
 
                     {/* <Button block variant="secondary" onClick={()=>this.showSubmit()} >Next</Button> */}
 

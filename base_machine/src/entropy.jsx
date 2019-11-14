@@ -44,9 +44,9 @@ class Entropy extends React.Component {
                 accessor: 'feature',
             },
             {
-                Header: 'Informative Score',
+                Header: 'Informativeness Score',
                 accessor: 'entropy',
-                width: 150,
+                width: 200,
                 Cell: row => (
                     <NumberFormat value={row.value} displayType={'text'} decimalScale={2} />
                 ),
@@ -86,9 +86,9 @@ class Entropy extends React.Component {
                     accessor: 'feature',
                 },
                 {
-                    Header: 'Informative Score',
+                    Header: 'Informativeness Score',
                     accessor: 'entropy',
-                    width: 150,
+                    width: 200,
                     Cell: row => (
                         <NumberFormat value={row.value} displayType={'text'} decimalScale={2} />
                     ),
