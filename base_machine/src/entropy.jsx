@@ -32,7 +32,7 @@ class Entropy extends React.Component {
         // const data=this.props.rules;
         const loading=this.props.loading;
 
-        if (this.props.select){
+        if (this.props.select && this.props.entropy){
             const columns=[
             {
                 Header: 'Rank',
@@ -74,7 +74,7 @@ class Entropy extends React.Component {
                 </div>
             );
         }
-        else {
+        else if (!this.props.select && this.props.entropy){
             const columns=[
                 {
                     Header: 'Rank',
@@ -106,10 +106,34 @@ class Entropy extends React.Component {
                 </div>
             );
         }
-        
-
-
-
+        else if (!this.props.entropy){
+            const columns=[
+                {
+                    Header: 'Question',
+                    accessor: 'feature',
+                },{
+                    Header: 'Select',
+                    accessor: 'id',
+                    width: 80,
+                    Cell: row => (
+                        <div style={{textAlign: "center"}}>
+                            <input type="checkbox" onClick={()=>this.updateChecked(row.value)}/>
+                        </div>
+                    )
+                },];   
+                return (
+                    <div>
+                        <ReactTable
+                            data={data}
+                            columns={columns}
+                            loading={loading}
+                            defaultPageSize={30}
+                            className="-striped -highlight"
+                        />   
+                        <input type="text" id="checkList" style={{display: "none"}}/>
+                    </div>
+                );        
+        }
     }
 
 }

@@ -150,9 +150,10 @@ class Condition3 extends React.Component {
                     <Row>
                     <Col>
                     <Entropy 
-                    rules={this.state.rules} 
+                    // rules={this.state.rules} 
                     loading={this.state.loading}
                     select={this.state.selectTable}
+                    entropy={true}
                     />                   
                     </Col>
                     </Row>

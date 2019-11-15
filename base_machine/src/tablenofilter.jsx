@@ -72,46 +72,47 @@ class TableNoFilter extends React.Component {
 
         const columns = [
             {
-               Header: 'id',
+                Header: () => <div><input type="radio" name="feature" value='id'/><p></p><p>id</p></div>,
+            //    Header: 'id',
                accessor: 'id',
             }, 
             {
-               Header: 'imdb_id',
+               Header: () => <div><input type="radio" name="feature" value='imdb_id'/><p></p><p>imdb_id</p></div>,
                accessor: 'imdb_id',
             }, 
             {
-               Header: 'title',
+               Header: () => <div><input type="radio" name="feature" value='title'/><p></p><p>title</p></div>,
                accessor: 'title',
                style: textStyle,
             }, 
             {
-               Header: 'belongs_to_collection',
+               Header: () => <div><input type="radio" name="feature" value='belongs_to_collection'/><p></p><p>belongs_to_collection</p></div>,
                accessor: 'belongs_to_collection',
                style: textStyle,
             }, 
             {
-               Header: 'budget',
+               Header: () => <div><input type="radio" name="feature" value='budget'/><p></p><p>budget</p></div>,
                accessor: 'budget',
             }, 
             {
-               Header: 'genres',
+               Header: () => <div><input type="radio" name="feature" value='genres'/><p></p><p>genres</p></div>,
                accessor: 'genres',
             }, 
             {
-               Header: 'homepage',
+               Header: () => <div><input type="radio" name="feature" value='homepage'/><p></p><p>homepage</p></div>,
                accessor: 'homepage',
             }, 
             {
-               Header: 'original language',
+               Header: () => <div><input type="radio" name="feature" value='original_language'/><p></p><p>original_language</p></div>,
                accessor: 'original_language',
             }, 
             {
-               Header: 'original title',
+               Header: () => <div><input type="radio" name="feature" value='original_title'/><p></p><p>original_title</p></div>,
                accessor: 'original_title',
                style: textStyle,
             }, 
             {
-               Header: 'overview',
+               Header: () => <div><input type="radio" name="feature" value='overview'/><p></p><p>overview</p></div>,
                accessor: 'overview',
                width: width,
                style: textStyle,
@@ -120,44 +121,44 @@ class TableNoFilter extends React.Component {
                ),            
             }, 
             {
-               Header: 'popularity',
+               Header: () => <div><input type="radio" name="feature" value='popularity'/><p></p><p>popularity</p></div>,
                accessor: 'popularity',
             }, 
             {
-               Header: 'poster_path',
+               Header: () => <div><input type="radio" name="feature" value='poster_path'/><p></p><p>poster_path</p></div>,
                accessor: 'poster_path',
             }, 
             {
-               Header: 'production_companies',
+               Header: () => <div><input type="radio" name="feature" value='production_companies'/><p></p><p>production_companies</p></div>,
                accessor: 'production_companies',
             },
             {
-                Header: 'production_countries',
+                Header: () => <div><input type="radio" name="feature" value='production_countries'/><p></p><p>production_countries</p></div>,
                 accessor: 'production_countries',
             }, 
             {
-                Header: 'release date',
+                Header: () => <div><input type="radio" name="feature" value='release_date'/><p></p><p>release_date</p></div>,
                 accessor: 'release_date',
             }, 
             {
-                Header: 'revenue',
+                Header: () => <div><input type="radio" name="feature" value='revenue'/><p></p><p>revenue</p></div>,
                 accessor: 'revenue',
             }, 
             {
-                Header: 'runtime',
+                Header: () => <div><input type="radio" name="feature" value='runtime'/><p></p><p>runtime</p></div>,
                 accessor: 'runtime',
                 width: width,
             }, 
             {
-                Header: 'spoken_languages',
+                Header: () => <div><input type="radio" name="feature" value='spoken_languages'/><p></p><p>spoken_languages</p></div>,
                 accessor: 'spoken_languages',
             }, 
             {
-                Header: 'status',
+                Header: () => <div><input type="radio" name="feature" value='status'/><p></p><p>status</p></div>,
                 accessor: 'status',
             }, 
             {
-                Header: 'tagline',
+                Header: () => <div><input type="radio" name="feature" value='tagline'/><p></p><p>tagline</p></div>,
                 accessor: 'tagline',
                 width: width,
                 style: textStyle,
@@ -166,23 +167,23 @@ class TableNoFilter extends React.Component {
                 ),
             }, 
             {
-                Header: 'video',
+                Header: () => <div><input type="radio" name="feature" value='video'/><p></p><p>video</p></div>,
                 accessor: 'video',
             }, 
             {
-                Header: 'vote average',
+                Header: () => <div><input type="radio" name="feature" value='vote_average'/><p></p><p>vote_average</p></div>,
                 accessor: 'vote_average',
             }, 
             {
-                Header: 'vote_count',
+                Header:() => <div><input type="radio" name="feature" value='vote_count'/><p></p><p>vote_count</p></div>,
                 accessor: 'vote_count',
             }, 
             {
-                Header: 'adult',
+                Header: () => <div><input type="radio" name="feature" value='adult'/><p></p><p>adult</p></div>,
                 accessor: 'adult',           
             }, 
             {
-                Header: 'main characters',
+                Header: () => <div><input type="radio" name="feature" value='characters'/><p></p><p>characters</p></div>,
                 accessor: 'characters',
                 width: width,
                 style: textStyle,
@@ -191,7 +192,7 @@ class TableNoFilter extends React.Component {
                 ),
             }, 
             {
-                Header: 'main cast',
+                Header: () => <div><input type="radio" name="feature" value='cast'/><p></p><p>cast</p></div>,
                 accessor: 'cast',
                 width: width,
                 style: textStyle,
@@ -200,17 +201,17 @@ class TableNoFilter extends React.Component {
                 ),
             }, 
             {
-                Header: 'director',
+                Header: () => <div><input type="radio" name="feature" value='director'/><p></p><p>director</p></div>,
                 accessor: 'director',
                 style: textStyle,
             },
             {
-                Header: 'screenplay',
+                Header: () => <div><input type="radio" name="feature" value='screenplay'/><p></p><p>screenplay</p></div>,
                 accessor: 'screenplay',
                 style: textStyle,
             },
             {
-                Header: 'keywords',
+                Header: () => <div><input type="radio" name="feature" value='keywords'/><p></p><p>keywords</p></div>,
                 accessor: 'keywords',
                 width: width,
                 style: textStyle,
