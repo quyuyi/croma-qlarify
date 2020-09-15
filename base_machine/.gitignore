@@ -1,11 +1,12 @@
 tags
 qlarify/
-the-movies-dataset/
+the-movies-dataset/*
 processed_dataset.csv
 package.json
 package-lock.json
 requirements.txt
 bundle.js
+*.csv
 # Created by https://www.gitignore.io/api/node
 
 ### Node ###

@@ -153,84 +153,6 @@
         }
     ]
 },
-// {
-//     "workerId": "ABX5OQLR6UNBC",
-//     "assignmentId": "36W0OB37HX7TMG2Q4ABMY4ARM56HZ7",
-//     "movieIndex": "Nemesis",
-//     "result": [
-//         {
-//             "question": "title",
-//             "answer": "Nemesis",
-//             "time": 9736
-//         },
-//         {
-//             "question": "genres",
-//             "answer": "futuristic thriller",
-//             "time": 11375
-//         },
-//         {
-//             "question": "original_language",
-//             "answer": "don't know",
-//             "time": 6592
-//         },
-//         {
-//             "question": "production_companies",
-//             "answer": "don't know",
-//             "time": 13232
-//         },
-//         {
-//             "question": "production_countries",
-//             "answer": "don't know",
-//             "time": 5664
-//         },
-//         {
-//             "question": "release_date",
-//             "answer": "1980 - 1990",
-//             "time": 11152
-//         },
-//         {
-//             "question": "spoken_languages",
-//             "answer": "don't know",
-//             "time": 5656
-//         },
-//         {
-//             "question": "status",
-//             "answer": "Released",
-//             "time": 12448
-//         },
-//         {
-//             "question": "tagline",
-//             "answer": "In the future, it pays to be more than human",
-//             "time": 19568
-//         },
-//         {
-//             "question": "adult",
-//             "answer": "Don't know",
-//             "time": 4143
-//         },
-//         {
-//             "question": "main characters",
-//             "answer": "don't know",
-//             "time": 9456
-//         },
-//         {
-//             "question": "main cast",
-//             "answer": "Grunier",
-//             "time": 7784
-//         },
-//         {
-//             "question": "director",
-//             "answer": "don't know",
-//             "time": 6264
-//         },
-//         {
-//             "question": "screenplay",
-//             "answer": "don't know",
-//             "time": 4984
-//         }
-//     ]
-// },
-
 {
     "workerId": "A3U21PUMQ6NGT2",
     "assignmentId": "3Z7EFSHGNA7D0DRVH090QSX01GTCXS",
@@ -541,7 +463,5 @@
             "time": 19157
         }
     ]
-},
-
-
+}
 ]
