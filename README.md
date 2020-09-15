@@ -1,6 +1,8 @@
 # Qlarify
 
-#### Crowdsourcing the generation of more user-efficient clarifications by optimizing over information gain and answerability.
+#### Crowdsourcing the generation of more user-efficient clarifications by optimizing over information gain and answerability. 
+
+*Research project conducted at [Cro+Ma Lab](https://github.com/cromaLab) under the CSE department at the University of Michigan. Project led by Yiwei Yang, and advised by Walter Lasecki.*
 
 ### Problem
 Interactive systems that support Voice User Interfaces (VUIs) are growing in popularity. However, when interacting with VUIs, users tend to under-specify and make an ambiguous reference in their requests (e.g. show me the document I wrote yesterday), which causes the VUIs to ask follow-up clarifying questions.
