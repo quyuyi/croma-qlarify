@@ -5,31 +5,9 @@ import ast
 import numpy as np
 from random import sample
 
-def process_nan(feature_list):
-    print("processing nan...")
-    print(feature_list[:10])
-    result=[]
-    for item in feature_list:
-        if item==item:
-            result+=[item]
-        else:
-            result+=['null']
-    return result
 
-def process_boolean(feature_list):
-    print("processing boolean...")
-    print(feature_list[:10])
-    result=[]
-    for item in feature_list:
-        result+=[str(item)]
-    return result
-
-# TODO
-# language name are strange, should we use id?
-# e.g.,  ['English', 'Français', '한국어/조선말', 'Español']
-# process the string read from csv file
-# to list object in python
 def get_feature_list(col_name, processed_dict):
+    """Process the string read from csv file to list object in python."""
     processed=[]
     for i in processed_dict[col_name]:
         list_feature=[]
@@ -71,34 +49,14 @@ def get_collection_name(processed_dict):
 
 
 def sample99(processed_dict):
-    # all = [i for i in range(0,len(processed_dict['adult']))]
-    # # print("df length is")
-    # # print(len(processed_dict['adult']))
-    # sampled=sample(all,99)
-    # # add the target movie with id=14160
-    # print(len(processed_dict["id"]))
-    # for idx,item in enumerate(processed_dict["imdb_id"]): 
-    #     if item=='tt1049413': # id==14160
-    #         if idx not in sampled:
-    #             print(idx)
-    #             sampled+=[idx]
-    # print("******************sampled indices*************")
-    # print(sampled)
-
+    """Sample 99 from the whole dataset for test."""
     sampled=[15225, 3298, 6636, 7391, 27577, 13451, 4895, 19609, 43174, 19272, 11559, 9361, 842, 19911, 38623, 30496, 20915, 38047, 34756, 28685, 5933, 40187, 13813, 38990, 16767, 7170, 18262, 14850, 13702, 30305, 10271, 30056, 14128, 9869, 42227, 39446, 23093, 6202, 21084, 45273, 8601, 41854, 17756, 29529, 10063, 4189, 9994, 35021, 9423, 31150, 36674, 20402, 34061, 10671, 2870, 31254, 19588, 13537, 15403, 17195, 16445, 36889, 18085, 23656, 3901, 37623, 40384, 40359, 17484, 24901, 21170, 6502, 31394, 22322, 34011, 36985, 45331, 30723, 43699, 27148, 1117, 14817, 5348, 10559, 14759, 12434, 5100, 18917, 35013, 27493, 22599, 7058, 32339, 12616, 28310, 16663, 45043, 41817, 22257, 13724]
-
     sampled_dict={}
-    # sampled_df = pd.DataFrame() 
     for col in processed_dict:
         new_col = [processed_dict[col][i] for i in sampled]
-        # print(new_col)
         sampled_dict[col]=new_col
-        # sampled_df[col]=pd.Series(new_col,name=col)
-
-    # print(sampled_df)
-    # print(sampled_dict["imdb_id"][99])
-    # return sampled_dict,sampled_df
     return sampled_dict
+
 
 def process_cast(processed_dict):
     character_col=[]
@@ -134,6 +92,7 @@ def process_cast(processed_dict):
         cast_col+=[casts]
     return character_col, cast_col
 
+
 def process_crew(processed_dict):
     director_col=[]
     screenplay_col=[]
@@ -157,6 +116,7 @@ def process_crew(processed_dict):
         screenplay_col+=[screenplay]
     return director_col, screenplay_col
 
+
 def process_keywords(processed_dict):
     col=[]
     for i in processed_dict['keywords']:
@@ -172,6 +132,23 @@ def process_keywords(processed_dict):
         col+=[keywords]
     return col
 
+
+def process_nan(feature_list):
+    result=[]
+    for item in feature_list:
+        if item==item:
+            result+=[item]
+        else:
+            result+=['null']
+    return result
+
+def process_boolean(feature_list):
+    print(feature_list[:10])
+    result=[]
+    for item in feature_list:
+        result+=[str(item)]
+    return result
+
     
 def sampleSpecifics(processed_dict):
     imdb_ids=['tt3659388', 'tt1454468', 'tt1631867', 'tt0470752', 'tt2562232', 'tt0482571', 'tt2872718', 'tt0209144', 'tt1663202', 'tt2379713', 'tt0816711', 
@@ -185,25 +162,18 @@ def sampleSpecifics(processed_dict):
     for idx,item in enumerate(processed_dict["imdb_id"]): 
         if item in imdb_ids: # id==14160
             if idx not in sampled:
-                # print(idx)
                 sampled+=[idx]
 
     sampled_dict={}
-    # sampled_df = pd.DataFrame() 
     for col in processed_dict:
         new_col = [processed_dict[col][i] for i in sampled]
-        # print(new_col)
         sampled_dict[col]=new_col
-        # sampled_df[col]=pd.Series(new_col,name=col)
-
-    # print(sampled_df)
-    # print(sampled_dict["imdb_id"][99])
-    return sampled_dict # ,sampled_df
+    return sampled_dict
 
 
 def sample999():
+    """Random sample 1000 movies."""
     processed_dict, _ = use_processed()
-    # random sample 1000 movies
     all = [i for i in range(0,len(processed_dict['adult']))]
     sampled=sample(all,999)
 
@@ -224,7 +194,6 @@ def sample999():
     return sampled_dict, sampled_df
 
 
-
 def preprocess_dataset():
     df1=pd.read_csv('the-movies-dataset/movies_metadata.csv')
     df2=pd.read_csv('the-movies-dataset/credits.csv')
@@ -243,8 +212,8 @@ def preprocess_dataset():
         all_col+=[col]
         raw_dict[col]=list(df[col])
 
-    # # sample from the whole dataset
-    # # sampled_dict=sample99(raw_dict)
+    # sample from the whole dataset
+    # sampled_dict=sample99(raw_dict)
     # sampled_dict=sampleSpecifics(raw_dict)
     sampled_dict = raw_dict   
 
@@ -287,9 +256,7 @@ def preprocess_dataset():
 
 def use_processed():
     # preprocess_dataset()
-
     df = pd.read_csv('processed_dataset.csv')
-
     # process data into a dictionary of many lists
     processed_dict={}
     for col in df:
@@ -300,15 +267,12 @@ def use_processed():
 
 def use_sampled():
     # sample999()
-
     df = pd.read_csv('sample1000.csv')
-
     processed_dict={}
     for col in df:
         processed_dict[col]=list(df[col])
     processed_dict['adult']=process_boolean(processed_dict['adult'])
     processed_dict['video']=process_boolean(processed_dict['video'])
-
     # update df
     processed_df=pd.DataFrame()
     for col in processed_dict:
@@ -316,28 +280,3 @@ def use_sampled():
         # df.update(new_column)
         processed_df[col]=new_column
     return processed_dict, processed_df
-
-
-# a=sampled_dict['cast'][0]
-# aa=ast.literal_eval(a)    
-# with open('result.txt','a') as f:
-#     for item in aa:
-#         f.write(str(item))
-#         f.write('\n')
-
-# b=sampled_dict['crew'][1]
-# bb=ast.literal_eval(b)
-# with open('result.txt','a', encoding='utf-8') as f:
-#     for item in bb:
-#         f.write(str(item))
-#         f.write('\n')
-
-# with open('crew_instances.txt','a', encoding='utf-8') as f:
-#     for i in range(0,5):
-#         b=sampled_dict['crew'][i]
-#         bb=ast.literal_eval(b)
-#         for item in bb:
-#             f.write(str(item))
-#             f.write('\n')
-#         f.write("*********************************")
-#         f.write('\n\n')

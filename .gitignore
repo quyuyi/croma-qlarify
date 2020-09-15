@@ -1,9 +1,6 @@
 tags
 qlarify/
 the-movies-dataset/*
-package.json
-package-lock.json
-requirements.txt
 bundle.js
 *.csv
 Procfile

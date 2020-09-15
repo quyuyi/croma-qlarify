@@ -9,9 +9,9 @@ import string
 import csv
 from pymongo import MongoClient
 import datetime
-
+from scipy.stats import entropy
+import math
 from preprocess import *
-
 
 app = Flask(__name__)
 app.secret_key='some random string'
@@ -21,45 +21,45 @@ app.secret_key='some random string'
 def index():
     return render_template('index.html')
 
-# @app.route('/get_movie1')
-# def get_movie1():
-#     filename = 'uploads/movie1.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie1')
+def get_movie1():
+    filename = 'uploads/movie1.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie2')
-# def get_movie2():
-#     filename = 'uploads/movie2.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie2')
+def get_movie2():
+    filename = 'uploads/movie2.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie3')
-# def get_movie3():
-#     filename = 'uploads/movie3.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie3')
+def get_movie3():
+    filename = 'uploads/movie3.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie4')
-# def get_movie4():
-#     filename = 'uploads/movie4.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie4')
+def get_movie4():
+    filename = 'uploads/movie4.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie5')
-# def get_movie5():
-#     filename = 'uploads/movie5.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie5')
+def get_movie5():
+    filename = 'uploads/movie5.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie6')
-# def get_movie6():
-#     filename = 'uploads/movie6.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie6')
+def get_movie6():
+    filename = 'uploads/movie6.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie7')
-# def get_movie7():
-#     filename = 'uploads/movie7.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie7')
+def get_movie7():
+    filename = 'uploads/movie7.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
-# @app.route('/get_movie8')
-# def get_movie8():
-#     filename = 'uploads/movie8.mp4'
-#     return send_file(filename, mimetype='video/mp4')
+@app.route('/get_movie8')
+def get_movie8():
+    filename = 'uploads/movie8.mp4'
+    return send_file(filename, mimetype='video/mp4')
 
 @app.route('/get_traffic')
 def get_traffic():
@@ -157,15 +157,12 @@ def  write_database():
     return jsonify(**dat)
 
 
-
-
 # condition3 - fetch
 # render features based on the whole dataset 
 # since fetch data is called firstly and once
 @app.route('/render_features/', methods=["GET", "POST"])
 def suggest_rules():
     global current_indices
-    # don't do this globally
     current_indices=[i for i in range(0,len(processed_dict['adult']))]
     global selected_features
     selected_features=['title', 'original_title', 'overview']
@@ -185,6 +182,7 @@ def update_indices():
 
     return update_features()
 
+
 # @app.route('/update_features/', methods=["GET", "POST"])
 def update_features():
     print('current dataset size: ')
@@ -192,13 +190,9 @@ def update_features():
     return compute_rules()
 
 
-
-
-# condition1 - render the whole dataset to the crowd worker
 @app.route('/render_dataset/', methods=["GET", "POST"])
 def render_dataset():
-    # test only several columns
-    # df1=df[['adult','budget','overview','genres']]
+    """Condition1 - render the whole dataset to the crowd worker."""
     data_str=df.to_json(orient = "records")
     data_list=json.loads(data_str)
     dat={
@@ -207,17 +201,10 @@ def render_dataset():
     return jsonify(**dat)
 
 
-# condition1 - provide simulated end user answer
 @app.route('/fetch_condition1/', methods=["GET", "POST"])
 def fetch_question():
-    # get question to be asked from the crowd worker
+    """Condition1 - provide simulated end user answer."""
     question=request.json['question']
-    # responseTime = request.json['responseTime']
-    # print("Here is the crowd worker's response time in milliseconds")
-    # print(responseTime)
-    # with open(logCrowd, 'a') as f:
-    #     f.write("%s: %s\n" % (question,responseTime))
-
     response = simulated_answers[question]
     if response[0] == '':
         response = ['The end user does not know', 10]
@@ -228,9 +215,8 @@ def fetch_question():
     return jsonify(**return_result)
 
 
-# condition3 - ranked feature list by computing entropy
-# case1&2 - rank with/wihtout entropy
 def compute_rules():
+    """Condition3 - ranked feature list by computing entropy."""
     split={}
     entropies={}
     for item in processed_dict:
@@ -239,15 +225,8 @@ def compute_rules():
     ranked_indices=sorted(entropies.items(),key=lambda kv:kv[1],reverse=False)
 
     # not show the previously selected features as options
-    # filtered_ranked=[item[0] for item in ranked_indices if item[0] not in selected_features ]
     filtered_entropy=[item for item in ranked_indices if item[0] not in selected_features]
 
-
-    # TODO
-    # Normalize the scores to the scale of [0,10] 
-    # using min-max feature scaling 
-    # scaled=(x-min(x))/max(x)-min(x) in range [0,1]
-    # with precision of 2 decimal digits
     min_entropy=filtered_entropy[len(filtered_entropy)-1][1]
     max_entropy=filtered_entropy[0][1]
 
@@ -303,10 +282,8 @@ def compute_rules():
     return jsonify(**dat)
 
 
-from scipy.stats import entropy
-import math
-# condition3 - compute entropy for each feature
 def get_entropy(feature_name):
+    """Condition3 - compute entropy for each feature."""
     global current_indices
     feature_list = []
     if feature_name in fuzzy_entropy:
@@ -340,11 +317,6 @@ def get_entropy(feature_name):
         for i in feature_list:
             labels+=i
         value,counts=np.unique(labels,return_counts=True)
-        print('*****************multi-label features*********************')
-        print(feature_name)
-        # print(value)
-        # print(counts)
-        # print('**************************************')
         for idx,y in enumerate(value):
             entropyy+=-counts[idx]/total*math.log(1/counts[idx],2)        
 
@@ -369,11 +341,6 @@ def get_entropy(feature_name):
                 if (v>point or v==point):
                     range_counts[index]+=counts[idx]
                     break
-        print('------------------range features--------------------')
-        print(feature_name)
-        # print(ranges)
-        # print(range_counts)
-        # print('--------------------------------------')
 
         for idx in range(0,len(ranges)):
             if range_counts[idx]!=0:
@@ -388,9 +355,6 @@ def get_entropy(feature_name):
         value,counts=np.unique(feature_list,return_counts=True)
         print('-------------------single-label case-------------------')
         print(feature_name)
-        # print(value)
-        # print(counts)
-        # print('--------------------------------------')
         for idx,y in enumerate(value):
             entropyy+=-counts[idx]/total*math.log(1/counts[idx],2)
 
@@ -399,7 +363,7 @@ def get_entropy(feature_name):
     return entropyy,split
 
 def get_split(value,counts):
-    # only show the distribution of the top 5 frequent values
+    """Only show the distribution of the top 5 frequent values."""
     l=len(value)
     if (l>10):
         l=10
@@ -415,9 +379,7 @@ def get_split(value,counts):
     return split
 
 
-'''
-global variables
-'''
+"""Global variables"""
 # preprocess only once
 recompute_ranking = False
 if (recompute_ranking == False):
@@ -425,9 +387,7 @@ if (recompute_ranking == False):
 else: 
     processed_dict, df = use_processed()
 
-
-# current_indices is the indices of the 'alive' data points
-# data points that have not been filtered out
+# current_indices is the indices of the 'alive' data points data points that have not been filtered out
 current_indices=[]
 
 
@@ -456,31 +416,8 @@ range_dict['popularity']=popularityRange
 range_dict['vote_average']=vote_averageRange
 range_dict['vote_count']=vote_countRange
 
-
-# from time import gmtime, strftime
-# logCrowd='logCrowd_'+strftime("%m%d_%H%M", gmtime())
-
-
 def rank_simple(vector):
     return sorted(range(len(vector)), key=vector.__getitem__)
-
-# def rankdata(a):
-#     n = len(a)
-#     ivec=rank_simple(a)
-#     svec=[a[rank] for rank in ivec]
-#     sumranks = 0
-#     dupcount = 0
-#     newarray = [0]*n
-#     for i in xrange(n):
-#         sumranks += i
-#         dupcount += 1
-#         if i==n-1 or svec[i] != svec[i+1]:
-#             averank = sumranks / float(dupcount) + 1
-#             for j in xrange(i-dupcount+1,i+1):
-#                 newarray[ivec[j]] = averank
-#             sumranks = 0
-#             dupcount = 0
-#     return newarray
 
 
 if __name__ == "__main__":
